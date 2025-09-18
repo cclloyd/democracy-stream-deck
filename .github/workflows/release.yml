@@ -37,7 +37,7 @@ jobs:
     steps:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
-        with:
+#        with:
           # No files argument: just creates a release for the tag
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
