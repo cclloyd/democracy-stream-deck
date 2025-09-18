@@ -10,6 +10,8 @@ if __name__ == '__main__':
         '--standalone',
         '--assume-yes-for-downloads',
         '--output-filename=dsd.exe',
+        '--enable-plugin=tk-inter',
+        '--no-deployment-flag=self-execution',
         '--windows-console-mode=disable', # or attach
         '--windows-icon-from-ico=dsdultra/assets/icons/DSDIcon.ico',
         'dsdultra/__main__.py',

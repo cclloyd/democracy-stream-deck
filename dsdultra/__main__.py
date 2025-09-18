@@ -1,14 +1,28 @@
 import signal
-import signal
 import sys
 
-from StreamDeck.DeviceManager import DeviceManager
+from StreamDeck.DeviceManager import DeviceManager, ProbeError
 
+from dsdultra.args import parse_args
 from dsdultra.dsd import DSDUltra
+from dsdultra.lib import prompt_library_install, silent_install
 
 
 def main():
-    decks = DeviceManager().enumerate()
+    args = parse_args()
+
+    if args.command == 'install':
+        silent_install()
+
+    try:
+        decks = DeviceManager().enumerate()
+    except ProbeError as e:
+        print(f'Error loading StreamDeck: {e}')
+        if 'No suitable LibUSB' in str(e):
+            prompt_library_install()
+            sys.exit(0)
+        else:
+            sys.exit(2)
     if not decks:
         print('No Stream Decks found.')
         return
@@ -19,7 +33,7 @@ def main():
         print('No visual Stream Deck devices found.')
         return
 
-    dsd = DSDUltra(deck)
+    dsd = DSDUltra(deck, args)
 
     # Keep the script alive until the self.deck is closed (e.g., Exit pressed)
     def signal_handler(sig, frame):
@@ -34,7 +48,6 @@ def main():
     signal.signal(signal.SIGINT, signal_handler)
     signal.signal(signal.SIGTERM, signal_handler)
     dsd.start()
-
 
 
 main()

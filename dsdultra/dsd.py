@@ -3,6 +3,7 @@ import os
 import signal
 import sys
 import threading
+from argparse import Namespace
 
 from PIL import Image
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
@@ -19,8 +20,9 @@ class DSDUltra:
     icons: IconGenerator = None
     apps: dict = dict()
 
-    def __init__(self, deck):
+    def __init__(self, deck, args: Namespace):
         self.deck: StreamDeckDevice = deck
+        self.args = args
         self.icons = IconGenerator(self)
         self.BUTTON_SIZE = 72
 
