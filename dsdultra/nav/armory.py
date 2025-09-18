@@ -681,7 +681,7 @@ ARMORY = {
     },
     'emplacement': {
         'id': 'emplacement',
-        'icon': 'dsdultra/assets/icons/groups/Mines.png',
+        'icon': 'dsdultra/assets/icons/groups/Emplacement.png',
         'full': True,
         'name': 'Mines',
         'color': 'green',
@@ -698,7 +698,7 @@ ARMORY = {
             'emplacement_antitank': {
                 'id': 'emplacement_antitank',
                 'name': 'E/AT-12 Anti-Tank Emplacement',
-                'icon': 'dsdultra/assets/png/Bridge/Grenadier Battlement.png',
+                'icon': 'dsdultra/assets/png/Urban Legends/Anti-Tank Emplacement.png',
                 'color': 'green',
                 'code': ['down', 'up', 'left', 'right', 'right', 'right'],
                 'cooldown': 0,
