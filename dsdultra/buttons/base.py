@@ -1,6 +1,15 @@
 import sys
 import traceback
-from pydoc import locate
+import importlib
+
+
+def resolve_class(dotted_path: str):
+    """Resolve a dotted class path, e.g., 'my.module.MyClass'."""
+    module_name, _, class_name = dotted_path.rpartition('.')
+    if not module_name:
+        raise ImportError(f"Cannot resolve class: '{dotted_path}' (needs a module path)")
+    module = importlib.import_module(module_name)
+    return getattr(module, class_name)
 
 
 class ButtonBase:
@@ -42,7 +51,7 @@ class ButtonBase:
         self.content = config.get('content', self.content)
         tmp_cls = config.get('content_class', None)
         if isinstance(tmp_cls, str):
-            resolved = locate(tmp_cls)
+            resolved = resolve_class(tmp_cls)
             if resolved is None:
                 raise ImportError(f"Could not resolve content_class '{tmp_cls}'")
             self.content_class = resolved
