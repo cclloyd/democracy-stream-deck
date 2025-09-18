@@ -4,7 +4,7 @@ Democracy StreamDeck is an application meant to run on any Elgato StreamDeck wit
 
 ## Quickstart
 
-Download the exe from the Releases page and run it.
+Download the exe from the Releases page and run it.  Make sure the Elgato StreamDeck app is fully closed while running this.
 
 If you don't have `hidapi.dll` in some folder that's included in your `$PATH` variable, it will prompt you to install.
 
