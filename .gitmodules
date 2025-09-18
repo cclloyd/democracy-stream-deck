@@ -1,0 +1,3 @@
+[submodule "dsdultra/assets/svg"]
+	path = dsdultra/assets/svg
+	url = git@github.com:nvigneux/Helldivers-2-Stratagems-icons-svg.git

@@ -1,0 +1,14 @@
+.venv
+node_modules
+.idea
+.vscode
+.env
+env
+junk
+__pycache__/
+*.py[cod]
+*$py.class
+**/*.pyc
+*/**.pyc
+*.exe
+__main__.*

@@ -1,0 +1,6 @@
+streamdeck
+pillow
+hidapi
+pynput
+nuitka
+pystray
