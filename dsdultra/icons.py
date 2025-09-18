@@ -129,6 +129,15 @@ class IconGenerator:
         self._paste_center(key_img, border_img, button.border_size, keep_aspect=True)
         # Paste the icon
         self._paste_center(key_img, icon_img, 100, keep_aspect=True)
+        
+        if button.config.get('hint', None) and button.page.app.select_active:
+            from PIL import ImageDraw
+            draw = ImageDraw.Draw(key_img)
+            hint_text = str(button.config['hint'])
+            font_size = 8
+            font = self.get_font(font_size)
+            text_length = draw.textlength(font=font, text=hint_text)
+            draw.text((key_img.width - text_length - 8, 6), hint_text, fill="white", font=font)
 
         # Darken entire image if disabled
         if not enabled:
