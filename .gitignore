@@ -12,3 +12,5 @@ __pycache__/
 */**.pyc
 *.exe
 __main__.*
+build
+dist

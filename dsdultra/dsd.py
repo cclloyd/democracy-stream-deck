@@ -6,6 +6,7 @@ from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
 from pystray import MenuItem, Menu, Icon
 
 from dsdultra.config import DSDConfig
+from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
 from dsdultra.pages.home import PageHome
 
@@ -55,7 +56,8 @@ class DSDUltra:
             image_path = 'dsdultra/assets/icons/DSDIcon.png'
             icon_image = Image.open(image_path)
             menu = Menu(
-                MenuItem("Democracy StreamDeck", None, enabled=False),
+                MenuItem('Democracy StreamDeck', None, enabled=False),
+                MenuItem('Show Console', show_console),
                 MenuItem('Exit', on_exit),
             )
             icon = Icon('dsd', icon_image, 'Democracy StreamDeck', menu)

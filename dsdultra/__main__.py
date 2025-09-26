@@ -4,6 +4,7 @@ import sys
 from StreamDeck.DeviceManager import DeviceManager, ProbeError
 
 from dsdultra.args import parse_args
+from dsdultra.console import show_console
 from dsdultra.dsd import DSDUltra
 from dsdultra.lib import prompt_library_install, silent_install
 
@@ -11,8 +12,15 @@ from dsdultra.lib import prompt_library_install, silent_install
 def main():
     args = parse_args()
 
+    show_console()
+
     if args.command == 'install':
         silent_install()
+    if args.command == 'build':
+        # We dynamically import the build function at runtime to avoid including the build tools in the exe.
+        import importlib
+        build_func = importlib.import_module('dsdultra.build')
+        build_func.build_executable()
 
     try:
         decks = DeviceManager().enumerate()
@@ -20,18 +28,22 @@ def main():
         print(f'Error loading StreamDeck: {e}')
         if 'No suitable LibUSB' in str(e):
             prompt_library_install()
+            input('Press any key to exit...')
             sys.exit(0)
         else:
+            input('Press any key to exit...')
             sys.exit(2)
     if not decks:
         print('No Stream Decks found.')
-        return
+        input('Press any key to exit...')
+        sys.exit(1)
 
     # Use the first visual deck
     deck = next((d for d in decks if d.is_visual()), None)
     if deck is None:
         print('No visual Stream Deck devices found.')
-        return
+        input('Press any key to exit...')
+        sys.exit(1)
 
     dsd = DSDUltra(deck, args)
 
