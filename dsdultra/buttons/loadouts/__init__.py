@@ -1,9 +1,10 @@
+from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.pages.loadouts import PageLoadouts
 
 
 class ButtonLoadouts(ButtonBase):
-    icon = 'dsdultra/assets/icons/groups/Factions.png'
+    icon = ASSETS_DIR / 'icons/groups/Factions.png'
     icon_size = 55
     border_size = 90
     color = 'rainbow'

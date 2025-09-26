@@ -7,6 +7,8 @@ import webbrowser
 from pathlib import Path
 from tkinter import messagebox
 
+from dsdultra import ASSETS_DIR
+
 
 def is_user_admin():
     """Check if the user has admin privileges on Windows."""
@@ -119,7 +121,7 @@ def silent_install():
             print("Could not elevate or UAC was declined.")
             return
 
-    src = Path('dsdultra/assets/lib/hidapi.dll')
+    src = Path(ASSETS_DIR / 'lib/hidapi.dll')
     dest = Path(os.environ['WINDIR']) / 'System32' / 'hidapi.dll'
     try:
         shutil.copy(src, dest)

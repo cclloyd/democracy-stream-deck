@@ -1,8 +1,9 @@
 from dsdultra.buttons.base import ButtonBase
+from dsdultra import ASSETS_DIR
 
 
 class ButtonExit(ButtonBase):
-    icon = 'dsdultra/assets/icons/groups/Close.png'
+    icon = ASSETS_DIR / 'icons/groups/Close.png'
     icon_size = 35
     border_size = 90
     color = 'yellow'

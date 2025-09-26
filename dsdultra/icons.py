@@ -4,45 +4,48 @@ from pathlib import Path
 from PIL import Image, ImageFont, ImageEnhance, ImageChops
 from StreamDeck.ImageHelpers import PILHelper
 
+from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
+
 
 BORDERS = {
     'yellow': {
-        'half': 'dsdultra/assets/icons/borders/Yellow Half.png',
-        'full': 'dsdultra/assets/icons/borders/Yellow Full.png',
+        'half': ASSETS_DIR / 'icons/borders/Yellow Half.png',
+        'full': ASSETS_DIR / 'icons/borders/Yellow Full.png',
     },
     'blue': {
-        'half': 'dsdultra/assets/icons/borders/Blue Half.png',
-        'full': 'dsdultra/assets/icons/borders/Blue Full.png',
+        'half': ASSETS_DIR / 'icons/borders/Blue Half.png',
+        'full': ASSETS_DIR / 'icons/borders/Blue Full.png',
     },
     'green': {
-        'half': 'dsdultra/assets/icons/borders/Green Half.png',
-        'full': 'dsdultra/assets/icons/borders/Green Full.png',
+        'half': ASSETS_DIR / 'icons/borders/Green Half.png',
+        'full': ASSETS_DIR / 'icons/borders/Green Full.png',
     },
     'red': {
-        'half': 'dsdultra/assets/icons/borders/Red Half.png',
-        'full': 'dsdultra/assets/icons/borders/Red Full.png',
+        'half': ASSETS_DIR / 'icons/borders/Red Half.png',
+        'full': ASSETS_DIR / 'icons/borders/Red Full.png',
     },
     'rainbow': {
-        'half': 'dsdultra/assets/icons/borders/Rainbow.png',
-        'full': 'dsdultra/assets/icons/borders/Rainbow.png',
+        'half': ASSETS_DIR / 'icons/borders/Rainbow.png',
+        'full': ASSETS_DIR / 'icons/borders/Rainbow.png',
     }
 }
 
 
 class IconGenerator:
     bg = None
-    font_path = 'dsdultra/assets/fonts/Orbitron-v.ttf'
+    font_path = ASSETS_DIR / 'fonts/Orbitron-v.ttf'
 
     def __init__(self, dsd):
         self.dsd = dsd
         self.size = dsd.deck.KEY_PIXEL_WIDTH
+
         if not self.bg:
-            bg_path = 'dsdultra/assets/icons/Background.png'
-            selected_path = 'dsdultra/assets/icons/borders/Selected2.png'
-            icon_mask_path = 'dsdultra/assets/icons/groups/mask72.png'
-            gild_path = 'dsdultra/assets/icons/groups/Gild Half.png'
-            gild_path_full = 'dsdultra/assets/icons/groups/Gild Full.png'
+            bg_path = ASSETS_DIR / 'icons/Background.png'
+            selected_path = ASSETS_DIR / 'icons/borders/Selected2.png'
+            icon_mask_path = ASSETS_DIR / 'icons/groups/mask72.png'
+            gild_path = ASSETS_DIR / 'icons/groups/Gild Half.png'
+            gild_path_full = ASSETS_DIR / 'icons/groups/Gild Full.png'
             # Precompute a blank background at the correct key size
             self.bg = PILHelper.create_image(self.dsd.deck)
             self.bg_img = Image.open(bg_path).convert("RGBA")
@@ -90,7 +93,7 @@ class IconGenerator:
         enabled = button.config.get('enabled', True)
 
         if not Path(icon_path).exists():
-            icon_path = 'dsdultra/assets/icons/groups/Unknown.png'
+            icon_path = ASSETS_DIR / 'icons/groups/Unknown.png'
 
         # Load layers
         icon_img = Image.open(icon_path).convert("RGBA")

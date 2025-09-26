@@ -2,10 +2,11 @@ from PIL import ImageDraw, ImageFont, Image
 from StreamDeck.ImageHelpers import PILHelper
 
 from dsdultra.buttons.base import ButtonBase
+from dsdultra import ASSETS_DIR
 
 
 class ButtonQuickLoadout(ButtonBase):
-    icon = 'dsdultra/assets/icons/borders/SE.png'
+    icon = ASSETS_DIR / 'icons/borders/SE.png'
     icon_size = 45
     border_size = 90
     color = 'yellow'
@@ -51,7 +52,7 @@ class ButtonQuickInfo(ButtonBase):
 
 
 class ButtonQuickStart(ButtonBase):
-    icon = 'dsdultra/assets/icons/groups/Hellpod1.png'
+    icon = ASSETS_DIR / 'icons/groups/Hellpod1.png'
     icon_size = 45
 
     def should_render(self):

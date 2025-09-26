@@ -1,5 +1,7 @@
 from enum import Enum
 
+from dsdultra import ASSETS_DIR
+
 
 class SID(Enum):
     UP = 0
@@ -21,7 +23,7 @@ GILD_SIZE = 78
 ARMORY = {
     'backpacks': {
         'id': 'backpacks',
-        'icon': 'dsdultra/assets/icons/groups/Backpack.png',
+        'icon': ASSETS_DIR / 'icons/groups/Backpack.png',
         'full': True,
         'name': 'Backpacks',
         'color': 'blue',
@@ -30,7 +32,7 @@ ARMORY = {
             'backpack_guard_dog': {
                 'id': 'backpack_guard_dog',
                 'name': 'AX/AR-23 "Guard Dog"',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Guard Dog.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Guard Dog.png',
                 'code': ['down', 'up', 'left', 'up', 'right', 'down'],
                 'color': 'blue',
                 'cooldown': 300,
@@ -38,7 +40,7 @@ ARMORY = {
             'backpack_guard_dog_rover': {
                 'id': 'backpack_guard_dog_rover',
                 'name': 'AX/LAS-5 "Guard Dog" Rover',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Guard Dog Rover.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Guard Dog Rover.png',
                 'code': ['down', 'up', 'left', 'up', 'right', 'right'],
                 'color': 'blue',
                 'cooldown': 300,
@@ -46,7 +48,7 @@ ARMORY = {
             'backpack_guard_dog_dog_breath': {
                 'id': 'backpack_guard_dog_dog_breath',
                 'name': 'AX/TX-13 "Guard Dog" Dog Breath',
-                'icon': 'dsdultra/assets/png/Chemical Agents/Guard Dog Breath.png',
+                'icon': ASSETS_DIR / 'png/Chemical Agents/Guard Dog Breath.png',
                 'code': ['down', 'up', 'left', 'up', 'right', 'up'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -54,7 +56,7 @@ ARMORY = {
             'backpack_guard_dog_k9': {
                 'id': 'backpack_guard_dog_k9',
                 'name': 'AX/ARC-3 "Guard Dog" K-9',
-                'icon': 'dsdultra/assets/png/Force of Law/Guard Dog K-9.png',
+                'icon': ASSETS_DIR / 'png/Force of Law/Guard Dog K-9.png',
                 'code': ['down', 'up', 'left', 'up', 'right', 'left'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -62,7 +64,7 @@ ARMORY = {
             'backpack_hellbomb': {
                 'id': 'backpack_hellbomb',
                 'name': 'B-100 Portable Hellbomb ',
-                'icon': 'dsdultra/assets/png/Servants of Freedom/Hellbomb Portable.png',
+                'icon': ASSETS_DIR / 'png/Servants of Freedom/Hellbomb Portable.png',
                 'code': ['down', 'right', 'up', 'up', 'up'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -70,7 +72,7 @@ ARMORY = {
             'backpack_jump': {
                 'id': 'backpack_jump',
                 'name': 'LIFT-850 Jump Pack',
-                'icon': 'dsdultra/assets/png/Hangar/Jump Pack.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Jump Pack.png',
                 'code': ['down', 'up', 'up', 'down', 'up'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -78,7 +80,7 @@ ARMORY = {
             'backpack_hover': {
                 'id': 'backpack_hover',
                 'name': 'LIFT-860 Hover Pack',
-                'icon': 'dsdultra/assets/png/Borderline Justice/Hover Pack.png',
+                'icon': ASSETS_DIR / 'png/Borderline Justice/Hover Pack.png',
                 'code': ['down', 'left', 'right', 'down', 'left', 'right'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -86,7 +88,7 @@ ARMORY = {
             'backpack_warp': {
                 'id': 'backpack_warp',
                 'name': 'LIFT-182 Warp Pack',
-                'icon': 'dsdultra/assets/png/Control Group/Warp Pack.png',
+                'icon': ASSETS_DIR / 'png/Control Group/Warp Pack.png',
                 'code': ['down', 'up', 'up', 'down', 'left', 'right'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -94,7 +96,7 @@ ARMORY = {
             'backpack_supply': {
                 'id': 'backpack_supply',
                 'name': 'B-1 Supply Pack',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Supply Pack.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Supply Pack.png',
                 'code': ['down', 'left', 'down', 'up', 'up', 'down'],
                 'color': 'blue',
                 'cooldown': 480,
@@ -102,7 +104,7 @@ ARMORY = {
             'backpack_shield_generator': {
                 'id': 'backpack_shield_generator',
                 'name': 'SH-32 Shield Generator Pack',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Shield Generator Pack.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Shield Generator Pack.png',
                 'code': ['down', 'up', 'left', 'right', 'left', 'right'],
                 'color': 'blue',
                 'cooldown': 0,
@@ -110,7 +112,7 @@ ARMORY = {
             'backpack_ballistic_shield': {
                 'id': 'backpack_ballistic_shield',
                 'name': 'SH-20 Ballistic Shield Backpack',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Ballistic Shield Backpack.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Ballistic Shield Backpack.png',
                 'code': ['down', 'left', 'down', 'down', 'up', 'left'],
                 'color': 'blue',
                 'cooldown': 300,
@@ -118,7 +120,7 @@ ARMORY = {
             'backpack_directional_shield': {
                 'id': 'backpack_directional_shield',
                 'name': 'SH-51 Directional Shield ',
-                'icon': 'dsdultra/assets/png/Urban Legends/Directional Shield.png',
+                'icon': ASSETS_DIR / 'png/Urban Legends/Directional Shield.png',
                 'code': ['down', 'up', 'left', 'right', 'up', 'up'],
                 'color': 'blue',
                 'cooldown': 0,
@@ -127,7 +129,7 @@ ARMORY = {
     },
     'weapons': {
         'id': 'weapons',
-        'icon': 'dsdultra/assets/icons/groups/Weapons.png',
+        'icon': ASSETS_DIR / 'icons/groups/Weapons.png',
         'full': True,
         'name': 'Weapons',
         'color': 'blue',
@@ -135,7 +137,7 @@ ARMORY = {
         'content': {
             'weapons_backpack': {
                 'id': 'weapons_backpack',
-                'icon': 'dsdultra/assets/icons/groups/Backpack.png',
+                'icon': ASSETS_DIR / 'icons/groups/Backpack.png',
                 'icon_size': 50,
                 'full': True,
                 'name': 'Weapons',
@@ -145,35 +147,35 @@ ARMORY = {
                     'weapon_recoilless_rifle': {
                         'id': 'weapon_recoilless_rifle',
                         'name': 'GR-8 Recoilless Rifle',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Recoilless Rifle.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Recoilless Rifle.png',
                         'code': ['down', 'left', 'right', 'right', 'left'],
                         'cooldown': 0,
                     },
                     'weapon_airburst_rocket': {
                         'id': 'weapon_airburst_rocket',
                         'name': 'RL-77 Airburst Rocket Launcher',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Airburst Rocket Launcher.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Airburst Rocket Launcher.png',
                         'code': ['down', 'up', 'up', 'left', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_autocannon': {
                         'id': 'weapon_autocannon',
                         'name': 'AC-8 Autocannon',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Autocannon.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Autocannon.png',
                         'code': ['down', 'left', 'down', 'up', 'up', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_spear': {
                         'id': 'weapon_spear',
                         'name': 'FAF-14 Spear',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Spear.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Spear.png',
                         'code': ['down', 'down', 'up', 'down', 'down'],
                         'cooldown': 0,
                     },
                     'weapon_wasp': {
                         'id': 'weapon_wasp',
                         'name': 'StA-X3 W.A.S.P. Launcher',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/StA-X3 W.A.S.P. Launcher.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/StA-X3 W.A.S.P. Launcher.png',
                         'code': ['down', 'down', 'up', 'down', 'right'],
                         'cooldown': 0,
                     },
@@ -181,7 +183,7 @@ ARMORY = {
             },
             'weapons_standalone': {
                 'id': 'weapons_standalone',
-                'icon': 'dsdultra/assets/icons/groups/No Backpack.png',
+                'icon': ASSETS_DIR / 'icons/groups/No Backpack.png',
                 'full': True,
                 'name': 'Weapons',
                 'color': 'blue',
@@ -190,91 +192,91 @@ ARMORY = {
                     'weapon_stalwart': {
                         'id': 'weapon_stalwart',
                         'name': 'M-105 Stalwart',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Stalwart.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Stalwart.png',
                         'code': ['down', 'left', 'down', 'up', 'up', 'left'],
                         'cooldown': 0,
                     },
                     'weapon_machine_gun': {
                         'id': 'weapon_machine_gun',
                         'name': 'MG-43 Machine Gun',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Machine Gun.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Machine Gun.png',
                         'code': ['down', 'left', 'down', 'up', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_heavy_machine_gun': {
                         'id': 'weapon_heavy_machine_gun',
                         'name': 'MG-206 Heavy Machine Gun',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Heavy Machine Gun.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Heavy Machine Gun.png',
                         'code': ['down', 'left', 'up', 'down', 'down'],
                         'cooldown': 0,
                     },
                     'weapon_anti_materiel_rifle': {
                         'id': 'weapon_anti_materiel_rifle',
                         'name': 'APW-1 Anti-Materiel Rifle',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Anti-Materiel Rifle.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Anti-Materiel Rifle.png',
                         'code': ['down', 'left', 'right', 'up', 'down'],
                         'cooldown': 0,
                     },
                     'weapon_flamethrower': {
                         'id': 'weapon_flamethrower',
                         'name': 'FLAM-40 Flamethrower',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Flamethrower.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Flamethrower.png',
                         'code': ['down', 'left', 'up', 'down', 'up'],
                         'cooldown': 0,
                     },
                     'weapon_sterilizer': {
                         'id': 'weapon_sterilizer',
                         'name': 'TX-41 Sterilizer ',
-                        'icon': 'dsdultra/assets/png/Chemical Agents/Sterilizer.png',
+                        'icon': ASSETS_DIR / 'png/Chemical Agents/Sterilizer.png',
                         'code': ['down', 'left', 'up', 'down', 'left'],
                         'cooldown': 0,
                     },
                     'weapon_grenade_launcher': {
                         'id': 'weapon_grenade_launcher',
                         'name': 'GL-21 Grenade Launcher',
-                        'icon': 'dsdultra/assets/png/Engineering Bay/Grenade Launcher.png',
+                        'icon': ASSETS_DIR / 'png/Engineering Bay/Grenade Launcher.png',
                         'code': ['down', 'left', 'up', 'left', 'down'],
                         'cooldown': 0,
                     },
                     'weapon_grenade_launcher_arc': {
                         'id': 'weapon_grenade_launcher_arc',
                         'name': 'GL-52 De-Escalator',
-                        'icon': 'dsdultra/assets/png/Force of Law/GL-52 De-Escalator.png',
+                        'icon': ASSETS_DIR / 'png/Force of Law/GL-52 De-Escalator.png',
                         'code': ['down', 'right', 'up', 'left', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_flag': {
                         'id': 'weapon_flag',
                         'name': 'CQC-1 One True Flag',
-                        'icon': 'dsdultra/assets/png/Masters of Ceremony/One True Flag.png',
+                        'icon': ASSETS_DIR / 'png/Masters of Ceremony/One True Flag.png',
                         'code': ['down', 'left', 'right', 'right', 'up'],
                         'cooldown': 0,
                     },
                     'weapon_epoch': {
                         'id': 'weapon_epoch',
                         'name': 'PLAS-45 Epoch',
-                        'icon': 'dsdultra/assets/png/Control Group/Epoch.png',
+                        'icon': ASSETS_DIR / 'png/Control Group/Epoch.png',
                         'code': ['down', 'left', 'up', 'left', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_railgun': {
                         'id': 'weapon_railgun',
                         'name': 'RS-422 Railgun',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Railgun.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Railgun.png',
                         'code': ['down', 'right', 'up', 'down', 'left', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_speargun': {
                         'id': 'weapon_speargun',
                         'name': 'S-11 Speargun',
-                        'icon': 'dsdultra/assets/png/Dust Devils/Speargun.png',
+                        'icon': ASSETS_DIR / 'png/Dust Devils/Speargun.png',
                         'code': ['down', 'right', 'down', 'left', 'up', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_silo': {
                         'id': 'weapon_silo',
                         'name': 'MS-11 Solo Silo ',
-                        'icon': 'dsdultra/assets/png/Dust Devils/Solo Silo.png',
+                        'icon': ASSETS_DIR / 'png/Dust Devils/Solo Silo.png',
                         'code': ['down', 'up', 'right', 'down', 'down'],
                         'cooldown': 0,
                     },
@@ -282,7 +284,7 @@ ARMORY = {
             },
             'weapons_disposable': {
                 'id': 'weapons_disposable',
-                'icon': 'dsdultra/assets/icons/groups/Disposable.png',
+                'icon': ASSETS_DIR / 'icons/groups/Disposable.png',
                 'full': True,
                 'name': 'Weapons',
                 'color': 'blue',
@@ -291,21 +293,21 @@ ARMORY = {
                     'weapon_eat': {
                         'id': 'weapon_eat',
                         'name': 'EAT-17 Expendable Anti-Tank ',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Expendable Anti-Tank.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Expendable Anti-Tank.png',
                         'code': ['down', 'down', 'left', 'up', 'right'],
                         'cooldown': 0,
                     },
                     'weapon_expendable_napalm': {
                         'id': 'weapon_expendable_napalm',
                         'name': 'EAT-700 Expendable Napalm',
-                        'icon': 'dsdultra/assets/png/Dust Devils/Expendable Napalm.png',
+                        'icon': ASSETS_DIR / 'png/Dust Devils/Expendable Napalm.png',
                         'code': ['down', 'down', 'left', 'up', 'left'],
                         'cooldown': 0,
                     },
                     'weapon_commando': {
                         'id': 'weapon_commando',
                         'name': 'MLS-4X Commando',
-                        'icon': 'dsdultra/assets/png/Patriotic Administration Center/Commando.png',
+                        'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Commando.png',
                         'code': ['down', 'left', 'up', 'down', 'right'],
                         'cooldown': 0,
                     },
@@ -313,7 +315,7 @@ ARMORY = {
             },
             'weapons_energy': {
                 'id': 'weapons_energy',
-                'icon': 'dsdultra/assets/icons/groups/Energy.png',
+                'icon': ASSETS_DIR / 'icons/groups/Energy.png',
                 'full': True,
                 'name': 'Weapons',
                 'color': 'blue',
@@ -322,7 +324,7 @@ ARMORY = {
                     'weapon_arc_thrower': {
                         'id': 'weapon_arc_thrower',
                         'name': 'ARC-3 Arc Thrower',
-                        'icon': 'dsdultra/assets/png/Engineering Bay/Arc Thrower.png',
+                        'icon': ASSETS_DIR / 'png/Engineering Bay/Arc Thrower.png',
                         'code': ['down', 'right', 'up', 'down', 'left', 'left'],
                         'cooldown': 0,
                     },
@@ -330,7 +332,7 @@ ARMORY = {
                         'id': 'weapon_laser',
                         'hint': 'L',
                         'name': 'LAS-98 Laser Cannon',
-                        'icon': 'dsdultra/assets/png/Engineering Bay/Laser Cannon.png',
+                        'icon': ASSETS_DIR / 'png/Engineering Bay/Laser Cannon.png',
                         'code': ['down', 'left', 'down', 'up', 'left'],
                         'cooldown': 0,
                     },
@@ -338,7 +340,7 @@ ARMORY = {
                         'id': 'weapon_quasar',
                         'hint': 'Q',
                         'name': 'LAS-99 Quasar Cannon',
-                        'icon': 'dsdultra/assets/png/Engineering Bay/Quasar Cannon.png',
+                        'icon': ASSETS_DIR / 'png/Engineering Bay/Quasar Cannon.png',
                         'code': ['down', 'down', 'up', 'left', 'right'],
                         'cooldown': 0,
                     },
@@ -348,7 +350,7 @@ ARMORY = {
     },
     'vehicles': {
         'id': 'vehicles',
-        'icon': 'dsdultra/assets/icons/groups/Vehicle.png',
+        'icon': ASSETS_DIR / 'icons/groups/Vehicle.png',
         'full': True,
         'name': 'Vehicles',
         'color': 'blue',
@@ -357,21 +359,21 @@ ARMORY = {
             'vehicle_exosuit_patriot': {
                 'id': 'vehicle_exosuit_patriot',
                 'name': 'EXO-45 Patriot Exosuit',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Patriot Exosuit.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Patriot Exosuit.png',
                 'code': ['left', 'down', 'right', 'up', 'left', 'down', 'down'],
                 'cooldown': 0,
             },
             'vehicle_exosuit_emancipator': {
                 'id': 'vehicle_exosuit_emancipator',
                 'name': 'EXO-49 Emancipator Exosuit',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Emancipator Exosuit.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Emancipator Exosuit.png',
                 'code': ['left', 'down', 'right', 'up', 'left', 'down', 'up'],
                 'cooldown': 0,
             },
             'vehicle_frv': {
                 'id': 'vehicle_frv',
                 'name': 'EXO-45 Patriot Exosuit ',
-                'icon': 'dsdultra/assets/png/Hangar/Fast Recon Vehicle.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Fast Recon Vehicle.png',
                 'code': ['left', 'down', 'right', 'down', 'right', 'down', 'up'],
                 'cooldown': 0,
             },
@@ -379,7 +381,7 @@ ARMORY = {
     },
     'orbitals': {
         'id': 'orbitals',
-        'icon': 'dsdultra/assets/icons/groups/Orbital.png',
+        'icon': ASSETS_DIR / 'icons/groups/Orbital.png',
         'full': True,
         'name': 'Orbitals',
         'color': 'red',
@@ -388,7 +390,7 @@ ARMORY = {
             'orbital_precision_strike': {
                 'id': 'orbital_precision_strike',
                 'name': 'Orbital Precision Strike',
-                'icon': 'dsdultra/assets/png/Bridge/Orbital Precision Strike.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Orbital Precision Strike.png',
                 'color': 'red',
                 'code': ['right', 'right', 'up'],
                 'cooldown': 0,
@@ -396,7 +398,7 @@ ARMORY = {
             'orbital_gas_strike': {
                 'id': 'orbital_gas_strike',
                 'name': 'Orbital Gas Strike',
-                'icon': 'dsdultra/assets/png/Bridge/Orbital Gas Strike.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Orbital Gas Strike.png',
                 'color': 'red',
                 'code': ['right', 'right', 'down', 'right'],
                 'cooldown': 0,
@@ -404,7 +406,7 @@ ARMORY = {
             'orbital_gatling_barrage': {
                 'id': 'orbital_gatling_barrage',
                 'name': 'Orbital Gatling Barrage',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital Gatling Barrage.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Gatling Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'left', 'up', 'up'],
                 'cooldown': 0,
@@ -412,7 +414,7 @@ ARMORY = {
             'orbital_airburst_strike': {
                 'id': 'orbital_airburst_strike',
                 'name': 'Orbital Airburst Strike',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital Airburst Strike.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Airburst Strike.png',
                 'color': 'red',
                 'code': ['right', 'right', 'right'],
                 'cooldown': 0,
@@ -420,7 +422,7 @@ ARMORY = {
             'orbital_railcannon_strike': {
                 'id': 'orbital_railcannon_strike',
                 'name': 'Orbital Railcannon Strike',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital Railcannon Strike.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Railcannon Strike.png',
                 'color': 'red',
                 'code': ['right', 'up', 'down', 'down', 'right'],
                 'cooldown': 0,
@@ -428,7 +430,7 @@ ARMORY = {
             'orbital_laser': {
                 'id': 'orbital_laser',
                 'name': 'Orbital Laser',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital Laser.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Laser.png',
                 'color': 'red',
                 'code': ['right', 'down', 'up', 'right', 'down', 'up'],
                 'cooldown': 0,
@@ -436,7 +438,7 @@ ARMORY = {
             'orbital_walking_barrage': {
                 'id': 'orbital_walking_barrage',
                 'name': 'Orbital Walking Barrage',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital Walking Barrage.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Walking Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'right', 'down', 'right', 'down'],
                 'cooldown': 0,
@@ -444,7 +446,7 @@ ARMORY = {
             'orbital_120mm_he_barrage': {
                 'id': 'orbital_120mm_he_barrage',
                 'name': 'Orbital 120mm HE Barrage',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital 120MM HE Barrage.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital 120MM HE Barrage.png',
                 'color': 'red',
                 'code': ['right', 'right', 'down', 'left', 'right', 'down'],
                 'cooldown': 0,
@@ -452,7 +454,7 @@ ARMORY = {
             'orbital_380mm_he_barrage': {
                 'id': 'orbital_380mm_he_barrage',
                 'name': 'Orbital 380mm HE Barrage',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital 380MM HE Barrage.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital 380MM HE Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'up', 'up', 'left', 'down', 'down'],
                 'cooldown': 0,
@@ -460,7 +462,7 @@ ARMORY = {
             'orbital_napalm_barrage': {
                 'id': 'orbital_napalm_barrage',
                 'name': 'Orbital Napalm Barrage',
-                'icon': 'dsdultra/assets/png/Orbital Cannons/Orbital Napalm Barrage.png',
+                'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Napalm Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'left', 'down', 'up'],
                 'cooldown': 0,
@@ -468,7 +470,7 @@ ARMORY = {
             'orbital_ems_strike': {
                 'id': 'orbital_ems_strike',
                 'name': 'Orbital EMS Strike',
-                'icon': 'dsdultra/assets/png/Bridge/Orbital EMS Strike.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Orbital EMS Strike.png',
                 'color': 'red',
                 'code': ['right', 'right', 'left', 'down'],
                 'cooldown': 0,
@@ -476,7 +478,7 @@ ARMORY = {
             'orbital_smoke_strike': {
                 'id': 'orbital_smoke_strike',
                 'name': 'Orbital Smoke Strike',
-                'icon': 'dsdultra/assets/png/Bridge/Orbital Smoke Strike.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Orbital Smoke Strike.png',
                 'color': 'red',
                 'code': ['right', 'right', 'down', 'up'],
                 'cooldown': 0,
@@ -485,7 +487,7 @@ ARMORY = {
     },
     'eagles': {
         'id': 'eagles',
-        'icon': 'dsdultra/assets/icons/groups/Eagle.png',
+        'icon': ASSETS_DIR / 'icons/groups/Eagle.png',
         'full': True,
         'name': 'Eagles',
         'color': 'red',
@@ -494,7 +496,7 @@ ARMORY = {
             'eagle_strafing_run': {
                 'id': 'eagle_strafing_run',
                 'name': 'Eagle Strafing Run',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle Strafing Run.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle Strafing Run.png',
                 'color': 'red',
                 'code': ['up', 'right', 'right'],
                 'cooldown': 0,
@@ -502,7 +504,7 @@ ARMORY = {
             'eagle_airstrike': {
                 'id': 'eagle_airstrike',
                 'name': 'Eagle Airstrike',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle Airstrike.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle Airstrike.png',
                 'color': 'red',
                 'code': ['up', 'right', 'down', 'right'],
                 'cooldown': 0,
@@ -510,7 +512,7 @@ ARMORY = {
             'eagle_500kg_bomb': {
                 'id': 'eagle_500kg_bomb',
                 'name': 'Eagle 500kg Bomb',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle 500KG Bomb.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle 500KG Bomb.png',
                 'color': 'red',
                 'code': ['up', 'right', 'down', 'down', 'down'],
                 'cooldown': 0,
@@ -518,7 +520,7 @@ ARMORY = {
             'eagle_napalm_airstrike': {
                 'id': 'eagle_napalm_airstrike',
                 'name': 'Eagle Napalm Airstrike',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle Napalm Airstrike.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle Napalm Airstrike.png',
                 'color': 'red',
                 'code': ['up', 'right', 'down', 'up'],
                 'cooldown': 0,
@@ -526,7 +528,7 @@ ARMORY = {
             'eagle_cluster_bomb': {
                 'id': 'eagle_cluster_bomb',
                 'name': 'Eagle Cluster Bomb',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle Cluster Bomb.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle Cluster Bomb.png',
                 'color': 'red',
                 'code': ['up', 'right', 'down', 'down', 'right'],
                 'cooldown': 0,
@@ -534,7 +536,7 @@ ARMORY = {
             'eagle_110mm_rocket_pods': {
                 'id': 'eagle_110mm_rocket_pods',
                 'name': 'Eagle 110mm Rocket Pods',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle 110MM Rocket Pods.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle 110MM Rocket Pods.png',
                 'color': 'red',
                 'code': ['up', 'right', 'up', 'down'],
                 'cooldown': 0,
@@ -542,7 +544,7 @@ ARMORY = {
             'eagle_smoke_strike': {
                 'id': 'eagle_smoke_strike',
                 'name': 'Eagle Smoke Strike',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle Smoke Strike.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle Smoke Strike.png',
                 'color': 'red',
                 'code': ['up', 'right', 'up', 'down'],
                 'cooldown': 0,
@@ -551,7 +553,7 @@ ARMORY = {
     },
     'mines': {
         'id': 'mines',
-        'icon': 'dsdultra/assets/icons/groups/Mines.png',
+        'icon': ASSETS_DIR / 'icons/groups/Mines.png',
         'full': True,
         'name': 'Mines',
         'color': 'green',
@@ -560,7 +562,7 @@ ARMORY = {
             'mine_antipersonnel': {
                 'id': 'mine_antipersonnel',
                 'name': 'MD-6 Anti-Personnel Minefield',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Anti-Personnel Minefield.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Anti-Personnel Minefield.png',
                 'color': 'green',
                 'code': ['down', 'left', 'up', 'right'],
                 'cooldown': 120,
@@ -568,7 +570,7 @@ ARMORY = {
             'mine_incendiary': {
                 'id': 'mine_incendiary',
                 'name': 'MD-I4 Incendiary Mines',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Incendiary Mines.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Incendiary Mines.png',
                 'color': 'green',
                 'code': ['down', 'left', 'left', 'down'],
                 'cooldown': 0,
@@ -576,7 +578,7 @@ ARMORY = {
             'mine_gas': {
                 'id': 'mine_gas',
                 'name': 'MD-8 Gas Mines',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Gas Mine.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Gas Mine.png',
                 'color': 'green',
                 'code': ['down', 'left', 'left', 'right'],
                 'cooldown': 120,
@@ -584,7 +586,7 @@ ARMORY = {
             'mine_antitank': {
                 'id': 'mine_antitank',
                 'name': 'MD-17 Anti-Tank Mines',
-                'icon': 'dsdultra/assets/png/Engineering Bay/Anti-Tank Mines.png',
+                'icon': ASSETS_DIR / 'png/Engineering Bay/Anti-Tank Mines.png',
                 'color': 'green',
                 'code': ['down', 'left', 'up', 'up'],
                 'cooldown': 0,
@@ -592,7 +594,7 @@ ARMORY = {
             'tower_tesla': {
                 'id': 'tower_tesla',
                 'name': 'A/ARC-3 Tesla Tower',
-                'icon': 'dsdultra/assets/png/Bridge/Tesla Tower.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Tesla Tower.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'up', 'left', 'right'],
                 'cooldown': 0,
@@ -600,7 +602,7 @@ ARMORY = {
             'tower_shield': {
                 'id': 'tower_shield',
                 'name': 'FX-12 Shield Generator Relay',
-                'icon': 'dsdultra/assets/png/Bridge/Shield Generator Relay.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Shield Generator Relay.png',
                 'color': 'green',
                 'code': ['down', 'down', 'left', 'right', 'left', 'right'],
                 'cooldown': 0,
@@ -609,7 +611,7 @@ ARMORY = {
     },
     'sentries': {
         'id': 'sentries',
-        'icon': 'dsdultra/assets/icons/groups/Sentry.png',
+        'icon': ASSETS_DIR / 'icons/groups/Sentry.png',
         'full': True,
         'name': 'Sentries',
         'color': 'green',
@@ -618,7 +620,7 @@ ARMORY = {
             'sentry_gatling': {
                 'id': 'sentry_gatling',
                 'name': 'A/G-16 Gatling Sentry',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Gatling Sentry.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Gatling Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'left'],
                 'cooldown': 180,
@@ -626,7 +628,7 @@ ARMORY = {
             'sentry_machine_gun': {
                 'id': 'sentry_machine_gun',
                 'name': 'A/MG-43 Machine Gun Sentry',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Machine Gun Sentry.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Machine Gun Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'right', 'up'],
                 'cooldown': 180,
@@ -634,7 +636,7 @@ ARMORY = {
             'sentry_autocannon': {
                 'id': 'sentry_autocannon',
                 'name': 'A/AC-8 Autocannon Sentry',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Autocannon Sentry.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Autocannon Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'up', 'left', 'up'],
                 'cooldown': 180,
@@ -642,7 +644,7 @@ ARMORY = {
             'sentry_rocket': {
                 'id': 'sentry_rocket',
                 'name': 'A/MLS-4X Rocket Sentry',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Rocket Sentry.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Rocket Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'right', 'left'],
                 'cooldown': 180,
@@ -650,7 +652,7 @@ ARMORY = {
             'sentry_flame': {
                 'id': 'sentry_flame',
                 'name': 'A/FLAM-40 Flame Sentry',
-                'icon': 'dsdultra/assets/png/Urban Legends/Flame Sentry.png',
+                'icon': ASSETS_DIR / 'png/Urban Legends/Flame Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'down', 'up', 'up'],
                 'cooldown': 162,
@@ -658,7 +660,7 @@ ARMORY = {
             'sentry_laser': {
                 'id': 'sentry_laser',
                 'name': 'A/LAS-98 Laser Sentry',
-                'icon': 'dsdultra/assets/png/Control Group/Laser Sentry.png',
+                'icon': ASSETS_DIR / 'png/Control Group/Laser Sentry.png',
                 'color': 'green',
                 'code': ['down', 'down', 'left', 'down', 'up', 'up', 'left'],
                 'cooldown': 162,
@@ -666,7 +668,7 @@ ARMORY = {
             'sentry_mortar': {
                 'id': 'sentry_mortar',
                 'name': 'A/M-12 Mortar Sentry',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/Mortar Sentry.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/Mortar Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'right', 'down'],
                 'cooldown': 180,
@@ -674,7 +676,7 @@ ARMORY = {
             'sentry_ems_mortar': {
                 'id': 'sentry_ems_mortar',
                 'name': 'A/M-23 EMS Mortar Sentry',
-                'icon': 'dsdultra/assets/png/Robotics Workshop/EMS Mortar Sentry.png',
+                'icon': ASSETS_DIR / 'png/Robotics Workshop/EMS Mortar Sentry.png',
                 'color': 'green',
                 'code': ['down', 'up', 'right', 'down', 'right'],
                 'cooldown': 180,
@@ -683,7 +685,7 @@ ARMORY = {
     },
     'emplacement': {
         'id': 'emplacement',
-        'icon': 'dsdultra/assets/icons/groups/Emplacement.png',
+        'icon': ASSETS_DIR / 'icons/groups/Emplacement.png',
         'full': True,
         'name': 'Mines',
         'color': 'green',
@@ -692,7 +694,7 @@ ARMORY = {
             'emplacement_hmg': {
                 'id': 'emplacement_hmg',
                 'name': 'E/MG-101 HMG Emplacement',
-                'icon': 'dsdultra/assets/png/Bridge/HMG Emplacement.png',
+                'icon': ASSETS_DIR / 'png/Bridge/HMG Emplacement.png',
                 'color': 'green',
                 'code': ['down', 'up', 'left', 'right', 'right', 'left'],
                 'cooldown': 0,
@@ -700,7 +702,7 @@ ARMORY = {
             'emplacement_antitank': {
                 'id': 'emplacement_antitank',
                 'name': 'E/AT-12 Anti-Tank Emplacement',
-                'icon': 'dsdultra/assets/png/Urban Legends/Anti-Tank Emplacement.png',
+                'icon': ASSETS_DIR / 'png/Urban Legends/Anti-Tank Emplacement.png',
                 'color': 'green',
                 'code': ['down', 'up', 'left', 'right', 'right', 'right'],
                 'cooldown': 0,
@@ -708,7 +710,7 @@ ARMORY = {
             'battlement_grenadier': {
                 'id': 'battlement_grenadier',
                 'name': 'E/GL-21 Grenadier Battlement',
-                'icon': 'dsdultra/assets/png/Bridge/Grenadier Battlement.png',
+                'icon': ASSETS_DIR / 'png/Bridge/Grenadier Battlement.png',
                 'color': 'green',
                 'code': ['down', 'right', 'down', 'left', 'right'],
                 'cooldown': 0,
@@ -717,7 +719,7 @@ ARMORY = {
     },
     'common': {
         'id': 'common',
-        'icon': 'dsdultra/assets/icons/groups/Generic.png',
+        'icon': ASSETS_DIR / 'icons/groups/Generic.png',
         'full': True,
         'name': 'Common',
         'color': 'yellow',
@@ -726,7 +728,7 @@ ARMORY = {
             'common_reinforce': {
                 'id': 'common_reinforce',
                 'name': 'Reinforce',
-                'icon': 'dsdultra/assets/png/General Stratagems/Reinforce.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Reinforce.png',
                 'color': 'yellow',
                 'code': ['up', 'down', 'right', 'left', 'up'],
                 'cooldown': 0,
@@ -735,7 +737,7 @@ ARMORY = {
             'common_resupply': {
                 'id': 'common_resupply',
                 'name': 'Resupply',
-                'icon': 'dsdultra/assets/png/General Stratagems/Resupply.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Resupply.png',
                 'color': 'yellow',
                 'code': ['down', 'down', 'up', 'right'],
                 'cooldown': 0,
@@ -744,7 +746,7 @@ ARMORY = {
             'common_eagle_rearm': {
                 'id': 'common_eagle_rearm',
                 'name': 'Eagle Rearm',
-                'icon': 'dsdultra/assets/png/Hangar/Eagle Rearm.png',
+                'icon': ASSETS_DIR / 'png/Hangar/Eagle Rearm.png',
                 'color': 'yellow',
                 'code': ['up', 'up', 'left', 'up', 'right'],
                 'cooldown': 0,
@@ -752,7 +754,7 @@ ARMORY = {
             'common_sos': {
                 'id': 'common_sos',
                 'name': 'SOS Beacon',
-                'icon': 'dsdultra/assets/png/General Stratagems/SOS Beacon.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/SOS Beacon.png',
                 'color': 'yellow',
                 'code': ['up', 'down', 'right', 'up'],
                 'cooldown': 0,
@@ -762,7 +764,7 @@ ARMORY = {
     },
     'mission': {
         'id': 'mission',
-        'icon': 'dsdultra/assets/png/General Stratagems/Super Earth Flag.png',
+        'icon': ASSETS_DIR / 'png/General Stratagems/Super Earth Flag.png',
         'icon_size': GILD_SIZE,
         'full': True,
         'name': 'Generic',
@@ -772,7 +774,7 @@ ARMORY = {
             'mission_seaf': {
                 'id': 'mission_seaf',
                 'name': 'SEAF Artillery',
-                'icon': 'dsdultra/assets/png/General Stratagems/SEAF Artillery.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/SEAF Artillery.png',
                 'color': 'yellow',
                 'code': ['right', 'up', 'up', 'down'],
                 'cooldown': 0,
@@ -780,7 +782,7 @@ ARMORY = {
             'mission_hellbomb': {
                 'id': 'mission_hellbomb',
                 'name': 'Hellbomb',
-                'icon': 'dsdultra/assets/png/General Stratagems/Hellbomb.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Hellbomb.png',
                 'color': 'yellow',
                 'code': ['down', 'up', 'left', 'down', 'up', 'right', 'down', 'up'],
                 'cooldown': 0,
@@ -789,7 +791,7 @@ ARMORY = {
             'mission_flag': {
                 'id': 'mission_flag',
                 'name': 'Super Earth Flag',
-                'icon': 'dsdultra/assets/png/General Stratagems/Super Earth Flag.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Super Earth Flag.png',
                 'color': 'yellow',
                 'code': ['down', 'up', 'down', 'up'],
                 'cooldown': 0,
@@ -798,7 +800,7 @@ ARMORY = {
             'mission_sssd': {
                 'id': 'mission_sssd',
                 'name': 'SSSD Delivery',
-                'icon': 'dsdultra/assets/png/General Stratagems/Upload Data.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Upload Data.png',
                 'color': 'yellow',
                 'code': ['down', 'down', 'down', 'up', 'up'],
                 'cooldown': 0,
@@ -807,7 +809,7 @@ ARMORY = {
             'mission_upload': {
                 'id': 'mission_upload',
                 'name': 'Upload Data',
-                'icon': 'dsdultra/assets/png/General Stratagems/Upload Data.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Upload Data.png',
                 'color': 'yellow',
                 'code': ['left', 'right', 'up', 'up', 'up'],
                 'cooldown': 0,
@@ -816,7 +818,7 @@ ARMORY = {
             'mission_seismic_probe': {
                 'id': 'mission_seismic_probe',
                 'name': 'Seismic Probe',
-                'icon': 'dsdultra/assets/png/General Stratagems/Seismic Probe.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Seismic Probe.png',
                 'color': 'yellow',
                 'code': ['up', 'up', 'left', 'right', 'down', 'down'],
                 'cooldown': 0,
@@ -825,7 +827,7 @@ ARMORY = {
             'mission_dark_fluid': {
                 'id': 'mission_dark_fluid',
                 'name': 'Dark Fluid Vessel',
-                'icon': 'dsdultra/assets/png/General Stratagems/Dark Fluid Vessel.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Dark Fluid Vessel.png',
                 'color': 'yellow',
                 'code': ['up', 'left', 'right', 'down', 'up', 'up'],
                 'cooldown': 0,
@@ -834,7 +836,7 @@ ARMORY = {
             'mission_drill_prospecting': {
                 'id': 'mission_drill_prospecting',
                 'name': 'Prospecting Drill',
-                'icon': 'dsdultra/assets/png/General Stratagems/Prospecting Drill.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Prospecting Drill.png',
                 'color': 'yellow',
                 'code': ['down', 'down', 'left', 'right', 'down', 'down'],
                 'cooldown': 0,
@@ -843,7 +845,7 @@ ARMORY = {
             'mission_drill_tectonic': {
                 'id': 'mission_drill_tectonic',
                 'name': 'Tectonic Drill',
-                'icon': 'dsdultra/assets/png/General Stratagems/Tectonic Drill.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Tectonic Drill.png',
                 'color': 'yellow',
                 'code': ['up', 'down', 'up', 'down', 'up', 'down'],
                 'cooldown': 0,
@@ -852,7 +854,7 @@ ARMORY = {
             'mission_drill_hive': {
                 'id': 'mission_drill_hive',
                 'name': 'Hive Breaker Drill',
-                'icon': 'dsdultra/assets/png/General Stratagems/Hive Breaker Drill.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Hive Breaker Drill.png',
                 'color': 'yellow',
                 'code': ['left', 'up', 'down', 'right', 'down', 'down'],
                 'cooldown': 0,
@@ -861,7 +863,7 @@ ARMORY = {
             'mission_orbital_illumination_flare': {
                 'id': 'mission_orbital_illumination_flare',
                 'name': 'Orbital Illumination Flare',
-                'icon': 'dsdultra/assets/png/General Stratagems/Orbital Illumination Flare.png',
+                'icon': ASSETS_DIR / 'png/General Stratagems/Orbital Illumination Flare.png',
                 'color': 'yellow',
                 'code': ['right', 'right', 'left', 'left'],
                 'cooldown': 0,

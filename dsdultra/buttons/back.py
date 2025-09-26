@@ -1,3 +1,4 @@
+from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 
@@ -5,7 +6,7 @@ class ButtonBack(ButtonBase):
     def __init__(self, dsd, page=None):
         super().__init__(dsd, page=page)
 
-    icon = 'dsdultra/assets/icons/groups/Arrow.png'
+    icon = ASSETS_DIR / 'icons/groups/Arrow.png'
     icon_size = 35
     icon_rotate = 180
     border_size = 90

@@ -1,6 +1,7 @@
 import sys
 import traceback
 import importlib
+from dsdultra import ASSETS_DIR
 
 
 def resolve_class(dotted_path: str):
@@ -13,7 +14,7 @@ def resolve_class(dotted_path: str):
 
 
 class ButtonBase:
-    icon = 'dsdultra/assets/icons/groups/Unknown.png'
+    icon = ASSETS_DIR / 'icons/groups/Unknown.png'
     icon_size = 50
     icon_rotate = 0
     border_size = 90

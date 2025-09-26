@@ -1,10 +1,14 @@
+import sys
 import threading
 from argparse import Namespace
+from os import getcwd
+from pathlib import Path
 
 from PIL import Image
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
 from pystray import MenuItem, Menu, Icon
 
+from dsdultra import ASSETS_DIR
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
@@ -53,7 +57,7 @@ class DSDUltra:
             self.deck.close()
 
         def run_tray():
-            image_path = 'dsdultra/assets/icons/DSDIcon.png'
+            image_path = ASSETS_DIR / 'icons/DSDIcon.png'
             icon_image = Image.open(image_path)
             menu = Menu(
                 MenuItem('Democracy StreamDeck', None, enabled=False),
