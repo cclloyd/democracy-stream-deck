@@ -13,8 +13,6 @@ from dsdultra.lib import prompt_library_install, silent_install
 def main():
     args = parse_args()
 
-    show_console()
-
     if args.command == 'install':
         silent_install()
     if args.command == 'build':
