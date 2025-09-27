@@ -17,7 +17,7 @@ If you don't have `hidapi.dll` in some folder that's included in your `$PATH` va
 
 ### Building
 
-Just run `python build.py`
+Just run `python -m dsdultra build`.  The resulting exe is located in `build/dsd.exe`.
 
 ## Resources
 
