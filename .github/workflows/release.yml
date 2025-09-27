@@ -24,7 +24,7 @@ jobs:
           pip install nuitka pillow
 
       - name: Build Executable
-        run: python build.py
+        run: python -m dsdultra build
 
       - name: Upload EXE to GitHub Release
         uses: softprops/action-gh-release@v2
