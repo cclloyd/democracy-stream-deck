@@ -7,6 +7,10 @@ def _has_console():
     GetConsoleWindow.restype = wintypes.HWND
     return bool(GetConsoleWindow())
 
+def _running_from_exe():
+    # Detect if running from a frozen/bundled executable (e.g., PyInstaller)
+    return bool(getattr(sys, "frozen", False) or str(sys.argv[0]).lower().endswith(".exe"))
+
 # Buffered stream that captures writes until the real console is shown.
 class _BufferedStream:
     def __init__(self, name=''):
@@ -32,9 +36,9 @@ class _BufferedStream:
         fp.flush()
         self._chunks.clear()
 
-# Install buffering for stdout/stderr if there is no console at startup
+# Install buffering for stdout/stderr only when running from the exe and there is no console
 _console_shown = False
-if not _has_console():
+if _running_from_exe() and not _has_console():
     _buffer_out = _BufferedStream('stdout')
     _buffer_err = _BufferedStream('stderr')
     sys.stdout = _buffer_out
@@ -45,6 +49,9 @@ else:
 
 # This is the function that is bound to the console menu item.
 def show_console(icon=None, item=None):
+    # Only relevant for the bundled exe; when running via python, assume console exists.
+    if not _running_from_exe():
+        return
     # If a console is already present, nothing to do.
     if _has_console():
         return
