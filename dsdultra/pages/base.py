@@ -22,6 +22,8 @@ class BasePage:
     select_active = False
     select_limit = 5
     selected = []
+    select_type = None
+    toggle_active = {}
 
     @property
     def app(self):
@@ -66,6 +68,7 @@ class BasePage:
             config = {}
             if type(self) == ScrollPage:
                 config = {'app': self.appname or self.parent}
+            config.update({'selected': {}})
             app = self.app
             if cls is None:
                 buttons.append(None)
@@ -75,8 +78,12 @@ class BasePage:
                 buttons.append(self.parent.ICON_TYPE_MAP[k](self.dsd, page=self))
             elif cls == 'content' and self.content_class is not None:
                 if added < len(data):
-                    config.update(data[added] or {})
-                    config['selected'] = any(item.get('id') == config.get('id') for item in app.selected)
+                    if data[added]:
+                        config.update(data[added] if isinstance(data[added], dict) else data[added].config)
+                    if self.select_type:
+                        config['selected'][self.select_type] = any(item.config.get('id') == config.get('id') for item in self.selected)
+                    elif self.app.select_type:
+                        config['selected'][app.select_type] = any(item.config.get('id') == config.get('id') for item in app.selected)
                     if data[added] is None:
                         buttons.append(None)
                     else:
@@ -98,6 +105,12 @@ class BasePage:
                 buttons.append(cls(self.dsd, page=self))
             else:
                 buttons.append(None)
+
+        # Highlight togglable buttons
+        for b in buttons:
+            if b and b.page.toggle_active.get(b.toggle_id, None):
+                b.config['highlight'] = True
+
         self.buttons = buttons
         return self.buttons
 

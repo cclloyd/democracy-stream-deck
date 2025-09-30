@@ -1,4 +1,5 @@
 import traceback
+from colorsys import rgb_to_hsv, hsv_to_rgb
 from pathlib import Path
 
 from PIL import Image, ImageFont, ImageEnhance, ImageChops
@@ -121,13 +122,32 @@ class IconGenerator:
 
         if button.icon_rotate != 0:
             icon_img = icon_img.rotate(button.icon_rotate, expand=True)
+        selected = False
+        if button.page.select_active and button.config.get('selected', {}).get(button.page.select_type, False):
+            selected = True
+        if button.page.app and button.page.app.select_active and button.config.get('selected', {}).get(button.page.app.select_type, False):
+            selected = True
+        if button.config.get('highlight', False):
+            selected = True
 
         # Assemble the image
         # Background fills 100%, stretched to key size
         self._paste_center(key_img, self.bg_img, 100, keep_aspect=True)
         # Paste the glow for selected items
-        if (button.page.select_active or button.page.app.select_active) and button.config.get('selected', False):
-            self._paste_center(key_img, self.selected_img, 100, keep_aspect=True)
+        if selected:
+            selected_img = self.selected_img.copy()
+            if button.highlight_hue:
+                pixels = selected_img.load()
+                width, height = selected_img.size
+                for x in range(width):
+                    for y in range(height):
+                        r, g, b, a = pixels[x, y]
+                        h, s, v = rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+                        h = (h + button.highlight_hue / 360.0) % 1.0
+                        r, g, b = hsv_to_rgb(h, s, v)
+                        pixels[x, y] = (int(r * 255), int(g * 255), int(b * 255), a)
+
+            self._paste_center(key_img, selected_img, 100, keep_aspect=True)
         # Paste the colored border
         self._paste_center(key_img, border_img, button.border_size, keep_aspect=True)
         # Paste the icon

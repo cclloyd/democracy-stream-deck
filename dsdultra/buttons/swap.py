@@ -1,5 +1,3 @@
-from time import sleep
-
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
@@ -12,48 +10,22 @@ except Exception:
     _kb = None
 
 
-class ButtonStratagem(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Close.png'
-    icon_size = 60
+class ButtonSwap(ButtonBase):
+    icon = ASSETS_DIR / 'icons/groups/Swap.png'
+    icon_size = 50
     border_size = 90
-    color = 'blue'
-
-    # TODO: Add confirm to go back to home when on active quick-loadout page
-    # TODO: Add Edit button on active quick-loadout page that opens QuickLoadoutInfo
-    # TODO: Add SwapButton on quick-loadout edit page
+    color = 'yellow'
+    full = True
+    toggle_id = 'swap'
+    highlight_hue = 77
 
     def run(self):
-        # Select stratagem instead of activating it
-        from dsdultra.pages.armory import PageArmory
-        app: PageArmory = self.page.app
-        if app and app.select_active:
-            if len(app.selected) < app.select_limit:
-                if not any(item.get('id') == self.config.get('id') for item in app.selected):
-                    app.selected.append(self.config)
-                else:
-                    app.selected = [item for item in app.selected if item.get('id') != self.config.get('id')]
-                self.page.app.render(True)
-        # Do keyboard input
+        if self.page.select_active:
+            self.page.toggle_active['swap'] = False
+            self.page.select_active = False
+            self.page.selected = []
+            self.page.render(True)
         else:
-            ACTION_DELAY = 32  # Delay in ms between inputs
-            KEYUP_DELAY = 32  # Delay in ms before releasing key
-            if self.config and self.config.get('code'):
-                if _kb is not None:
-                    mapping = {
-                        'up': _KbKey.up,
-                        'down': _KbKey.down,
-                        'left': _KbKey.left,
-                        'right': _KbKey.right,
-                    }
-                    _kb.press(_KbKey.end)
-                    sleep(ACTION_DELAY / 1000.0)
-                    for step in self.config['code']:
-                        key = mapping.get(str(step).lower())
-                        if key is None:
-                            continue
-                        _kb.press(key)
-                        sleep(KEYUP_DELAY / 1000.0)
-                        _kb.release(key)
-                        sleep(ACTION_DELAY / 1000.0)
-                    sleep(ACTION_DELAY / 1000.0)
-                    _kb.release(_KbKey.end)
+            self.page.toggle_active['swap'] = True
+            self.page.select_active = True
+            self.page.render(True)

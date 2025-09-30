@@ -4,6 +4,7 @@ from ..buttons.exit import ButtonExit
 from ..buttons.home import ButtonHome
 from ..buttons.quick import ButtonQuickStart, ButtonQuickInfo, ButtonQuickLoadout
 from ..buttons.stratagem import ButtonStratagem
+from ..buttons.swap import ButtonSwap
 from ..nav.armory import ARMORY
 
 
@@ -12,7 +13,7 @@ class PageQuickLoadout(ScrollPage):
 
     config = None
     select_active = False
-    select_limit = 5
+    select_limit = 2
     selected = []
 
     ICON_TYPE_MAP = [
@@ -46,16 +47,15 @@ class PageQuickLoadout(ScrollPage):
         ]
         self.content = firstRow + (self.content or [])
         # Unselect items so they aren't highlighted
-        self.content = [item.update({'selected': False}) or item if item is not None else None for item in self.content]
+        # self.content = [item.update({'selected': False}) or item if item is not None else None for item in self.content]
 
 
 class PageQuickInfo(ScrollPage):
     content_class = ButtonStratagem
 
-    config = None
-    select_active = False
-    select_limit = 5
-    selected = []
+    select_limit = 2
+    # TODO: Support multiple select type per page
+    select_type = 'swap'
 
     ICON_TYPE_MAP = [
         ButtonBack,
@@ -68,7 +68,7 @@ class PageQuickInfo(ScrollPage):
         None,
         None,
         None,
-        None,
+        ButtonSwap,
         # Row 3
         'content',
         'content',
@@ -83,4 +83,9 @@ class PageQuickInfo(ScrollPage):
         
     def refresh(self):
         super().refresh()
-        self.content = [item for item in self.content if item is not None and item.get('selected', False)]
+        print('refreshing content')
+        # print(self.content)
+        # print(self.app.select_type)
+        # print(self.content[0].config)
+        # self.content = [item for item in self.content if item is not None and item.config.get('selected', {}).get(self.app.select_type)]
+        # print(self.content)

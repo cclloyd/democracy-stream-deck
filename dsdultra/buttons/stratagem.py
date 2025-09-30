@@ -18,18 +18,47 @@ class ButtonStratagem(ButtonBase):
     border_size = 90
     color = 'blue'
 
+    # TODO: Add confirm to go back to home when on active quick-loadout page
+    # TODO: Add Edit button on active quick-loadout page that opens QuickLoadoutInfo
+    # TODO: Add SwapButton on quick-loadout edit page
+
     def run(self):
         # Select stratagem instead of activating it
         from dsdultra.pages.armory import PageArmory
+        from dsdultra.pages.quick import PageQuickInfo
         app: PageArmory = self.page.app
-        if app and app.select_active:
+        page: PageQuickInfo = self.page
+        # Run select for page
+        if page.select_active: # TODO: Maybe have page.select_active = 'swap' or whatever other select is active???
+            if page.select_type == 'swap':
+                if len(page.selected) == 0:
+                    page.selected.append(self)
+                    self.page.render(True)
+                elif len(page.selected) >= 1:
+                    page.selected.append(self)
+                    # Find indices of selected items in page.content
+                    idx1 = next((i for i, item in enumerate(page.content)
+                                 if item and item.config.get('id') == page.selected[0].config.get('id')), -1)
+                    idx2 = next((i for i, item in enumerate(page.content)
+                                 if item and item.config.get('id') == page.selected[1].config.get('id')), -1)
+                    # Swap items if both found
+                    if idx1 >= 0 and idx2 >= 0:
+                        page.content[idx1], page.content[idx2] = page.content[idx2], page.content[idx1]
+                    # Reset selection
+                    page.selected = []
+                    page.select_active = False
+                    page.toggle_active['swap'] = False
+                    self.page.render(True)
+
+        # Run select for app
+        elif app and app.select_active:
             if len(app.selected) < app.select_limit:
-                if not any(item.get('id') == self.config.get('id') for item in app.selected):
-                    app.selected.append(self.config)
+                if not any(item.config.get('id') == self.config.get('id') for item in app.selected):
+                    app.selected.append(self)
                 else:
-                    app.selected = [item for item in app.selected if item.get('id') != self.config.get('id')]
-                self.page.render(True)
-                self.page.app.refresh()
+                    app.selected = [item for item in app.selected if item.config.get('id') != self.config.get('id')]
+                self.page.app.render(True)
+
         # Do keyboard input
         else:
             ACTION_DELAY = 32  # Delay in ms between inputs

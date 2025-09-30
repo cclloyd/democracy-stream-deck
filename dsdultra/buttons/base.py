@@ -20,6 +20,8 @@ class ButtonBase:
     border_size = 90
     color = 'yellow'
     full = False
+    toggle_id = None
+    highlight_hue = 0
 
     page = None
     config = None

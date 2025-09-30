@@ -2,7 +2,6 @@ from .base import ScrollPage
 from ..buttons.back import ButtonBack
 from ..buttons.exit import ButtonExit
 from ..buttons.group import ButtonGroup
-from ..buttons.nav import ButtonPrev, ButtonNext
 from ..buttons.quick import ButtonQuickInfo, ButtonQuickStart, ButtonQuickLoadout
 from ..nav.armory import ARMORY
 
@@ -15,6 +14,7 @@ class PageArmory(ScrollPage):
     config = None
     select_active = False
     select_limit = 5
+    select_type = 'quick'
     selected = []
 
     ICON_TYPE_MAP = [
