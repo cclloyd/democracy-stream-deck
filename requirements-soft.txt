@@ -4,3 +4,4 @@ hidapi
 pynput
 nuitka
 pystray
+obsws-python

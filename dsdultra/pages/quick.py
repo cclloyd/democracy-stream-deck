@@ -2,6 +2,7 @@ from .base import ScrollPage
 from ..buttons.back import ButtonBack
 from ..buttons.exit import ButtonExit
 from ..buttons.home import ButtonHome, ButtonHomeConfirm
+from ..buttons.obs import ButtonRecord
 from ..buttons.quick import ButtonQuickStart, ButtonQuickInfo, ButtonQuickLoadout
 from ..buttons.stratagem import ButtonStratagem
 from ..buttons.edit import ButtonSwap, ButtonRemove
@@ -19,7 +20,7 @@ class PageQuickLoadout(ScrollPage):
         None,
         ButtonQuickInfo,
         None,
-        None,
+        ButtonRecord,
         # Row 2
         'content',
         'content',

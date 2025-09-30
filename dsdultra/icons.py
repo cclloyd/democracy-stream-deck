@@ -8,6 +8,11 @@ from StreamDeck.ImageHelpers import PILHelper
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from dsdultra.dsd import DSDUltra
+
 
 BORDERS = {
     'yellow': {
@@ -29,11 +34,16 @@ BORDERS = {
     'rainbow': {
         'half': ASSETS_DIR / 'icons/borders/Rainbow.png',
         'full': ASSETS_DIR / 'icons/borders/Rainbow.png',
+    },
+    'none': {
+        'half': None,
+        'full': None,
     }
 }
 
 
 class IconGenerator:
+    dsd: 'DSDUltra' = None
     bg = None
     font_path = ASSETS_DIR / 'fonts/Orbitron-v.ttf'
 
@@ -99,18 +109,19 @@ class IconGenerator:
         # Load layers
         icon_img = Image.open(icon_path).convert("RGBA")
         icon_img = self.resize_for_iconbox(icon_img, button.icon_size)
-        # bg_img = Image.open(bg_path).convert("RGBA")
-        border_img = Image.open(border_path).convert("RGBA")
+        if border_path:
+            border_img = Image.open(border_path).convert("RGBA")
 
         key_img = self.bg.copy()
 
         # Mask the icon to remove the gild corners from the default icon set (we add them back later if we want them)
-        icon_alpha = icon_img.getchannel("A")
-        mask = self.icon_mask_img
-        if mask.size != icon_img.size:
-            mask = mask.resize(icon_img.size, Image.LANCZOS)
-        combined_alpha = ImageChops.multiply(icon_alpha, mask)
-        icon_img.putalpha(combined_alpha)
+        if border_path:
+            icon_alpha = icon_img.getchannel("A")
+            mask = self.icon_mask_img
+            if mask.size != icon_img.size:
+                mask = mask.resize(icon_img.size, Image.LANCZOS)
+            combined_alpha = ImageChops.multiply(icon_alpha, mask)
+            icon_img.putalpha(combined_alpha)
 
         # Adjust saturation levels for icons to display better on streamdeck
         if button.color == 'red':
@@ -149,7 +160,8 @@ class IconGenerator:
 
             self._paste_center(key_img, selected_img, 100, keep_aspect=True)
         # Paste the colored border
-        self._paste_center(key_img, border_img, button.border_size, keep_aspect=True)
+        if border_path:
+            self._paste_center(key_img, border_img, button.border_size, keep_aspect=True)
         # Paste the icon
         self._paste_center(key_img, icon_img, 100, keep_aspect=True)
         

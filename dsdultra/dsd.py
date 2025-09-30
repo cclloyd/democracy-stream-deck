@@ -1,8 +1,5 @@
-import sys
 import threading
 from argparse import Namespace
-from os import getcwd
-from pathlib import Path
 
 from PIL import Image
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
@@ -12,6 +9,7 @@ from dsdultra import ASSETS_DIR
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
+from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
 
 
@@ -25,6 +23,7 @@ class DSDUltra:
         self.deck: StreamDeckDevice = deck
         self.args = args
         self.icons = IconGenerator(self)
+        self.obs = OBS(self)
         self.BUTTON_SIZE = 72
 
     def start(self):
