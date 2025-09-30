@@ -1,10 +1,10 @@
 from .base import ScrollPage
 from ..buttons.back import ButtonBack
 from ..buttons.exit import ButtonExit
-from ..buttons.home import ButtonHome
+from ..buttons.home import ButtonHome, ButtonHomeConfirm
 from ..buttons.quick import ButtonQuickStart, ButtonQuickInfo, ButtonQuickLoadout
 from ..buttons.stratagem import ButtonStratagem
-from ..buttons.swap import ButtonSwap
+from ..buttons.edit import ButtonSwap, ButtonRemove
 from ..nav.armory import ARMORY
 
 
@@ -13,15 +13,13 @@ class PageQuickLoadout(ScrollPage):
 
     config = None
     select_active = False
-    select_limit = 2
-    selected = []
 
     ICON_TYPE_MAP = [
-        ButtonHome,
+        ButtonHomeConfirm,
+        None,
+        ButtonQuickInfo,
         None,
         None,
-        None,
-        ButtonExit,
         # Row 2
         'content',
         'content',
@@ -67,7 +65,7 @@ class PageQuickInfo(ScrollPage):
         None,
         None,
         None,
-        None,
+        ButtonRemove,
         ButtonSwap,
         # Row 3
         'content',
@@ -80,12 +78,7 @@ class PageQuickInfo(ScrollPage):
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config=None, app: str = None):
         super().__init__(dsd, parent=parent, content=content, content_class=content_class, page_num=page_num, config=config, app=app)
         self.content = self.content or []
-        
+
     def refresh(self):
+        self.content = self.app.selected[:] # Clone list
         super().refresh()
-        print('refreshing content')
-        # print(self.content)
-        # print(self.app.select_type)
-        # print(self.content[0].config)
-        # self.content = [item for item in self.content if item is not None and item.config.get('selected', {}).get(self.app.select_type)]
-        # print(self.content)

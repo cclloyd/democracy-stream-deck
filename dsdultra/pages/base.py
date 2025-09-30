@@ -19,7 +19,7 @@ class BasePage:
     content: Optional[dict | list] = None
 
     # For selectable pages
-    select_active = False
+    select_active = None
     select_limit = 5
     selected = []
     select_type = None

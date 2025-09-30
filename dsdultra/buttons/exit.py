@@ -6,7 +6,7 @@ class ButtonExit(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Close.png'
     icon_size = 35
     border_size = 90
-    color = 'yellow'
+    color = 'rainbow'
     full = True
     gild = True
 

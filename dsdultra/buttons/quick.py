@@ -22,6 +22,7 @@ class ButtonQuickLoadout(ButtonBase):
             'select_active': True,
             'select_limit': 5,
         })
+        page.app.select_active = True
         page.render()
 
 
@@ -30,6 +31,7 @@ class ButtonQuickInfo(ButtonBase):
         from dsdultra.pages.quick import PageQuickInfo
         if type(self.page) != PageQuickInfo:
             page = PageQuickInfo(self.dsd, parent=self.page, app='quick', config=self.page.parent.config, content=self.page.app.selected)
+            page.app.select_active = False
             page.render()
 
     def draw_image(self):
@@ -39,8 +41,8 @@ class ButtonQuickInfo(ButtonBase):
 
         current = len(self.page.app.selected)
         limit = self.page.app.select_limit
-        draw.text((36, 15), "SELECTED", fill="white", anchor="mm", font=self.dsd.icons.get_font(9))
-        draw.text((36, 45), f'{current} / {limit}', fill='white' if current < limit else '#F6D535', anchor="mm", font=self.dsd.icons.get_font(18))
+        draw.text((36, 15), 'SELECTED', fill='white', anchor='mm', font=self.dsd.icons.get_font(9))
+        draw.text((36, 45), f'{current} / {limit}', fill='white' if current < limit-1 else '#F6D535', anchor='mm', font=self.dsd.icons.get_font(18))
 
         # Convert to native key format and set image
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
@@ -62,9 +64,9 @@ class ButtonQuickStart(ButtonBase):
         key_img = self.dsd.icons.bg.copy()
         self.dsd.icons._paste_center(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
-        draw.text((36, 14), "START", fill="white", anchor="mm", font=self.dsd.icons.get_font(14))
+        draw.text((36, 14), 'START', fill='white', anchor='mm', font=self.dsd.icons.get_font(14))
 
-        icon_img = Image.open(self.icon).convert("RGBA")
+        icon_img = Image.open(self.icon).convert('RGBA')
         icon_img = self.dsd.icons.resize_for_iconbox(icon_img, self.icon_size)
         icon_pos = ((key_img.width - icon_img.width) // 2, int(key_img.height * 0.6) - icon_img.height // 2)
         key_img.paste(icon_img, icon_pos, icon_img)
