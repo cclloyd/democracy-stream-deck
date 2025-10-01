@@ -33,18 +33,17 @@ class ButtonStratagem(ButtonBase):
             elif len(page.selected) >= 1:
                 page.selected.append(self)
                 # Find indices of selected items in page.content
-                idx1 = next((i for i, item in enumerate(page.content)
+                idx1 = next((i for i, item in enumerate(page.app.selected)
                              if item and item.config.get('id') == page.selected[0].config.get('id')), -1)
-                idx2 = next((i for i, item in enumerate(page.content)
+                idx2 = next((i for i, item in enumerate(page.app.selected)
                              if item and item.config.get('id') == page.selected[1].config.get('id')), -1)
                 # Swap items if both found
                 if idx1 >= 0 and idx2 >= 0:
-                    page.content[idx1], page.content[idx2] = page.content[idx2], page.content[idx1]
+                    page.app.selected[idx1], page.app.selected[idx2] = page.app.selected[idx2], page.app.selected[idx1]
                 # Reset selection
                 page.selected = []
-                # page.select_active = False
-                # page.toggle_active['swap'] = False
                 self.page.render(True)
+
         elif page.select_active == 'remove':
             page.app.selected = [item for item in page.app.selected if item.config['id'] != self.config['id']]
             page.select_active = None

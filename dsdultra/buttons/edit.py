@@ -34,9 +34,9 @@ class ButtonRemove(ButtonBase):
 
     # TODO: design pattern is backwards.  We should have the toggled button trigger a run command on this class, sending itself as a parameter.
     def run(self):
-        if self.page.select_active:
+        if self.page.select_active == 'remove':
             self.page.toggle_active['remove'] = False
-            self.page.select_active = 'remove'
+            self.page.select_active = None
             self.page.selected = []
             self.page.render(True)
         else:
