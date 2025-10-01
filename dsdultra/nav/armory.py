@@ -464,7 +464,7 @@ ARMORY = {
                 'name': 'Orbital Napalm Barrage',
                 'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Napalm Barrage.png',
                 'color': 'red',
-                'code': ['right', 'down', 'left', 'down', 'up'],
+                'code': ['right', 'right', 'down', 'left', 'right', 'up'],
                 'cooldown': 0,
             },
             'orbital_ems_strike': {
