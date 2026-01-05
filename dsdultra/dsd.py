@@ -1,8 +1,10 @@
 import sys
 import threading
 from argparse import Namespace
+import os
+import signal
 
-from PyQt6.QtCore import QTimer
+from PyQt6.QtCore import QTimer, QSocketNotifier
 from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
@@ -34,6 +36,10 @@ class DSDUltra:
         self.qt_app: QApplication | None = None
         self.tray_icon: QSystemTrayIcon | None = None
         self._sigint_timer: QTimer | None = None
+
+        self._signal_rfd: int | None = None
+        self._signal_wfd: int | None = None
+        self._signal_notifier: QSocketNotifier | None = None
 
     def start(self):
         self.config = DSDConfig(self)
@@ -108,13 +114,50 @@ class DSDUltra:
         self.tray_icon.setContextMenu(menu)
         self.tray_icon.show()
 
-        # Keep Python "awake" so SIGINT/SIGTERM handlers run promptly while Qt's event loop is active.
-        self._sigint_timer = QTimer()
-        self._sigint_timer.setInterval(200)
-        self._sigint_timer.timeout.connect(lambda: None)
-        self._sigint_timer.start()
+        # Ensure SIGINT/SIGTERM reliably wakes Qt's event loop on Unix.
+        # This makes Ctrl+C work even while QApplication.exec() is running.
+        try:
+            self._signal_rfd, self._signal_wfd = os.pipe()
+            os.set_blocking(self._signal_rfd, False)
+            os.set_blocking(self._signal_wfd, False)
+            signal.set_wakeup_fd(self._signal_wfd)
 
-        self.qt_app.exec()
+            self._signal_notifier = QSocketNotifier(self._signal_rfd, QSocketNotifier.Type.Read, self.qt_app)
+
+            def _on_signal_ready():
+                try:
+                    os.read(self._signal_rfd, 4096)
+                except OSError:
+                    pass
+                self._request_shutdown()
+
+            self._signal_notifier.activated.connect(_on_signal_ready)
+        except Exception:
+            # Fallback: keep a tiny timer so Python regains control periodically.
+            self._sigint_timer = QTimer()
+            self._sigint_timer.setInterval(200)
+            self._sigint_timer.timeout.connect(lambda: None)
+            self._sigint_timer.start()
+
+        try:
+            self.qt_app.exec()
+        finally:
+            # Best-effort cleanup
+            try:
+                if self._signal_notifier is not None:
+                    self._signal_notifier.setEnabled(False)
+            except Exception:
+                pass
+            try:
+                if self._signal_rfd is not None:
+                    os.close(self._signal_rfd)
+            except Exception:
+                pass
+            try:
+                if self._signal_wfd is not None:
+                    os.close(self._signal_wfd)
+            except Exception:
+                pass
 
     def set_image(self, key, img):
         if key >= self.deck.key_count():
