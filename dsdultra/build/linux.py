@@ -12,14 +12,14 @@ def build_executable():
         '--assume-yes-for-downloads',
         f'--output-filename=dsd',
         '--enable-plugin=tk-inter',
+        '--enable-plugin=pyqt6',
+        '--include-package=StreamDeck',
+        '--include-package=Xlib',
         '--no-deployment-flag=self-execution',
         '--windows-console-mode=disable',  # force/hide/disable/attach
         '--windows-icon-from-ico=dsdultra/assets/icons/DSDIcon.ico',
         '--nofollow-import-to=dsdultra.build',
         '--output-dir=build',
-        '--include-package=StreamDeck',
-        '--include-package=pystray',
-        '--include-package=Xlib',
-        'dsdultra/__main__.py',
+        'dsdultra/',
     ]
     nuitka_main()

@@ -3,5 +3,5 @@ pillow
 hidapi
 pynput
 nuitka
-pystray
 obsws-python
+PyQt6
