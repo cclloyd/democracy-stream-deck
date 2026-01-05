@@ -13,6 +13,7 @@ from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
+from dsdultra.util import is_frozen
 
 
 class DSDUltra:
@@ -97,6 +98,7 @@ class DSDUltra:
 
         action_console = QAction('Show Console')
         action_console.triggered.connect(show_console)
+        action_console.setEnabled(is_frozen())
         menu.addAction(action_console)
 
         action_exit = QAction('Exit')

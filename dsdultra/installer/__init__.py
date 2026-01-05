@@ -1,9 +1,9 @@
-import sys
+from dsdultra.util import is_windows
 
 
 class InstallerWizard:
     def __init__(self):
-        if sys.platform == 'Windows':
+        if is_windows():
             from .win import WindowsInstallerWizard
             self.wizard = WindowsInstallerWizard()
         else:
