@@ -11,7 +11,10 @@ If you don't have `hidapi.dll` in some folder that's included in your `$PATH` va
 
 ## Development
 
-1. Install hidapi.dll
+
+1. Install hidapi
+- Windows: Copy the dll to a folder in your `$PATH` (system32 works)
+- Arch: `sudo pacman -S tk hidapi`
 2. Install requirements.txt
 3. Run `python -m dsdultra`
 
