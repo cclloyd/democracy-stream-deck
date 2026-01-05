@@ -15,3 +15,9 @@ class InstallerWizard:
 
     def prompt_library_install(self):
         self.wizard.prompt_library_install()
+
+    def create_shortcut(self):
+        self.wizard.create_shortcut()
+
+    def __getattr__(self, name):
+        return getattr(self.wizard, name)
