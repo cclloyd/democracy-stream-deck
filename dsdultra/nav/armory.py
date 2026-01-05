@@ -471,7 +471,7 @@ ARMORY = {
             },
             'orbital_120mm_he_barrage': {
                 'id': 'orbital_120mm_he_barrage',
-                        'hint': '120',
+                        'hint': '1 2 0',
                 'name': 'Orbital 120mm HE Barrage',
                 'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital 120MM HE Barrage.png',
                 'color': 'red',
@@ -481,7 +481,7 @@ ARMORY = {
             'orbital_380mm_he_barrage': {
                 'id': 'orbital_380mm_he_barrage',
                 'name': 'Orbital 380mm HE Barrage',
-                        'hint': '380',
+                        'hint': '3 8 0',
                 'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital 380MM HE Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'up', 'up', 'left', 'down', 'down'],
