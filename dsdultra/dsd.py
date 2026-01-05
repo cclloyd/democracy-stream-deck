@@ -81,7 +81,7 @@ class DSDUltra:
         print('Shutting down...')
         # Cleanup StreamDeck
         try:
-            if self.deck is not None:
+            if self.deck is not None and self.deck.is_open():
                 print('Closing deck...')
                 self.deck.reset()
                 self.deck.close()
