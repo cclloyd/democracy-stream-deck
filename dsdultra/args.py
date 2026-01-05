@@ -8,6 +8,7 @@ def parse_args():
         'command',
         nargs='?',
         default='run',
+        choices=('run', 'install', 'build', 'shortcut'),
         help='The command to execute (when running as: python -m dsdultra <command>)'
     )
     parser.add_argument(

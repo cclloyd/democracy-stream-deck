@@ -4,14 +4,21 @@ import traceback
 
 
 from dsdultra.args import parse_args
-from dsdultra.lib import prompt_library_install, silent_install
+from dsdultra.installer import InstallerWizard
 
 
 def main():
     args = parse_args()
+    wizard = InstallerWizard()
+
+
 
     if args.command == 'install':
-        silent_install()
+        wizard.silent_install()
+        sys.exit(0)
+    if args.command == 'shortcut':
+        wizard.create_shortcut()
+        sys.exit(0)
     if args.command == 'build':
         # We dynamically import the build function at runtime to avoid including the build tools in the exe.
         import importlib
@@ -25,7 +32,7 @@ def main():
     except ProbeError as e:
         print(f'Error loading StreamDeck: {e}')
         if 'No suitable LibUSB' in str(e):
-            prompt_library_install()
+            wizard.prompt_library_install()
             input('Press any key to exit...')
             sys.exit(0)
         else:

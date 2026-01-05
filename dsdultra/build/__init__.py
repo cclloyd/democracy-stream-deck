@@ -2,7 +2,7 @@ import sys
 
 
 def build_executable():
-    if sys.platform == 'win32':
+    if sys.platform == 'win32' or sys.platform == 'Windows':
         from dsdultra.build.win import build_executable
     else:
         from dsdultra.build.linux import build_executable
