@@ -71,12 +71,10 @@ class ButtonBase:
                 page.render()
             else:
                 print('Default button action')
-                self.dsd.deck.reset()
-                self.dsd.deck.close()
-                sys.exit(0)
+                self.dsd.shutdown()
         except:
             traceback.print_exc()
-            sys.exit(-1)
+            self.dsd.shutdown(-1)
 
     def should_render(self):
         return True

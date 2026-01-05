@@ -1,3 +1,4 @@
+import sys
 import threading
 from argparse import Namespace
 
@@ -21,6 +22,7 @@ class DSDUltra:
 
     def __init__(self, deck, args: Namespace):
         self.deck: StreamDeckDevice = deck
+        self.tray: threading.Thread | None = None
         self.args = args
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
@@ -67,11 +69,33 @@ class DSDUltra:
             icon.run()
 
         tray_thread = threading.Thread(target=run_tray, name='TrayIconThread', daemon=True)
+        self.tray = tray_thread
         tray_thread.start()
 
     def set_image(self, key, img):
         if key >= self.deck.key_count():
             return  # touch strip on SD+ is beyond key indexes
         self.deck.set_key_image(key, img)
+        
+    def shutdown(self, code=0):
+        print('Shutting down...')
+        # Cleanup StreamDeck
+        try:
+            if self.deck is not None:
+                print('Closing deck...')
+                self.deck.reset()
+                self.deck.close()
+                print('Closed deck.')
+        except Exception as e:
+            print(f'Error closing deck: {e}')
 
+        # Stop tray icon
+        try:
+            if self.tray is not None:
+                self.tray.join(timeout=1)
+        except Exception as e:
+            print('Error stopping tray icon:')
+            print(e)
+
+        sys.exit(code)
 

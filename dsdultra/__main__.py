@@ -57,12 +57,7 @@ def main():
         # Keep the script alive until the self.deck is closed (e.g., Exit pressed)
         def signal_handler(sig, frame):
             print(f'Caught interrupt ({sig}), closing deck...')
-            try:
-                dsd.deck.reset()
-                dsd.deck.close()  # Or provide a shutdown/cleanup method
-            except Exception as e:
-                print(e)
-            sys.exit(0)
+            dsd.shutdown()
 
         signal.signal(signal.SIGINT, signal_handler)
         signal.signal(signal.SIGTERM, signal_handler)
