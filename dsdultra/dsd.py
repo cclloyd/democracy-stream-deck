@@ -2,9 +2,10 @@ import sys
 import threading
 from argparse import Namespace
 
-from PIL import Image
+from PyQt6.QtCore import QTimer
+from PyQt6.QtGui import QIcon, QAction
+from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
-from pystray import MenuItem, Menu, Icon
 
 from dsdultra import ASSETS_DIR
 from dsdultra.config import DSDConfig
@@ -23,14 +24,22 @@ class DSDUltra:
     def __init__(self, deck, args: Namespace):
         self.deck: StreamDeckDevice = deck
         self.tray: threading.Thread | None = None
+        self.stop_event = threading.Event()
         self.args = args
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
         self.BUTTON_SIZE = 72
 
+        self.qt_app: QApplication | None = None
+        self.tray_icon: QSystemTrayIcon | None = None
+
     def start(self):
         self.config = DSDConfig(self)
+        deck_thread = threading.Thread(target=self._deck_loop, name='StreamDeckThread', daemon=True)
+        deck_thread.start()
         self.create_tray_icon()
+
+    def _deck_loop(self):
         self.deck.open()
         self.deck.reset()
         self.BUTTON_SIZE = self.deck.KEY_PIXEL_WIDTH
@@ -40,62 +49,72 @@ class DSDUltra:
         initial_page = PageHome(self, app='dsd')
         initial_page.render()
 
-        current = threading.current_thread()
-        while self.deck.is_open():
-            for t in threading.enumerate():
-                if t is current:
-                    continue
-                try:
-                    t.join(timeout=1)
-                except RuntimeError as e:
-                    print(e)
-                    pass
+        while self.deck.is_open() and not self.stop_event.is_set():
+            self.stop_event.wait(0.25)
+
+        try:
+            if self.deck.is_open():
+                self.deck.reset()
+                self.deck.close()
+        except Exception as e:
+            print(f'Error closing deck: {e}')
+
+    def _request_shutdown(self):
+        self.stop_event.set()
+
+        try:
+            if self.deck is not None and self.deck.is_open():
+                self.deck.reset()
+                self.deck.close()
+        except Exception as e:
+            print(f'Error closing deck: {e}')
+
+        try:
+            if self.tray_icon is not None:
+                self.tray_icon.hide()
+        except Exception:
+            pass
+
+        if self.qt_app is not None:
+            self.qt_app.quit()
 
     def create_tray_icon(self):
-        def on_exit(tray_icon, item):
-            tray_icon.stop()
-            self.deck.reset()
-            self.deck.close()
+        self.qt_app = QApplication.instance() or QApplication(sys.argv)
 
-        def run_tray():
-            image_path = ASSETS_DIR / 'icons/DSDIcon.png'
-            icon_image = Image.open(image_path)
-            menu = Menu(
-                MenuItem('Democracy StreamDeck', None, enabled=False),
-                MenuItem('Show Console', show_console),
-                MenuItem('Exit', on_exit),
-            )
-            icon = Icon('dsd', icon_image, 'Democracy StreamDeck', menu)
-            icon.run()
+        icon_path = ASSETS_DIR / 'icons/DSDIcon.png'
+        qicon = QIcon(str(icon_path))
 
-        tray_thread = threading.Thread(target=run_tray, name='TrayIconThread', daemon=True)
-        self.tray = tray_thread
-        tray_thread.start()
+        self.tray_icon = QSystemTrayIcon(qicon)
+        self.tray_icon.setToolTip('Democracy StreamDeck')
+
+        menu = QMenu()
+        menu.setTitle('Democracy StreamDeck')
+        title = QAction('Democracy StreamDeck')
+        title.setEnabled(False)
+        menu.addAction(title)
+        menu.addSeparator()
+
+        action_console = QAction('Show Console')
+        action_console.triggered.connect(show_console)
+        menu.addAction(action_console)
+
+        action_exit = QAction('Exit')
+        action_exit.triggered.connect(self._request_shutdown)
+        menu.addAction(action_exit)
+
+        self.tray_icon.setContextMenu(menu)
+        self.tray_icon.show()
+
+        # If the tray fails to initialize (rare, but possible), don't silently hang.
+        QTimer.singleShot(0, lambda: None)
+
+        self.qt_app.exec()
 
     def set_image(self, key, img):
         if key >= self.deck.key_count():
             return  # touch strip on SD+ is beyond key indexes
         self.deck.set_key_image(key, img)
-        
+
     def shutdown(self, code=0):
         print('Shutting down...')
-        # Cleanup StreamDeck
-        try:
-            if self.deck is not None and self.deck.is_open():
-                print('Closing deck...')
-                self.deck.reset()
-                self.deck.close()
-                print('Closed deck.')
-        except Exception as e:
-            print(f'Error closing deck: {e}')
-
-        # Stop tray icon
-        try:
-            if self.tray is not None:
-                self.tray.join(timeout=1)
-        except Exception as e:
-            print('Error stopping tray icon:')
-            print(e)
-
-        sys.exit(code)
-
+        return self._request_shutdown()
