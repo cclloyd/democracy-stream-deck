@@ -2,7 +2,6 @@ import signal
 import sys
 import traceback
 
-from StreamDeck.DeviceManager import DeviceManager, ProbeError
 
 from dsdultra.args import parse_args
 from dsdultra.console import show_console
@@ -20,6 +19,8 @@ def main():
         import importlib
         build_func = importlib.import_module('dsdultra.build')
         build_func.build_executable()
+        sys.exit(0)
+    from StreamDeck.DeviceManager import DeviceManager, ProbeError
 
     try:
         decks = DeviceManager().enumerate()
