@@ -2,10 +2,8 @@ import ctypes
 import os
 import shutil
 import sys
-import tkinter as tk
 import webbrowser
 from pathlib import Path
-from tkinter import messagebox
 
 from dsdultra import ASSETS_DIR
 
@@ -44,6 +42,8 @@ def elevate_self_for_install():
         return False
 
 def prompt_library_install():
+    import tkinter as tk
+
     def open_link(event=None):
         webbrowser.open('https://github.com/libusb/hidapi/releases')
 
@@ -110,6 +110,9 @@ def prompt_library_install():
     sys.exit(0)
 
 def silent_install():
+    from tkinter import messagebox
+    import tkinter as tk
+
     # Check for admin rights and elevate if required
     if not is_user_admin():
         print("Elevation required. Attempting to restart as Administrator...")

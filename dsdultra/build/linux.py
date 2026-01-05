@@ -17,6 +17,9 @@ def build_executable():
         '--windows-icon-from-ico=dsdultra/assets/icons/DSDIcon.ico',
         '--nofollow-import-to=dsdultra.build',
         '--output-dir=build',
+        '--include-package=StreamDeck',
+        '--include-package=pystray',
+        '--include-package=Xlib',
         'dsdultra/__main__.py',
     ]
     nuitka_main()

@@ -4,8 +4,6 @@ import traceback
 
 
 from dsdultra.args import parse_args
-from dsdultra.console import show_console
-from dsdultra.dsd import DSDUltra
 from dsdultra.lib import prompt_library_install, silent_install
 
 
@@ -20,8 +18,8 @@ def main():
         build_func = importlib.import_module('dsdultra.build')
         build_func.build_executable()
         sys.exit(0)
-    from StreamDeck.DeviceManager import DeviceManager, ProbeError
 
+    from StreamDeck.DeviceManager import DeviceManager, ProbeError
     try:
         decks = DeviceManager().enumerate()
     except ProbeError as e:
@@ -45,6 +43,7 @@ def main():
         input('\nPress any key to exit...')
         sys.exit(1)
 
+    from dsdultra.dsd import DSDUltra
     try:
         dsd = DSDUltra(deck, args)
 
