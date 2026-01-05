@@ -32,6 +32,7 @@ class DSDUltra:
 
         self.qt_app: QApplication | None = None
         self.tray_icon: QSystemTrayIcon | None = None
+        self._sigint_timer: QTimer | None = None
 
     def start(self):
         self.config = DSDConfig(self)
@@ -105,8 +106,11 @@ class DSDUltra:
         self.tray_icon.setContextMenu(menu)
         self.tray_icon.show()
 
-        # If the tray fails to initialize (rare, but possible), don't silently hang.
-        QTimer.singleShot(0, lambda: None)
+        # Keep Python "awake" so SIGINT/SIGTERM handlers run promptly while Qt's event loop is active.
+        self._sigint_timer = QTimer()
+        self._sigint_timer.setInterval(200)
+        self._sigint_timer.timeout.connect(lambda: None)
+        self._sigint_timer.start()
 
         self.qt_app.exec()
 
