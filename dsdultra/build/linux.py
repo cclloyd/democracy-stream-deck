@@ -16,8 +16,6 @@ def build_executable():
         '--include-package=StreamDeck',
         '--include-package=Xlib',
         '--no-deployment-flag=self-execution',
-        '--windows-console-mode=disable',  # force/hide/disable/attach
-        '--windows-icon-from-ico=dsdultra/assets/icons/DSDIcon.ico',
         '--nofollow-import-to=dsdultra.build',
         '--output-dir=build',
         'dsdultra/',
