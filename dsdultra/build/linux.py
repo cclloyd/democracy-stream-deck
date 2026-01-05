@@ -6,8 +6,8 @@ from nuitka.__main__ import main as nuitka_main
 def build_executable():
     sys.argv = [
         'nuitka',  # dummy program name
-        '--onefile',
         '--include-data-dir=dsdultra/assets=dsdultra/assets',
+        '--onefile',
         '--standalone',
         '--assume-yes-for-downloads',
         f'--output-filename=dsd',

@@ -4,14 +4,13 @@ import traceback
 
 
 from dsdultra.args import parse_args
+from dsdultra.console import show_console
 from dsdultra.installer import InstallerWizard
 
 
 def main():
     args = parse_args()
     wizard = InstallerWizard()
-
-
 
     if args.command == 'install':
         wizard.silent_install()
@@ -25,6 +24,9 @@ def main():
         build_func = importlib.import_module('dsdultra.build')
         build_func.build_executable()
         sys.exit(0)
+
+    if args.console:
+        show_console()
 
     from StreamDeck.DeviceManager import DeviceManager, ProbeError
     try:

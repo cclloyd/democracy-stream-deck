@@ -17,6 +17,11 @@ def parse_args():
         help='Enable debug mode.'
     )
     parser.add_argument(
+        '--console',
+        action='store_true',
+        help='Opens logs on launch.'
+    )
+    parser.add_argument(
         '-c', '--config',
         dest='config_path',
         metavar='CONFIG_PATH',
