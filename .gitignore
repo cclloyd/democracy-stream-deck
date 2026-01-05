@@ -13,4 +13,5 @@ __pycache__/
 *.exe
 __main__.*
 build
+!dsdultra/build
 dist
