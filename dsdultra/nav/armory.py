@@ -20,6 +20,9 @@ ICON_COLORS = {
 
 GILD_SIZE = 78
 
+# TODO: export to a json structure where each item specifies an id for its parent group (a default group will be used where none exists)
+#   and 2 lists, for groups and items
+# TODO: group will be its own class and item will be its own class??
 ARMORY = {
     'backpacks': {
         'id': 'backpacks',
@@ -61,6 +64,14 @@ ARMORY = {
                 'color': 'blue',
                 'cooldown': 480,
             },
+            'backpack_guard_dog_flame': {
+                'id': 'backpack_guard_dog_flame',
+                'name': 'AX/FLAM-75 "Guard Dog" Hot Dog',
+                'icon': ASSETS_DIR / 'png/Python Commandos/Guard Dog Hot Dog.png',
+                'code': ['down', 'up', 'left', 'up', 'left', 'left'],
+                'color': 'blue',
+                'cooldown': 480,
+            },
             'backpack_hellbomb': {
                 'id': 'backpack_hellbomb',
                 'name': 'B-100 Portable Hellbomb ',
@@ -81,7 +92,7 @@ ARMORY = {
                 'id': 'backpack_hover',
                 'name': 'LIFT-860 Hover Pack',
                 'icon': ASSETS_DIR / 'png/Borderline Justice/Hover Pack.png',
-                'code': ['down', 'left', 'right', 'down', 'left', 'right'],
+                'code': ['down', 'up', 'up', 'down', 'left', 'right'],
                 'color': 'blue',
                 'cooldown': 480,
             },
@@ -89,7 +100,7 @@ ARMORY = {
                 'id': 'backpack_warp',
                 'name': 'LIFT-182 Warp Pack',
                 'icon': ASSETS_DIR / 'png/Control Group/Warp Pack.png',
-                'code': ['down', 'up', 'up', 'down', 'left', 'right'],
+                'code': ['down', 'left', 'right', 'down', 'left', 'right'],
                 'color': 'blue',
                 'cooldown': 480,
             },
@@ -177,6 +188,13 @@ ARMORY = {
                         'name': 'StA-X3 W.A.S.P. Launcher',
                         'icon': ASSETS_DIR / 'png/Patriotic Administration Center/StA-X3 W.A.S.P. Launcher.png',
                         'code': ['down', 'down', 'up', 'down', 'right'],
+                        'cooldown': 0,
+                    },
+                    'weapon_maxigun': {
+                        'id': 'weapon_maxigun',
+                        'name': 'M-1000 Maxigun',
+                        'icon': ASSETS_DIR / 'png/Python Commandos/Maxigun.png',
+                        'code': ['down', 'left', 'right', 'down', 'up', 'up'],
                         'cooldown': 0,
                     },
                 },
@@ -271,13 +289,20 @@ ARMORY = {
                         'name': 'S-11 Speargun',
                         'icon': ASSETS_DIR / 'png/Dust Devils/Speargun.png',
                         'code': ['down', 'right', 'down', 'left', 'up', 'right'],
-                        'cooldown': 0,
+                        'cooldown': 480,
                     },
                     'weapon_silo': {
                         'id': 'weapon_silo',
                         'name': 'MS-11 Solo Silo ',
                         'icon': ASSETS_DIR / 'png/Dust Devils/Solo Silo.png',
                         'code': ['down', 'up', 'right', 'down', 'down'],
+                        'cooldown': 0,
+                    },
+                    'weapon_chainsword': {
+                        'id': 'weapon_chainsword',
+                        'name': 'CQC-9 Defoliation Tool',
+                        'icon': ASSETS_DIR / 'png/Python Commandos/Defoliation Tool.png',
+                        'code': ['down', 'left', 'right', 'right', 'down'],
                         'cooldown': 0,
                     },
                 },
@@ -438,6 +463,7 @@ ARMORY = {
             'orbital_walking_barrage': {
                 'id': 'orbital_walking_barrage',
                 'name': 'Orbital Walking Barrage',
+                        'hint': 'W',
                 'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital Walking Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'right', 'down', 'right', 'down'],
@@ -445,6 +471,7 @@ ARMORY = {
             },
             'orbital_120mm_he_barrage': {
                 'id': 'orbital_120mm_he_barrage',
+                        'hint': '120',
                 'name': 'Orbital 120mm HE Barrage',
                 'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital 120MM HE Barrage.png',
                 'color': 'red',
@@ -454,6 +481,7 @@ ARMORY = {
             'orbital_380mm_he_barrage': {
                 'id': 'orbital_380mm_he_barrage',
                 'name': 'Orbital 380mm HE Barrage',
+                        'hint': '380',
                 'icon': ASSETS_DIR / 'png/Orbital Cannons/Orbital 380MM HE Barrage.png',
                 'color': 'red',
                 'code': ['right', 'down', 'up', 'up', 'left', 'down', 'down'],
