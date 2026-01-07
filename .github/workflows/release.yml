@@ -26,11 +26,12 @@ jobs:
       - name: Build Executable
         run: python -m dsdultra build
 
-      - name: Upload AppImage artifact
+      - name: Upload exe artifact
         uses: actions/upload-artifact@v4
         with:
           name: dsd.exe
-          path: dist/dsd.exe
+          path: build/dsd.exe
+          if-no-files-found: error
 
   build-linux:
     runs-on: ubuntu-latest
@@ -83,6 +84,7 @@ jobs:
         with:
           name: dsd.AppImage
           path: dist/dsd.AppImage
+          if-no-files-found: error
 
 
 
@@ -114,3 +116,4 @@ jobs:
             release-assets/dsd.AppImage/dsd.AppImage
         env:
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+
