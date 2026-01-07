@@ -15,7 +15,7 @@ from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
-from dsdultra.util import is_frozen
+from dsdultra.util import is_linux, is_frozen
 
 
 class DSDUltra:
@@ -45,7 +45,9 @@ class DSDUltra:
         self.config = DSDConfig(self)
         deck_thread = threading.Thread(target=self._deck_loop, name='StreamDeckThread', daemon=True)
         deck_thread.start()
+        print('Started streamdeck thread')
         self.create_tray_icon()
+        print('Created tray icon')
 
     def _deck_loop(self):
         self.deck.open()
@@ -104,7 +106,7 @@ class DSDUltra:
 
         action_console = QAction('Show Console')
         action_console.triggered.connect(show_console)
-        action_console.setEnabled(is_frozen())
+        action_console.setEnabled(True if is_linux() else is_frozen())
         menu.addAction(action_console)
 
         action_exit = QAction('Exit')

@@ -1,18 +1,17 @@
 import traceback
 from colorsys import rgb_to_hsv, hsv_to_rgb
 from pathlib import Path
-
-from PIL import Image, ImageFont, ImageEnhance, ImageChops
+from PIL import Image
+from PIL import ImageFont
+from PIL import ImageEnhance
+from PIL import ImageChops
 from StreamDeck.ImageHelpers import PILHelper
-
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
-
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from dsdultra.dsd import DSDUltra
-
 
 BORDERS = {
     'yellow': {
