@@ -1,3 +1,4 @@
+# Misc IDE
 .venv
 node_modules
 .idea
@@ -5,6 +6,8 @@ node_modules
 .env
 env
 junk
+
+# Python cache files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -12,6 +15,17 @@ __pycache__/
 */**.pyc
 *.exe
 __main__.*
+
+# Build files
 build
-!dsdultra/build
 dist
+# But not the build script/module
+!dsdultra/build
+
+# AppImage build files
+AppDir/usr/bin/*
+AppDir/.DirIcon
+AppDir/dsd.png
+# AppImage persistent files
+!AppDir/dsd.desktop
+!AppDir/AppRun

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Democracy StreamDeck
+Exec=dsd
+Icon=dsd
+Categories=Game;
+Terminal=false
+StartupNotify=false
+Keywords=streamdeck;deck;elgato;dsdultra;dsd;helldivers

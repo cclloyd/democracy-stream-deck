@@ -7,7 +7,6 @@ def build_executable():
     sys.argv = [
         'nuitka',  # dummy program name
         '--include-data-dir=dsdultra/assets=dsdultra/assets',
-        '--onefile',
         '--standalone',
         '--assume-yes-for-downloads',
         f'--output-filename=dsd',
