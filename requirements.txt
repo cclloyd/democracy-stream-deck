@@ -8,7 +8,6 @@ pynput==1.8.1
 PyQt6==6.10.1
 PyQt6-Qt6==6.10.1
 PyQt6_sip==13.10.3
-pystray==0.19.5
 python-xlib==0.33
 setuptools==80.9.0
 six==1.17.0
