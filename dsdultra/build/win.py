@@ -21,7 +21,7 @@ def build_executable():
         '--enable-plugin=pyqt6',
         '--include-package=StreamDeck',
         '--no-deployment-flag=self-execution',
-        '--windows-console-mode=disable',  # force/hide/disable/attach
+        '--windows-console-mode=force',  # force/hide/disable/attach
         '--windows-icon-from-ico=dsdultra/assets/icons/DSDIcon.ico',
         '--nofollow-import-to=dsdultra.build',
         '--output-dir=build',
