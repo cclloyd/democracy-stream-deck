@@ -27,4 +27,9 @@ def parse_args():
         metavar='CONFIG_PATH',
         help='Path to the configuration file.'
     )
+    parser.add_argument(
+        '-k', '--keep-logs',
+        action='store_true',
+        help='Keep log file after closing.'
+    )
     return parser.parse_args()

@@ -1,8 +1,11 @@
 import sys
+import tempfile
 import threading
+import traceback
 from argparse import Namespace
 import os
 import signal
+from pathlib import Path
 
 from PyQt6.QtCore import QTimer, QSocketNotifier
 from PyQt6.QtGui import QIcon, QAction
@@ -13,6 +16,7 @@ from dsdultra import ASSETS_DIR
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
+from dsdultra.log import close_log_file
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
 from dsdultra.util import is_linux, is_frozen
@@ -24,7 +28,7 @@ class DSDUltra:
     icons: IconGenerator = None
     apps: dict = dict()
 
-    def __init__(self, deck, args: Namespace):
+    def __init__(self, deck, args: Namespace, started=None):
         self.deck: StreamDeckDevice = deck
         self.tray: threading.Thread | None = None
         self.stop_event = threading.Event()
@@ -32,6 +36,8 @@ class DSDUltra:
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
         self.BUTTON_SIZE = 72
+        self.started = started
+        self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
 
         self.qt_app: QApplication | None = None
         self.tray_icon: QSystemTrayIcon | None = None
@@ -69,24 +75,6 @@ class DSDUltra:
         except Exception as e:
             print(f'Error closing deck: {e}')
 
-    def _request_shutdown(self):
-        self.stop_event.set()
-
-        try:
-            if self.deck is not None and self.deck.is_open():
-                self.deck.reset()
-                self.deck.close()
-        except Exception as e:
-            print(f'Error closing deck: {e}')
-
-        try:
-            if self.tray_icon is not None:
-                self.tray_icon.hide()
-        except Exception:
-            pass
-
-        if self.qt_app is not None:
-            self.qt_app.quit()
 
     def create_tray_icon(self):
         self.qt_app = QApplication.instance() or QApplication(sys.argv)
@@ -105,7 +93,7 @@ class DSDUltra:
         menu.addSeparator()
 
         action_console = QAction('Show Console')
-        action_console.triggered.connect(show_console)
+        action_console.triggered.connect(lambda checked=False: show_console(log_path=self.log_path))
         action_console.setEnabled(True if is_linux() else is_frozen())
         menu.addAction(action_console)
 
@@ -169,3 +157,30 @@ class DSDUltra:
     def shutdown(self, code=0):
         print('Shutting down...')
         return self._request_shutdown()
+
+    def _request_shutdown(self):
+        self.stop_event.set()
+        try:
+            if self.deck is not None and self.deck.is_open():
+                self.deck.reset()
+                self.deck.close()
+                print('Deck closed')
+        except Exception as e:
+            print(f'Error closing deck: {e}')
+
+        try:
+            if self.tray_icon is not None:
+                self.tray_icon.hide()
+                print('Removed tray icon')
+        except Exception:
+            pass
+
+        if not self.args.keep_logs:
+            print(f'Cleaning up logs... {self.log_path}')
+            try:
+                close_log_file()
+                self.log_path.unlink()
+            except PermissionError:
+                traceback.print_exc()
+        if self.qt_app is not None:
+            self.qt_app.quit()
