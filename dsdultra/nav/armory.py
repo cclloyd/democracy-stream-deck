@@ -197,6 +197,13 @@ ARMORY = {
                         'code': ['down', 'left', 'right', 'down', 'up', 'up'],
                         'cooldown': 0,
                     },
+                    'weapon_c4': {
+                        'id': 'weapon_c4',
+                        'name': 'B/MD C4 Pack',
+                        'icon': ASSETS_DIR / 'png/Redacted Regiment/C4 Pack.png',
+                        'code': ['down', 'right', 'up', 'up', 'right', 'up'],
+                        'cooldown': 0,
+                    },
                 },
             },
             'weapons_standalone': {
