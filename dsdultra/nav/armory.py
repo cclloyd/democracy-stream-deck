@@ -204,6 +204,13 @@ ARMORY = {
                         'code': ['down', 'right', 'up', 'up', 'right', 'up'],
                         'cooldown': 0,
                     },
+                    'weapon_belt_grenade_launcher': {
+                        'id': 'weapon_belt_grenade_launcher',
+                        'name': 'GL-28 Belt-Fed Grenade Launcher',
+                        'icon': ASSETS_DIR / 'png/Siege Breakers/GL-28.png',
+                        'code': ['down', 'left', 'up', 'left', 'up', 'up'],
+                        'cooldown': 0,
+                    },
                 },
             },
             'weapons_standalone': {
@@ -312,6 +319,13 @@ ARMORY = {
                         'code': ['down', 'left', 'right', 'right', 'down'],
                         'cooldown': 0,
                     },
+                    'weapon_hammer': {
+                        'id': 'weapon_hammer',
+                        'name': 'CQC-20 Breaching Hammer',
+                        'icon': ASSETS_DIR / 'png/Siege Breakers/CQC-20.png',
+                        'code': ['down', 'left', 'right', 'left', 'up'],
+                        'cooldown': 0,
+                    },
                 },
             },
             'weapons_disposable': {
@@ -341,6 +355,13 @@ ARMORY = {
                         'name': 'MLS-4X Commando',
                         'icon': ASSETS_DIR / 'png/Patriotic Administration Center/Commando.png',
                         'code': ['down', 'left', 'up', 'down', 'right'],
+                        'cooldown': 0,
+                    },
+                    'weapon_leveler': {
+                        'id': 'weapon_leveler',
+                        'name': 'EAT-411 Leveller',
+                        'icon': ASSETS_DIR / 'png/Siege Breakers/EAT-411.png',
+                        'code': ['down', 'down', 'left', 'up', 'down'],
                         'cooldown': 0,
                     },
                 },
@@ -404,9 +425,16 @@ ARMORY = {
             },
             'vehicle_frv': {
                 'id': 'vehicle_frv',
-                'name': 'EXO-45 Patriot Exosuit ',
+                'name': 'EXO-45 Patriot Exosuit',
                 'icon': ASSETS_DIR / 'png/Hangar/Fast Recon Vehicle.png',
                 'code': ['left', 'down', 'right', 'down', 'right', 'down', 'up'],
+                'cooldown': 0,
+            },
+            'vehicle_bastion': {
+                'id': 'vehicle_bastion',
+                'name': 'TD-220 Bastion MK XVI',
+                'icon': ASSETS_DIR / 'png/Siege Breakers/Bastion MK XVI.png',
+                'code': ['left', 'down', 'right', 'down', 'left', 'down', 'up', 'down', 'up'],
                 'cooldown': 0,
             },
         }
