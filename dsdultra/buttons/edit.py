@@ -43,3 +43,4 @@ class ButtonRemove(ButtonBase):
             self.page.toggle_active['remove'] = True
             self.page.select_active = 'remove'
             self.page.render(True)
+

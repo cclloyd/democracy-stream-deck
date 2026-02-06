@@ -4,9 +4,16 @@ from pathlib import Path
 from collections.abc import MutableMapping
 
 class DSDConfig(MutableMapping):
-    config_path = Path(os.getcwd()) / 'dsd-config.json'
+    dsd = None
+    if os.name != 'nt':
+        appdata = Path.home() / '.config' / 'dsd'
+    else:
+        appdata = os.environ['APPDATA']
+    config_path = Path(appdata) / 'dsd' / 'dsd-config.json'
 
     def __init__(self, dsd):
+        self.dsd = dsd
+        self.config_path.parent.mkdir(parents=True, exist_ok=True)
         if self.config_path.exists():
             with open(self.config_path, 'r') as f:
                 self.config = json.load(f)

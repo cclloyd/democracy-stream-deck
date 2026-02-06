@@ -184,3 +184,8 @@ class DSDUltra:
                 traceback.print_exc()
         if self.qt_app is not None:
             self.qt_app.quit()
+
+    def get_app(self, name, cls=None):
+        if name not in self.apps:
+            self.apps[name] = cls(self)
+        return self.apps[name]
