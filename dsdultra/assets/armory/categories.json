@@ -1,0 +1,90 @@
+{
+  "backpacks": {
+    "id": "backpacks",
+    "name": "Backpacks",
+    "color": "blue",
+    "full": true
+  },
+  "weapons": {
+    "id": "weapons",
+    "name": "Weapons",
+    "color": "blue",
+    "full": true
+  },
+  "vehicles": {
+    "id": "vehicles",
+    "name": "Vehicles",
+    "color": "blue",
+    "full": true
+  },
+  "orbitals": {
+    "id": "orbitals",
+    "name": "Orbitals",
+    "color": "red",
+    "full": true
+  },
+  "eagles": {
+    "id": "eagles",
+    "name": "Eagles",
+    "color": "red",
+    "full": true
+  },
+  "mines": {
+    "id": "mines",
+    "name": "Mines",
+    "color": "green",
+    "full": true
+  },
+  "sentries": {
+    "id": "sentries",
+    "name": "Sentries",
+    "color": "green",
+    "full": true
+  },
+  "emplacements": {
+    "id": "emplacements",
+    "name": "Emplacements",
+    "color": "green",
+    "full": true
+  },
+  "common": {
+    "id": "common",
+    "name": "Common",
+    "color": "yellow",
+    "full": true
+  },
+  "mission": {
+    "id": "mission",
+    "name": "Mission",
+    "color": "yellow",
+    "full": true
+  },
+  "weapon_energy": {
+    "parent": "weapons",
+    "id": "weapon_energy",
+    "name": "Energy Weapons",
+    "color": "blue",
+    "full": true
+  },
+  "weapon_backpack": {
+    "parent": "weapons",
+    "id": "weapon_backpack",
+    "name": "Backpack Weapons",
+    "color": "blue",
+    "full": true
+  },
+  "weapon_standalone": {
+    "parent": "weapons",
+    "id": "weapon_standalone",
+    "name": "Non-Backpack Weapons",
+    "color": "blue",
+    "full": true
+  },
+  "weapon_disposable": {
+    "parent": "weapons",
+    "id": "weapon_disposable",
+    "name": "Disposable Weapons",
+    "color": "blue",
+    "full": true
+  }
+}

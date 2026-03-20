@@ -1,0 +1,20 @@
+{
+  "stalwart": {
+    "id": "stalwart",
+    "name": "M-105 Stalwart",
+    "icon": "png/Patriotic Administration Center/Stalwart.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_backpack": false,
+    "is_energy": false,
+    "is_disposable": false,
+    "code": [
+      "down",
+      "left",
+      "down",
+      "up",
+      "up",
+      "left"
+    ]
+  }
+}
