@@ -1,0 +1,17 @@
+{
+  "one_true_flag": {
+    "id": "one_true_flag",
+    "name": "CQC-1 One True Flag",
+    "icon": "png/Masters of Ceremony/One True Flag.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_melee": true,
+    "code": [
+      "down",
+      "left",
+      "right",
+      "right",
+      "up"
+    ]
+  }
+}

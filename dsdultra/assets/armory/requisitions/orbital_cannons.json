@@ -1,0 +1,132 @@
+{
+  "orbital_gatling_barrage": {
+    "id": "orbital_gatling_barrage",
+    "name": "Orbital Gatling Barrage",
+    "icon": "png/Orbital Cannons/Orbital Gatling Barrage.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_barrage": true,
+    "is_explosive": true,
+    "code": [
+      "right",
+      "down",
+      "left",
+      "up",
+      "up"
+    ]
+  },
+  "orbital_airburst_strike": {
+    "id": "orbital_airburst_strike",
+    "name": "Orbital Airburst Strike",
+    "icon": "png/Orbital Cannons/Orbital Airburst Strike.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_explosive": true,
+    "code": [
+      "right",
+      "right",
+      "right"
+    ]
+  },
+  "orbital_railcannon_strike": {
+    "id": "orbital_railcannon_strike",
+    "name": "Orbital Railcannon Strike",
+    "icon": "png/Orbital Cannons/Orbital Railcannon Strike.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_explosive": true,
+    "code": [
+      "right",
+      "up",
+      "down",
+      "down",
+      "right"
+    ]
+  },
+  "orbital_laser": {
+    "id": "orbital_laser",
+    "name": "Orbital Laser",
+    "icon": "png/Orbital Cannons/Orbital Laser.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_laser": true,
+    "code": [
+      "right",
+      "down",
+      "up",
+      "right",
+      "down",
+      "up"
+    ]
+  },
+  "orbital_walking_barrage": {
+    "id": "orbital_walking_barrage",
+    "name": "Orbital Walking Barrage",
+    "icon": "png/Orbital Cannons/Orbital Walking Barrage.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_barrage": true,
+    "is_explosive": true,
+    "code": [
+      "right",
+      "down",
+      "right",
+      "down",
+      "right",
+      "down"
+    ]
+  },
+  "orbital_120mm_he_barrage": {
+    "id": "orbital_120mm_he_barrage",
+    "name": "Orbital 120mm HE Barrage",
+    "icon": "png/Orbital Cannons/Orbital 120MM HE Barrage.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_barrage": true,
+    "is_explosive": true,
+    "code": [
+      "right",
+      "right",
+      "down",
+      "left",
+      "right",
+      "down"
+    ]
+  },
+  "orbital_380mm_he_barrage": {
+    "id": "orbital_380mm_he_barrage",
+    "name": "Orbital 380mm HE Barrage",
+    "icon": "png/Orbital Cannons/Orbital 380MM HE Barrage.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_barrage": true,
+    "is_explosive": true,
+    "code": [
+      "right",
+      "down",
+      "up",
+      "up",
+      "left",
+      "down",
+      "down"
+    ]
+  },
+  "orbital_napalm_barrage": {
+    "id": "orbital_napalm_barrage",
+    "name": "Orbital Napalm Barrage",
+    "icon": "png/Orbital Cannons/Orbital Napalm Barrage.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_barrage": true,
+    "is_fire": true,
+    "is_explosive": true,
+    "code": [
+      "right",
+      "right",
+      "down",
+      "left",
+      "right",
+      "up"
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "guard_dog_k9": {
+    "id": "guard_dog_k9",
+    "name": "AX/ARC-3 \"Guard Dog\" K-9",
+    "icon": "png/Force of Law/Guard Dog K-9.png",
+    "cooldown": 480,
+    "type": "backpack",
+    "is_arc": true,
+    "is_energy": true,
+    "code": [
+      "down",
+      "up",
+      "left",
+      "up",
+      "right",
+      "left"
+    ]
+  },
+  "de_escalator": {
+    "id": "de_escalator",
+    "name": "GL-52 De-Escalator",
+    "icon": "png/Force of Law/GL-52 De-Escalator.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_arc": true,
+    "code": [
+      "down",
+      "right",
+      "up",
+      "left",
+      "right"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "portable_hellbomb": {
+    "id": "portable_hellbomb",
+    "name": "B-100 Portable Hellbomb",
+    "icon": "png/Servants of Freedom/Hellbomb Portable.png",
+    "cooldown": 480,
+    "type": "backpack",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "right",
+      "up",
+      "up",
+      "up"
+    ]
+  }
+}

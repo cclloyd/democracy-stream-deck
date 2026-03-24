@@ -1,0 +1,125 @@
+{
+  "orbital_precision_strike": {
+    "id": "orbital_precision_strike",
+    "name": "Orbital Precision Strike",
+    "icon": "png/Bridge/Orbital Precision Strike.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_explosive": true,
+    "code": [
+      "right",
+      "right",
+      "up"
+    ]
+  },
+  "orbital_gas_strike": {
+    "id": "orbital_gas_strike",
+    "name": "Orbital Gas Strike",
+    "icon": "png/Bridge/Orbital Gas Strike.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_gas": true,
+    "code": [
+      "right",
+      "right",
+      "down",
+      "right"
+    ]
+  },
+  "orbital_ems_strike": {
+    "id": "orbital_ems_strike",
+    "name": "Orbital EMS Strike",
+    "icon": "png/Bridge/Orbital EMS Strike.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_stun": true,
+    "is_arc": true,
+    "code": [
+      "right",
+      "right",
+      "left",
+      "down"
+    ]
+  },
+  "orbital_smoke_strike": {
+    "id": "orbital_smoke_strike",
+    "name": "Orbital Smoke Strike",
+    "icon": "png/Bridge/Orbital Smoke Strike.png",
+    "cooldown": 0,
+    "type": "orbital",
+    "is_smoke": true,
+    "code": [
+      "right",
+      "right",
+      "down",
+      "up"
+    ]
+  },
+  "tesla_tower": {
+    "id": "tesla_tower",
+    "name": "A/ARC-3 Tesla Tower",
+    "icon": "png/Bridge/Tesla Tower.png",
+    "cooldown": 0,
+    "type": "sentry",
+    "is_tower": true,
+    "is_arc": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "shield_generator_relay": {
+    "id": "shield_generator_relay",
+    "name": "FX-12 Shield Generator Relay",
+    "icon": "png/Bridge/Shield Generator Relay.png",
+    "cooldown": 0,
+    "type": "sentry",
+    "is_tower": true,
+    "is_shield": true,
+    "code": [
+      "down",
+      "down",
+      "left",
+      "right",
+      "left",
+      "right"
+    ]
+  },
+  "hmg_emplacement": {
+    "id": "hmg_emplacement",
+    "name": "E/MG-101 HMG Emplacement",
+    "icon": "png/Bridge/HMG Emplacement.png",
+    "cooldown": 0,
+    "type": "emplacement",
+    "passengers": 1,
+    "code": [
+      "down",
+      "up",
+      "left",
+      "right",
+      "right",
+      "left"
+    ]
+  },
+  "grenadier_battlement": {
+    "id": "grenadier_battlement",
+    "name": "E/GL-21 Grenadier Battlement",
+    "icon": "png/Bridge/Grenadier Battlement.png",
+    "cooldown": 0,
+    "type": "emplacement",
+    "is_encampment": true,
+    "is_explosive": true,
+    "passengers": 1,
+    "code": [
+      "down",
+      "right",
+      "down",
+      "left",
+      "right"
+    ]
+  }
+}

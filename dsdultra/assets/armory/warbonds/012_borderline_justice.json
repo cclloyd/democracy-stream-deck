@@ -1,0 +1,17 @@
+{
+  "hover_pack": {
+    "id": "hover_pack",
+    "name": "LIFT-860 Hover Pack",
+    "icon": "png/Borderline Justice/Hover Pack.png",
+    "cooldown": 480,
+    "type": "backpack",
+    "code": [
+      "down",
+      "up",
+      "up",
+      "down",
+      "left",
+      "right"
+    ]
+  }
+}

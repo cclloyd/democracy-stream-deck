@@ -1,0 +1,146 @@
+{
+  "guard_dog": {
+    "id": "guard_dog",
+    "name": "AX/AR-23 \"Guard Dog\"",
+    "icon": "png/Robotics Workshop/Guard Dog.png",
+    "cooldown": 300,
+    "type": "backpack",
+    "code": [
+      "down",
+      "up",
+      "left",
+      "up",
+      "right",
+      "down"
+    ]
+  },
+  "patriot_exosuit": {
+    "id": "patriot_exosuit",
+    "name": "EXO-45 Patriot Exosuit",
+    "icon": "png/Robotics Workshop/Patriot Exosuit.png",
+    "cooldown": 0,
+    "type": "vehicle",
+    "is_vehicle": true,
+    "is_explosive": true,
+    "passengers": 1,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "up",
+      "left",
+      "down",
+      "down"
+    ]
+  },
+  "emancipator_exosuit": {
+    "id": "emancipator_exosuit",
+    "name": "EXO-49 Emancipator Exosuit",
+    "icon": "png/Robotics Workshop/Emancipator Exosuit.png",
+    "cooldown": 0,
+    "type": "vehicle",
+    "is_vehicle": true,
+    "is_explosive": true,
+    "passengers": 1,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "up",
+      "left",
+      "down",
+      "up"
+    ]
+  },
+  "gatling_sentry": {
+    "id": "gatling_sentry",
+    "name": "A/G-16 Gatling Sentry",
+    "icon": "png/Robotics Workshop/Gatling Sentry.png",
+    "cooldown": 180,
+    "type": "sentry",
+    "code": [
+      "down",
+      "up",
+      "right",
+      "left"
+    ]
+  },
+  "machine_gun_sentry": {
+    "id": "machine_gun_sentry",
+    "name": "A/MG-43 Machine Gun Sentry",
+    "icon": "png/Robotics Workshop/Machine Gun Sentry.png",
+    "cooldown": 180,
+    "type": "sentry",
+    "code": [
+      "down",
+      "up",
+      "right",
+      "right",
+      "up"
+    ]
+  },
+  "autocannon_sentry": {
+    "id": "autocannon_sentry",
+    "name": "A/AC-8 Autocannon Sentry",
+    "icon": "png/Robotics Workshop/Autocannon Sentry.png",
+    "cooldown": 180,
+    "type": "sentry",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "up",
+      "left",
+      "up"
+    ]
+  },
+  "rocket_sentry": {
+    "id": "rocket_sentry",
+    "name": "A/MLS-4X Rocket Sentry",
+    "icon": "png/Robotics Workshop/Rocket Sentry.png",
+    "cooldown": 180,
+    "type": "sentry",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "right",
+      "left"
+    ]
+  },
+  "mortar_sentry": {
+    "id": "mortar_sentry",
+    "name": "A/M-12 Mortar Sentry",
+    "icon": "png/Robotics Workshop/Mortar Sentry.png",
+    "cooldown": 180,
+    "type": "sentry",
+    "is_mortar": true,
+    "is_explosive": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "right",
+      "down"
+    ]
+  },
+  "ems_mortar_sentry": {
+    "id": "ems_mortar_sentry",
+    "name": "A/M-23 EMS Mortar Sentry",
+    "icon": "png/Robotics Workshop/EMS Mortar Sentry.png",
+    "cooldown": 180,
+    "type": "sentry",
+    "is_mortar": true,
+    "is_stun": true,
+    "is_arc": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "down",
+      "right"
+    ]
+  }
+}

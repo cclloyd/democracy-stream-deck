@@ -1,0 +1,18 @@
+{
+  "c4_pack": {
+    "id": "c4_pack",
+    "name": "B/MD C4 Pack",
+    "icon": "png/Redacted Regiment/C4 Pack.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_backpack": true,
+    "code": [
+      "down",
+      "right",
+      "up",
+      "up",
+      "right",
+      "up"
+    ]
+  }
+}

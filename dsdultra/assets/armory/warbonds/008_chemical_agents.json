@@ -1,0 +1,33 @@
+{
+  "sterilizer": {
+    "id": "sterilizer",
+    "name": "TX-41 Sterilizer",
+    "icon": "png/Chemical Agents/Sterilizer.png",
+    "cooldown": 480,
+    "type": "weapon",
+    "is_gas": true,
+    "code": [
+      "down",
+      "left",
+      "up",
+      "down",
+      "left"
+    ]
+  },
+  "guard_dog_breath": {
+    "id": "guard_dog_breath",
+    "name": "AX/TX-13 \"Guard Dog\" Dog Breath",
+    "icon": "png/Chemical Agents/Guard Dog Breath.png",
+    "cooldown": 480,
+    "type": "backpack",
+    "is_gas": true,
+    "code": [
+      "down",
+      "up",
+      "left",
+      "up",
+      "right",
+      "up"
+    ]
+  }
+}

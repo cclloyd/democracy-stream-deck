@@ -1,0 +1,203 @@
+{
+  "machine_gun": {
+    "id": "machine_gun",
+    "name": "MG-43 Machine Gun",
+    "icon": "png/Patriotic Administration Center/Machine Gun.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "code": [
+      "down",
+      "left",
+      "down",
+      "up",
+      "right"
+    ]
+  },
+  "anti_materiel_rifle": {
+    "id": "anti_materiel_rifle",
+    "name": "APW-1 Anti-Materiel Rifle",
+    "icon": "png/Patriotic Administration Center/Anti-Materiel Rifle.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "code": [
+      "down",
+      "left",
+      "right",
+      "up",
+      "down"
+    ]
+  },
+  "stalwart": {
+    "id": "stalwart",
+    "name": "M-105 Stalwart",
+    "icon": "png/Patriotic Administration Center/Stalwart.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "code": [
+      "down",
+      "left",
+      "down",
+      "up",
+      "up",
+      "left"
+    ]
+  },
+  "expendable_anti_tank": {
+    "id": "expendable_anti_tank",
+    "name": "EAT-17 Expendable Anti-Tank",
+    "icon": "png/Patriotic Administration Center/Expendable Anti-Tank.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_disposable": true,
+    "is_explosive": true,
+    "code": [
+      "down",
+      "down",
+      "left",
+      "up",
+      "right"
+    ]
+  },
+  "recoilless_rifle": {
+    "id": "recoilless_rifle",
+    "name": "GR-8 Recoilless Rifle",
+    "icon": "png/Patriotic Administration Center/Recoilless Rifle.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "is_backpack": true,
+    "code": [
+      "down",
+      "left",
+      "right",
+      "right",
+      "left"
+    ]
+  },
+  "flamethrower": {
+    "id": "flamethrower",
+    "name": "FLAM-40 Flamethrower",
+    "icon": "png/Patriotic Administration Center/Flamethrower.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_fire": true,
+    "code": [
+      "down",
+      "left",
+      "up",
+      "down",
+      "up"
+    ]
+  },
+  "autocannon": {
+    "id": "autocannon",
+    "name": "AC-8 Autocannon",
+    "icon": "png/Patriotic Administration Center/Autocannon.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "is_backpack": true,
+    "code": [
+      "down",
+      "left",
+      "down",
+      "up",
+      "up",
+      "right"
+    ]
+  },
+  "heavy_machine_gun": {
+    "id": "heavy_machine_gun",
+    "name": "MG-206 Heavy Machine Gun",
+    "icon": "png/Patriotic Administration Center/Heavy Machine Gun.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "code": [
+      "down",
+      "left",
+      "up",
+      "down",
+      "down"
+    ]
+  },
+  "railgun": {
+    "id": "railgun",
+    "name": "RS-422 Railgun",
+    "icon": "png/Patriotic Administration Center/Railgun.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "right",
+      "up",
+      "down",
+      "left",
+      "right"
+    ]
+  },
+  "spear": {
+    "id": "spear",
+    "name": "FAF-14 Spear",
+    "icon": "png/Patriotic Administration Center/Spear.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "is_backpack": true,
+    "code": [
+      "down",
+      "down",
+      "up",
+      "down",
+      "down"
+    ]
+  },
+  "airburst_rocket_launcher": {
+    "id": "airburst_rocket_launcher",
+    "name": "RL-77 Airburst Rocket Launcher",
+    "icon": "png/Patriotic Administration Center/Airburst Rocket Launcher.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "is_backpack": true,
+    "code": [
+      "down",
+      "up",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "commando": {
+    "id": "commando",
+    "name": "MLS-4X Commando",
+    "icon": "png/Patriotic Administration Center/Commando.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_disposable": true,
+    "is_explosive": true,
+    "code": [
+      "down",
+      "left",
+      "up",
+      "down",
+      "right"
+    ]
+  },
+  "wasp_launcher": {
+    "id": "wasp_launcher",
+    "name": "StA-X3 W.A.S.P. Launcher",
+    "icon": "png/Patriotic Administration Center/StA-X3 W.A.S.P. Launcher.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "is_backpack": true,
+    "code": [
+      "down",
+      "down",
+      "up",
+      "down",
+      "right"
+    ]
+  }
+}

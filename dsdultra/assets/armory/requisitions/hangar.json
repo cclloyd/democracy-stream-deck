@@ -1,0 +1,131 @@
+{
+  "jump_pack": {
+    "id": "jump_pack",
+    "name": "LIFT-850 Jump Pack",
+    "icon": "png/Hangar/Jump Pack.png",
+    "cooldown": 480,
+    "type": "backpack",
+    "code": [
+      "down",
+      "up",
+      "up",
+      "down",
+      "up"
+    ]
+  },
+  "fast_recon_vehicle": {
+    "id": "fast_recon_vehicle",
+    "name": "Fast Recon Vehicle",
+    "icon": "png/Hangar/Fast Recon Vehicle.png",
+    "cooldown": 0,
+    "type": "vehicle",
+    "passengers": 4,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "down",
+      "right",
+      "down",
+      "up"
+    ]
+  },
+  "eagle_strafing_run": {
+    "id": "eagle_strafing_run",
+    "name": "Eagle Strafing Run",
+    "icon": "png/Hangar/Eagle Strafing Run.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "is_explosive": true,
+    "code": [
+      "up",
+      "right",
+      "right"
+    ]
+  },
+  "eagle_airstrike": {
+    "id": "eagle_airstrike",
+    "name": "Eagle Airstrike",
+    "icon": "png/Hangar/Eagle Airstrike.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "is_explosive": true,
+    "code": [
+      "up",
+      "right",
+      "down",
+      "right"
+    ]
+  },
+  "eagle_500kg_bomb": {
+    "id": "eagle_500kg_bomb",
+    "name": "Eagle 500kg Bomb",
+    "icon": "png/Hangar/Eagle 500KG Bomb.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "code": [
+      "up",
+      "right",
+      "down",
+      "down",
+      "down"
+    ]
+  },
+  "eagle_napalm_airstrike": {
+    "id": "eagle_napalm_airstrike",
+    "name": "Eagle Napalm Airstrike",
+    "icon": "png/Hangar/Eagle Napalm Airstrike.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "is_fire": true,
+    "code": [
+      "up",
+      "right",
+      "down",
+      "up"
+    ]
+  },
+  "eagle_cluster_bomb": {
+    "id": "eagle_cluster_bomb",
+    "name": "Eagle Cluster Bomb",
+    "icon": "png/Hangar/Eagle Cluster Bomb.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "is_explosive": true,
+    "code": [
+      "up",
+      "right",
+      "down",
+      "down",
+      "right"
+    ]
+  },
+  "eagle_110mm_rocket_pods": {
+    "id": "eagle_110mm_rocket_pods",
+    "name": "Eagle 110mm Rocket Pods",
+    "icon": "png/Hangar/Eagle 110MM Rocket Pods.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "is_explosive": true,
+    "code": [
+      "up",
+      "right",
+      "up",
+      "down"
+    ]
+  },
+  "eagle_smoke_strike": {
+    "id": "eagle_smoke_strike",
+    "name": "Eagle Smoke Strike",
+    "icon": "png/Hangar/Eagle Smoke Strike.png",
+    "cooldown": 0,
+    "type": "eagle",
+    "is_smoke": true,
+    "code": [
+      "up",
+      "right",
+      "up",
+      "down"
+    ]
+  }
+}

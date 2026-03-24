@@ -1,0 +1,69 @@
+{
+  "breaching_hammer": {
+    "id": "breaching_hammer",
+    "name": "CQC-20 Breaching Hammer",
+    "icon": "png/Siege Breakers/CQC-20.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "left",
+      "right",
+      "left",
+      "up"
+    ]
+  },
+  "leveler": {
+    "id": "leveler",
+    "name": "EAT-411 Leveller",
+    "icon": "png/Siege Breakers/EAT-411.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_disposable": true,
+    "is_explosive": true,
+    "code": [
+      "down",
+      "down",
+      "left",
+      "up",
+      "down"
+    ]
+  },
+  "belt_fed_grenade_launcher": {
+    "id": "belt_fed_grenade_launcher",
+    "name": "GL-28 Belt-Fed Grenade Launcher",
+    "icon": "png/Siege Breakers/GL-28.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "left",
+      "up",
+      "left",
+      "up",
+      "up"
+    ]
+  },
+  "bastion_mk_xvi": {
+    "id": "bastion_mk_xvi",
+    "name": "TD-220 Bastion MK XVI",
+    "icon": "png/Siege Breakers/Bastion MK XVI.png",
+    "cooldown": 0,
+    "type": "vehicle",
+    "is_vehicle": true,
+    "is_explosive": true,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "down",
+      "left",
+      "down",
+      "up",
+      "down",
+      "up"
+    ]
+  }
+}

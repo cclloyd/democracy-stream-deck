@@ -1,0 +1,51 @@
+{
+  "directional_shield": {
+    "id": "directional_shield",
+    "name": "SH-51 Directional Shield",
+    "icon": "png/Urban Legends/Directional Shield.png",
+    "cooldown": 0,
+    "type": "backpack",
+    "is_shield": true,
+    "code": [
+      "down",
+      "up",
+      "left",
+      "right",
+      "up",
+      "up"
+    ]
+  },
+  "anti_tank_emplacement": {
+    "id": "anti_tank_emplacement",
+    "name": "E/AT-12 Anti-Tank Emplacement",
+    "icon": "png/Urban Legends/Anti-Tank Emplacement.png",
+    "cooldown": 0,
+    "type": "emplacement",
+    "is_explosive": true,
+    "passengers": 1,
+    "code": [
+      "down",
+      "up",
+      "left",
+      "right",
+      "right",
+      "right"
+    ]
+  },
+  "flame_sentry": {
+    "id": "flame_sentry",
+    "name": "A/FLAM-40 Flame Sentry",
+    "icon": "png/Urban Legends/Flame Sentry.png",
+    "cooldown": 162,
+    "type": "sentry",
+    "is_fire": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "down",
+      "up",
+      "up"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "warp_pack": {
+    "id": "warp_pack",
+    "name": "LIFT-182 Warp Pack",
+    "icon": "png/Control Group/Warp Pack.png",
+    "cooldown": 480,
+    "type": "backpack",
+    "is_backpack": true,
+    "code": [
+      "down",
+      "left",
+      "right",
+      "down",
+      "left",
+      "right"
+    ]
+  },
+  "epoch": {
+    "id": "epoch",
+    "name": "PLAS-45 Epoch",
+    "icon": "png/Control Group/Epoch.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_plasma": true,
+    "code": [
+      "down",
+      "left",
+      "up",
+      "left",
+      "right"
+    ]
+  },
+  "laser_sentry": {
+    "id": "laser_sentry",
+    "name": "A/LAS-98 Laser Sentry",
+    "icon": "png/Control Group/Laser Sentry.png",
+    "cooldown": 162,
+    "type": "sentry",
+    "is_sentry": true,
+    "is_laser": true,
+    "code": [
+      "down",
+      "down",
+      "left",
+      "down",
+      "up",
+      "up",
+      "left"
+    ]
+  }
+}

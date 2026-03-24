@@ -1,0 +1,50 @@
+{
+  "speargun": {
+    "id": "speargun",
+    "name": "S-11 Speargun",
+    "icon": "png/Dust Devils/Speargun.png",
+    "cooldown": 480,
+    "type": "weapon",
+    "is_gas": true,
+    "code": [
+      "down",
+      "right",
+      "down",
+      "left",
+      "up",
+      "right"
+    ]
+  },
+  "solo_silo": {
+    "id": "solo_silo",
+    "name": "MS-11 Solo Silo",
+    "icon": "png/Dust Devils/Solo Silo.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_explosive": true,
+    "code": [
+      "down",
+      "up",
+      "right",
+      "down",
+      "down"
+    ]
+  },
+  "expendable_napalm": {
+    "id": "expendable_napalm",
+    "name": "EAT-700 Expendable Napalm",
+    "icon": "png/Dust Devils/Expendable Napalm.png",
+    "cooldown": 0,
+    "type": "weapon",
+    "is_disposable": true,
+    "is_fire": true,
+    "is_explosive": true,
+    "code": [
+      "down",
+      "down",
+      "left",
+      "up",
+      "left"
+    ]
+  }
+}
