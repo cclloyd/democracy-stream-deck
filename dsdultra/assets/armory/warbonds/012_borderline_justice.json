@@ -2,6 +2,7 @@
   "backpack_hover": {
     "id": "backpack_hover",
     "name": "LIFT-860 Hover Pack",
+    "short_name": "Hover Pack",
     "icon": "png/Borderline Justice/Hover Pack.png",
     "cooldown": 480,
     "max_cooldown": 410.4,

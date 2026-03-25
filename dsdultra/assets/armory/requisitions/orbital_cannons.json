@@ -2,6 +2,7 @@
   "orbital_gatling": {
     "id": "orbital_gatling",
     "name": "Orbital Gatling Barrage",
+    "short_name": "Orbital Gatling Barrage",
     "icon": "png/Orbital Cannons/Orbital Gatling Barrage.png",
     "cooldown": 70,
     "max_cooldown": 59.85,
@@ -21,6 +22,7 @@
   "orbital_airburst": {
     "id": "orbital_airburst",
     "name": "Orbital Airburst Strike",
+    "short_name": "Orbital Airburst Strike",
     "icon": "png/Orbital Cannons/Orbital Airburst Strike.png",
     "cooldown": 100,
     "max_cooldown": 85.5,
@@ -37,6 +39,7 @@
   "orbital_railcannon": {
     "id": "orbital_railcannon",
     "name": "Orbital Railcannon Strike",
+    "short_name": "Orbital Railcannon Strike",
     "icon": "png/Orbital Cannons/Orbital Railcannon Strike.png",
     "cooldown": 180,
     "max_cooldown": 153.9,
@@ -54,6 +57,7 @@
   "orbital_laser": {
     "id": "orbital_laser",
     "name": "Orbital Laser",
+    "short_name": "Orbital Laser",
     "icon": "png/Orbital Cannons/Orbital Laser.png",
     "cooldown": 300,
     "max_cooldown": 256.5,
@@ -74,6 +78,7 @@
   "orbital_walking": {
     "id": "orbital_walking",
     "name": "Orbital Walking Barrage",
+    "short_name": "Orbital Walking Barrage",
     "icon": "png/Orbital Cannons/Orbital Walking Barrage.png",
     "cooldown": 240,
     "max_cooldown": 205.2,
@@ -94,6 +99,7 @@
   "orbital_120": {
     "id": "orbital_120",
     "name": "Orbital 120MM HE Barrage",
+    "short_name": "Orbital 120MM HE Barrage",
     "icon": "png/Orbital Cannons/Orbital 120MM HE Barrage.png",
     "cooldown": 180,
     "max_cooldown": 153.9,
@@ -114,6 +120,7 @@
   "orbital_380": {
     "id": "orbital_380",
     "name": "Orbital 380MM HE Barrage",
+    "short_name": "Orbital 380MM HE Barrage",
     "icon": "png/Orbital Cannons/Orbital 380MM HE Barrage.png",
     "cooldown": 240,
     "max_cooldown": 205.2,
@@ -135,6 +142,7 @@
   "orbital_fire": {
     "id": "orbital_fire",
     "name": "Orbital Napalm Barrage",
+    "short_name": "Orbital Napalm Barrage",
     "icon": "png/Orbital Cannons/Orbital Napalm Barrage.png",
     "cooldown": 240,
     "max_cooldown": 205.2,

@@ -2,6 +2,7 @@
   "backpack_jump": {
     "id": "backpack_jump",
     "name": "LIFT-850 Jump Pack",
+    "short_name": "Jump Pack",
     "icon": "png/Hangar/Jump Pack.png",
     "cooldown": 480,
     "summon_time": 9.75,
@@ -17,6 +18,7 @@
   "vehicle_frv": {
     "id": "vehicle_frv",
     "name": "M-102 Fast Recon Vehicle",
+    "short_name": "Fast Recon Vehicle",
     "icon": "png/Hangar/Fast Recon Vehicle.png",
     "cooldown": 480,
     "max_cooldown": 741,
@@ -36,6 +38,7 @@
   "eagle_strafe": {
     "id": "eagle_strafe",
     "name": "Eagle Strafing Run",
+    "short_name": "Eagle Strafing Run",
     "icon": "png/Hangar/Eagle Strafing Run.png",
     "cooldown": 150,
     "max_cooldown": 108,
@@ -56,6 +59,7 @@
   "eagle_airstrike": {
     "id": "eagle_airstrike",
     "name": "Eagle Airstrike",
+    "short_name": "Eagle Airstrike",
     "icon": "png/Hangar/Eagle Airstrike.png",
     "cooldown": 150,
     "max_cooldown": 108,
@@ -77,6 +81,7 @@
   "eagle_500": {
     "id": "eagle_500",
     "name": "Eagle 500kg Bomb",
+    "short_name": "Eagle 500kg Bomb",
     "icon": "png/Hangar/Eagle 500KG Bomb.png",
     "cooldown": 150,
     "max_cooldown": 108,
@@ -98,6 +103,7 @@
   "eagle_airstrike_fire": {
     "id": "eagle_airstrike_fire",
     "name": "Eagle Napalm Airstrike",
+    "short_name": "Eagle Napalm Airstrike",
     "icon": "png/Hangar/Eagle Napalm Airstrike.png",
     "cooldown": 150,
     "max_cooldown": 108,
@@ -119,6 +125,7 @@
   "eagle_cluster": {
     "id": "eagle_cluster",
     "name": "Eagle Cluster Bomb",
+    "short_name": "Eagle Cluster Bomb",
     "icon": "png/Hangar/Eagle Cluster Bomb.png",
     "cooldown": 150,
     "max_cooldown": 108,
@@ -141,6 +148,7 @@
   "eagle_rocket": {
     "id": "eagle_rocket",
     "name": "Eagle 110MM Rocket Pods",
+    "short_name": "Eagle 110MM Rocket Pods",
     "icon": "png/Hangar/Eagle 110MM Rocket Pods.png",
     "cooldown": 150,
     "max_cooldown": 108,
@@ -162,6 +170,7 @@
   "eagle_smoke": {
     "id": "eagle_smoke",
     "name": "Eagle Smoke Strike",
+    "short_name": "Eagle Smoke Strike",
     "icon": "png/Hangar/Eagle Smoke Strike.png",
     "cooldown": 150,
     "max_cooldown": 108,

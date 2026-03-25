@@ -2,6 +2,7 @@
   "weapon_grenade": {
     "id": "weapon_grenade",
     "name": "GL-21 Grenade Launcher",
+    "short_name": "Grenade Launcher",
     "icon": "png/Engineering Bay/Grenade Launcher.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -20,6 +21,7 @@
   "weapon_laser": {
     "id": "weapon_laser",
     "name": "LAS-98 Laser Cannon",
+    "short_name": "Laser Cannon",
     "icon": "png/Engineering Bay/Laser Cannon.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -40,6 +42,7 @@
   "weapon_quasar": {
     "id": "weapon_quasar",
     "name": "LAS-99 Quasar Cannon",
+    "short_name": "Quasar Cannon",
     "icon": "png/Engineering Bay/Quasar Cannon.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -60,6 +63,7 @@
   "weapon_arc_thrower": {
     "id": "weapon_arc_thrower",
     "name": "ARC-3 Arc Thrower",
+    "short_name": "Arc Thrower",
     "icon": "png/Engineering Bay/Arc Thrower.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -80,6 +84,7 @@
   "backpack_guard_dog_laser": {
     "id": "backpack_guard_dog_laser",
     "name": "AX/LAS-5 \"Guard Dog\" Rover",
+    "short_name": "\"Guard Dog\" Rover",
     "icon": "png/Engineering Bay/Guard Dog Rover.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -99,6 +104,7 @@
   "backpack_ammo": {
     "id": "backpack_ammo",
     "name": "B-1 Supply Pack",
+    "short_name": "Supply Pack",
     "icon": "png/Engineering Bay/Supply Pack.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -116,6 +122,7 @@
   "backpack_shield_energy": {
     "id": "shield_shield_energy",
     "name": "SH-32 Shield Generator Pack",
+    "short_name": "Shield Generator Pack",
     "icon": "png/Engineering Bay/Shield Generator Pack.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -135,6 +142,7 @@
   "backpack_shield_ballistic": {
     "id": "backpack_shield_ballistic",
     "name": "SH-20 Ballistic Shield Backpack",
+    "short_name": "Ballistic Shield Backpack",
     "icon": "png/Engineering Bay/Ballistic Shield Backpack.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -152,6 +160,7 @@
   "mine_infantry": {
     "id": "mine_infantry",
     "name": "MD-6 Anti-Personnel Minefield",
+    "short_name": "Anti-Personnel Minefield",
     "icon": "png/Engineering Bay/Anti-Personnel Minefield.png",
     "cooldown": 120,
     "max_cooldown": 102.6,
@@ -169,6 +178,7 @@
   "mine_fire": {
     "id": "mine_fire",
     "name": "MD-I4 Incendiary Mines",
+    "short_name": "Incendiary Mines",
     "icon": "png/Engineering Bay/Incendiary Mines.png",
     "cooldown": 120,
     "max_cooldown": 102.6,
@@ -186,6 +196,7 @@
   "mine_gas": {
     "id": "mine_gas",
     "name": "MD-8 Gas Mines",
+    "short_name": "Gas Mines",
     "icon": "png/Engineering Bay/Gas Mine.png",
     "cooldown": 120,
     "max_cooldown": 102.6,
@@ -203,6 +214,7 @@
   "mine_tank": {
     "id": "mine_tank",
     "name": "MD-17 Anti-Tank Mines",
+    "short_name": "Anti-Tank Mines",
     "icon": "png/Engineering Bay/Anti-Tank Mines.png",
     "cooldown": 120,
     "max_cooldown": 102.6,

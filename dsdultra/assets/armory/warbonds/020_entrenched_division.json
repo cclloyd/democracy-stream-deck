@@ -2,6 +2,7 @@
   "weapon_flamethrower_backpack": {
     "id": "weapon_flamethrower_backpack",
     "name": "B/FLAM-80 Cremator",
+    "short_name": "Cremator",
     "icon": "png/Entrenched Division/Cremator.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -15,6 +16,7 @@
   "sentry_mortar_gas": {
     "id": "sentry_mortar_gas",
     "name": "A/GM-17 Gas Mortar Sentry",
+    "short_name": "Gas Mortar Sentry",
     "icon": "png/Entrenched Division/Gas Mortar Sentry.png",
     "cooldown": 180,
     "max_cooldown": 153.9,

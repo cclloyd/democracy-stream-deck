@@ -2,6 +2,7 @@
   "backpack_guard_dog_arc": {
     "id": "backpack_guard_dog_arc",
     "name": "AX/ARC-3 \"Guard Dog\" K-9",
+    "short_name": "\"Guard Dog\" K-9",
     "icon": "png/Force of Law/Guard Dog K-9.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -21,6 +22,7 @@
   "de_escalator": {
     "id": "de_escalator",
     "name": "GL-52 De-Escalator",
+    "short_name": "De-Escalator",
     "icon": "png/Force of Law/GL-52 De-Escalator.png",
     "cooldown": 480,
     "max_cooldown": 410.4,

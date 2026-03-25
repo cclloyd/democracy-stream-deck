@@ -2,6 +2,7 @@
   "backpack_warp": {
     "id": "backpack_warp",
     "name": "LIFT-182 Warp Pack",
+    "short_name": "Warp Pack",
     "icon": "png/Control Group/Warp Pack.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -20,6 +21,7 @@
   "weapon_epoch": {
     "id": "weapon_epoch",
     "name": "PLAS-45 Epoch",
+    "short_name": "Epoch",
     "icon": "png/Control Group/Epoch.png",
     "cooldown": 480,
     "max_cooldown": 410.4,
@@ -38,6 +40,7 @@
   "sentry_laser": {
     "id": "sentry_laser",
     "name": "A/LAS-98 Laser Sentry",
+    "short_name": "Laser Sentry",
     "icon": "png/Control Group/Laser Sentry.png",
     "cooldown": 150,
     "max_cooldown": 128.25,
