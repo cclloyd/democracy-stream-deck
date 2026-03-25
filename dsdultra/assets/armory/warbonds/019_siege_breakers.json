@@ -3,7 +3,10 @@
     "id": "breaching_hammer",
     "name": "CQC-20 Breaching Hammer",
     "icon": "png/Siege Breakers/CQC-20.png",
-    "cooldown": 0,
+    "cooldown": 480,
+    "max_cooldown": 410.4,
+    "summon_time": 7.75,
+    "max_summon_time": 4.75,
     "type": "weapon",
     "is_explosive": true,
     "code": [
@@ -18,7 +21,10 @@
     "id": "leveler",
     "name": "EAT-411 Leveller",
     "icon": "png/Siege Breakers/EAT-411.png",
-    "cooldown": 0,
+    "cooldown": 140,
+    "max_cooldown": 119.7,
+    "summon_time": 7.75,
+    "max_summon_time": 4.75,
     "type": "weapon",
     "is_disposable": true,
     "is_explosive": true,
@@ -34,7 +40,10 @@
     "id": "belt_fed_grenade_launcher",
     "name": "GL-28 Belt-Fed Grenade Launcher",
     "icon": "png/Siege Breakers/GL-28.png",
-    "cooldown": 0,
+    "cooldown": 480,
+    "max_cooldown": 410.4,
+    "summon_time": 7.75,
+    "max_summon_time": 4.75,
     "type": "weapon",
     "is_explosive": true,
     "code": [
@@ -46,11 +55,14 @@
       "up"
     ]
   },
-  "bastion_mk_xvi": {
-    "id": "bastion_mk_xvi",
+  "bastion": {
+    "id": "bastion",
     "name": "TD-220 Bastion MK XVI",
     "icon": "png/Siege Breakers/Bastion MK XVI.png",
-    "cooldown": 0,
+    "cooldown": 780,
+    "max_cooldown": 741,
+    "summon_time": 10.5,
+    "passengers": 4,
     "type": "vehicle",
     "is_vehicle": true,
     "is_explosive": true,

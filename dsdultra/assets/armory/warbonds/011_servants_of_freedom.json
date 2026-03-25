@@ -3,7 +3,9 @@
     "id": "portable_hellbomb",
     "name": "B-100 Portable Hellbomb",
     "icon": "png/Servants of Freedom/Hellbomb Portable.png",
-    "cooldown": 480,
+    "cooldown": 300,
+    "max_cooldown": 256.5,
+    "summon_time": 9.75,
     "type": "backpack",
     "is_explosive": true,
     "code": [

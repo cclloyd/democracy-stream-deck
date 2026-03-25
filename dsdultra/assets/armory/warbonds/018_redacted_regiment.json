@@ -3,7 +3,10 @@
     "id": "c4_pack",
     "name": "B/MD C4 Pack",
     "icon": "png/Redacted Regiment/C4 Pack.png",
-    "cooldown": 0,
+    "cooldown": 480,
+    "max_cooldown": 410.4,
+    "summon_time": 7.75,
+    "max_summon_time": 4.75,
     "type": "weapon",
     "is_backpack": true,
     "code": [
