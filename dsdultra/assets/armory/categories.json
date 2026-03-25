@@ -4,70 +4,80 @@
     "name": "Backpacks",
     "color": "blue",
     "full": true,
-    "icon": "icons/groups/Backpack.png"
+    "icon": "icons/groups/Backpack.png",
+    "filter_type": "backpack"
   },
   "weapons": {
     "id": "weapons",
     "name": "Weapons",
     "color": "blue",
     "full": true,
-    "icon": "icons/groups/Weapons.png"
+    "icon": "icons/groups/Weapons.png",
+    "filter_type": "weapon"
   },
   "vehicles": {
     "id": "vehicles",
     "name": "Vehicles",
     "color": "blue",
     "full": true,
-    "icon": "icons/groups/Vehicle.png"
+    "icon": "icons/groups/Vehicle.png",
+    "filter_type": "vehicle"
   },
   "orbitals": {
     "id": "orbitals",
     "name": "Orbitals",
     "color": "red",
     "full": true,
-    "icon": "icons/groups/Orbital.png"
+    "icon": "icons/groups/Orbital.png",
+    "filter_type": "orbital"
   },
   "eagles": {
     "id": "eagles",
     "name": "Eagles",
     "color": "red",
     "full": true,
-    "icon": "icons/groups/Eagle.png"
+    "icon": "icons/groups/Eagle.png",
+    "filter_type": "eagle"
   },
   "mines": {
     "id": "mines",
     "name": "Mines",
     "color": "green",
     "full": true,
-    "icon": "icons/groups/Mines.png"
+    "icon": "icons/groups/Mines.png",
+    "filter_type": "mine"
   },
   "sentries": {
     "id": "sentries",
     "name": "Sentries",
     "color": "green",
     "full": true,
-    "icon": "icons/groups/Sentry.png"
+    "icon": "icons/groups/Sentry.png",
+    "filter_type": "sentry"
   },
   "emplacements": {
     "id": "emplacements",
     "name": "Emplacements",
     "color": "green",
     "full": true,
-    "icon": "icons/groups/Emplacement.png"
+    "icon": "icons/groups/Emplacement.png",
+    "filter_type": "emplacement"
   },
   "common": {
     "id": "common",
     "name": "Common",
     "color": "yellow",
     "full": true,
-    "icon": "icons/groups/Generic.png"
+    "icon": "icons/groups/Generic.png",
+    "filter_type": "common"
   },
   "mission": {
     "id": "mission",
     "name": "Mission",
     "color": "yellow",
     "full": true,
-    "icon": "png/General Stratagems/Super Earth Flag.png"
+    "icon": "png/General Stratagems/Super Earth Flag.png",
+    "filter_type": "mission"
   },
   "weapon_energy": {
     "parent": "weapons",
@@ -75,7 +85,9 @@
     "name": "Energy Weapons",
     "color": "blue",
     "full": true,
-    "icon": "icons/groups/Energy.png"
+    "icon": "icons/groups/Energy.png",
+    "filter_type": "weapon",
+    "filter_attributes": ["is_energy"]
   },
   "weapon_backpack": {
     "parent": "weapons",
@@ -84,15 +96,9 @@
     "color": "blue",
     "full": true,
     "icon": "icons/groups/Backpack.png",
-    "icon_size": 50
-  },
-  "weapon_standalone": {
-    "parent": "weapons",
-    "id": "weapon_standalone",
-    "name": "Non-Backpack Weapons",
-    "color": "blue",
-    "full": true,
-    "icon": "icons/groups/No Backpack.png"
+    "icon_size": 50,
+    "filter_type": "weapon",
+    "filter_attributes": ["is_backpack"]
   },
   "weapon_disposable": {
     "parent": "weapons",
@@ -100,6 +106,18 @@
     "name": "Disposable Weapons",
     "color": "blue",
     "full": true,
-    "icon": "icons/groups/Disposable.png"
+    "icon": "icons/groups/Disposable.png",
+    "filter_type": "weapon",
+    "filter_attributes": ["is_disposable"]
+  },
+  "weapon_standalone": {
+    "parent": "weapons",
+    "id": "weapon_standalone",
+    "name": "Non-Backpack Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": "icons/groups/No Backpack.png",
+    "filter_type": "weapon",
+    "filter_attributes": ["!is_disposable", "!is_backpack", "!is_energy"]
   }
 }

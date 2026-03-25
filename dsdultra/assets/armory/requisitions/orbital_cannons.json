@@ -110,7 +110,7 @@
     "type": "orbital",
     "is_barrage": true,
     "is_explosive": true,
-    "annotation": 120,
+    "annotation": "120",
     "code": [
       "right",
       "right",
@@ -132,7 +132,7 @@
     "type": "orbital",
     "is_barrage": true,
     "is_explosive": true,
-    "annotation": 380,
+    "annotation": "380",
     "code": [
       "right",
       "down",

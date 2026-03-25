@@ -13,6 +13,8 @@ from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
 
 from dsdultra import ASSETS_DIR
+from dsdultra.armory.stratagems import Stratagem
+from dsdultra.armory.superdestroyer import SuperDestroyer
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
@@ -38,6 +40,8 @@ class DSDUltra:
         self.BUTTON_SIZE = 72
         self.started = started
         self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
+        self.stratagems = Stratagem.load_stratagems()
+        self.armory = SuperDestroyer(self)
 
         self.qt_app: QApplication | None = None
         self.tray_icon: QSystemTrayIcon | None = None
