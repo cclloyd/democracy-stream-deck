@@ -1,6 +1,6 @@
 {
-  "machine_gun": {
-    "id": "machine_gun",
+  "weapon_mg": {
+    "id": "weapon_mg",
     "name": "MG-43 Machine Gun",
     "icon": "png/Patriotic Administration Center/Machine Gun.png",
     "cooldown": 480,
@@ -16,8 +16,8 @@
       "right"
     ]
   },
-  "anti_materiel_rifle": {
-    "id": "anti_materiel_rifle",
+  "weapon_anti_materiel_rifle": {
+    "id": "weapon_anti_materiel_rifle",
     "name": "APW-1 Anti-Materiel Rifle",
     "icon": "png/Patriotic Administration Center/Anti-Materiel Rifle.png",
     "cooldown": 480,
@@ -33,8 +33,8 @@
       "down"
     ]
   },
-  "stalwart": {
-    "id": "stalwart",
+  "weapon_lmg": {
+    "id": "weapon_lmg",
     "name": "M-105 Stalwart",
     "icon": "png/Patriotic Administration Center/Stalwart.png",
     "cooldown": 480,
@@ -51,8 +51,8 @@
       "left"
     ]
   },
-  "expendable_anti_tank": {
-    "id": "expendable_anti_tank",
+  "weapon_eat": {
+    "id": "weapon_eat",
     "name": "EAT-17 Expendable Anti-Tank",
     "icon": "png/Patriotic Administration Center/Expendable Anti-Tank.png",
     "cooldown": 70,
@@ -70,8 +70,8 @@
       "right"
     ]
   },
-  "recoilless_rifle": {
-    "id": "recoilless_rifle",
+  "weapon_recoilless_rifle": {
+    "id": "weapon_recoilless_rifle",
     "name": "GR-8 Recoilless Rifle",
     "icon": "png/Patriotic Administration Center/Recoilless Rifle.png",
     "cooldown": 480,
@@ -89,8 +89,8 @@
       "left"
     ]
   },
-  "flamethrower": {
-    "id": "flamethrower",
+  "weapon_flamethrower": {
+    "id": "weapon_weapon_flamethrower",
     "name": "FLAM-40 Flamethrower",
     "icon": "png/Patriotic Administration Center/Flamethrower.png",
     "cooldown": 480,
@@ -107,8 +107,8 @@
       "up"
     ]
   },
-  "autocannon": {
-    "id": "autocannon",
+  "weapon_autocannon": {
+    "id": "weapon_autocannon",
     "name": "AC-8 Autocannon",
     "icon": "png/Patriotic Administration Center/Autocannon.png",
     "cooldown": 480,
@@ -127,8 +127,8 @@
       "right"
     ]
   },
-  "heavy_machine_gun": {
-    "id": "heavy_machine_gun",
+  "weapon_hmg": {
+    "id": "weapon_hmg",
     "name": "MG-206 Heavy Machine Gun",
     "icon": "png/Patriotic Administration Center/Heavy Machine Gun.png",
     "cooldown": 480,
@@ -163,8 +163,8 @@
       "right"
     ]
   },
-  "spear": {
-    "id": "spear",
+  "weapon_spear": {
+    "id": "weapon_spear",
     "name": "FAF-14 Spear Launcher",
     "icon": "png/Patriotic Administration Center/Spear.png",
     "cooldown": 480,
@@ -182,8 +182,8 @@
       "down"
     ]
   },
-  "airburst_rocket_launcher": {
-    "id": "airburst_rocket_launcher",
+  "weapon_airburst_rocket": {
+    "id": "weapon_airburst_rocket",
     "name": "RL-77 Airburst Rocket Launcher",
     "icon": "png/Patriotic Administration Center/Airburst Rocket Launcher.png",
     "cooldown": 480,
@@ -201,8 +201,8 @@
       "right"
     ]
   },
-  "commando": {
-    "id": "commando",
+  "weapon_commando": {
+    "id": "weapon_commando",
     "name": "MLS-4X Commando",
     "icon": "png/Patriotic Administration Center/Commando.png",
     "cooldown": 120,
@@ -220,8 +220,8 @@
       "right"
     ]
   },
-  "wasp_launcher": {
-    "id": "wasp_launcher",
+  "weapon_wasp": {
+    "id": "weapon_wasp",
     "name": "StA-X3 W.A.S.P. Launcher",
     "icon": "png/Patriotic Administration Center/StA-X3 W.A.S.P. Launcher.png",
     "cooldown": 480,

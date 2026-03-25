@@ -1,6 +1,6 @@
 {
-  "guard_dog": {
-    "id": "guard_dog",
+  "backpack_guard_dog": {
+    "id": "backpack_guard_dog",
     "name": "AX/AR-23 \"Guard Dog\"",
     "icon": "png/Robotics Workshop/Guard Dog.png",
     "cooldown": 480,
@@ -16,8 +16,8 @@
       "down"
     ]
   },
-  "patriot_exosuit": {
-    "id": "patriot_exosuit",
+  "exosuit_patriot": {
+    "id": "{",
     "name": "EXO-45 Patriot Exosuit",
     "icon": "png/Robotics Workshop/Patriot Exosuit.png",
     "cooldown": 600,
@@ -38,8 +38,8 @@
       "down"
     ]
   },
-  "emancipator_exosuit": {
-    "id": "emancipator_exosuit",
+  "exosuit_emancipator": {
+    "id": "exosuit_emancipator",
     "name": "EXO-49 Emancipator Exosuit",
     "icon": "png/Robotics Workshop/Emancipator Exosuit.png",
     "cooldown": 600,
@@ -60,8 +60,8 @@
       "up"
     ]
   },
-  "gatling_sentry": {
-    "id": "gatling_sentry",
+  "sentry_gatling": {
+    "id": "sentry_gatling",
     "name": "A/G-16 Gatling Sentry",
     "icon": "png/Robotics Workshop/Gatling Sentry.png",
     "cooldown": 150,
@@ -76,8 +76,8 @@
       "left"
     ]
   },
-  "machine_gun_sentry": {
-    "id": "machine_gun_sentry",
+  "sentry_machine_gun": {
+    "id": "sentry_machine_gun",
     "name": "A/MG-43 Machine Gun Sentry",
     "icon": "png/Robotics Workshop/Machine Gun Sentry.png",
     "cooldown": 90,
@@ -93,8 +93,8 @@
       "up"
     ]
   },
-  "autocannon_sentry": {
-    "id": "autocannon_sentry",
+  "sentry_autocannon": {
+    "id": "sentry_autocannon",
     "name": "A/AC-8 Autocannon Sentry",
     "icon": "png/Robotics Workshop/Autocannon Sentry.png",
     "cooldown": 150,
@@ -112,8 +112,8 @@
       "up"
     ]
   },
-  "rocket_sentry": {
-    "id": "rocket_sentry",
+  "sentry_rocket": {
+    "id": "sentry_rocket",
     "name": "A/MLS-4X Rocket Sentry",
     "icon": "png/Robotics Workshop/Rocket Sentry.png",
     "cooldown": 150,
@@ -130,8 +130,8 @@
       "left"
     ]
   },
-  "mortar_sentry": {
-    "id": "mortar_sentry",
+  "sentry_mortar": {
+    "id": "sentry_mortar",
     "name": "A/M-12 Mortar Sentry",
     "icon": "png/Robotics Workshop/Mortar Sentry.png",
     "cooldown": 180,
@@ -149,8 +149,8 @@
       "down"
     ]
   },
-  "ems_mortar_sentry": {
-    "id": "ems_mortar_sentry",
+  "sentry_mortar_stun": {
+    "id": "sentry_mortar_stun",
     "name": "A/M-23 EMS Mortar Sentry",
     "icon": "png/Robotics Workshop/EMS Mortar Sentry.png",
     "cooldown": 180,

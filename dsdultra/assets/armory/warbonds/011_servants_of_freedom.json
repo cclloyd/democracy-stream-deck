@@ -1,6 +1,6 @@
 {
-  "portable_hellbomb": {
-    "id": "portable_hellbomb",
+  "backpack_hellbomb": {
+    "id": "backpack_hellbomb",
     "name": "B-100 Portable Hellbomb",
     "icon": "png/Servants of Freedom/Hellbomb Portable.png",
     "cooldown": 300,

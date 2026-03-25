@@ -1,6 +1,6 @@
 {
-  "sterilizer": {
-    "id": "sterilizer",
+  "weapon_sterilizer": {
+    "id": "weapon_sterilizer",
     "name": "TX-41 Sterilizer",
     "icon": "png/Chemical Agents/Sterilizer.png",
     "cooldown": 480,
@@ -17,8 +17,8 @@
       "left"
     ]
   },
-  "guard_dog_breath": {
-    "id": "guard_dog_breath",
+  "backpack_guard_dog_gas": {
+    "id": "backpack_guard_dog_gas",
     "name": "AX/TX-13 \"Guard Dog\" Dog Breath",
     "icon": "png/Chemical Agents/Guard Dog Breath.png",
     "cooldown": 480,

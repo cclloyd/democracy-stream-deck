@@ -1,6 +1,6 @@
 {
-  "orbital_gatling_barrage": {
-    "id": "orbital_gatling_barrage",
+  "orbital_gatling": {
+    "id": "orbital_gatling",
     "name": "Orbital Gatling Barrage",
     "icon": "png/Orbital Cannons/Orbital Gatling Barrage.png",
     "cooldown": 70,
@@ -18,8 +18,8 @@
       "up"
     ]
   },
-  "orbital_airburst_strike": {
-    "id": "orbital_airburst_strike",
+  "orbital_airburst": {
+    "id": "orbital_airburst",
     "name": "Orbital Airburst Strike",
     "icon": "png/Orbital Cannons/Orbital Airburst Strike.png",
     "cooldown": 100,
@@ -34,8 +34,8 @@
       "right"
     ]
   },
-  "orbital_railcannon_strike": {
-    "id": "orbital_railcannon_strike",
+  "orbital_railcannon": {
+    "id": "orbital_railcannon",
     "name": "Orbital Railcannon Strike",
     "icon": "png/Orbital Cannons/Orbital Railcannon Strike.png",
     "cooldown": 180,
@@ -71,8 +71,8 @@
       "up"
     ]
   },
-  "orbital_walking_barrage": {
-    "id": "orbital_walking_barrage",
+  "orbital_walking": {
+    "id": "orbital_walking",
     "name": "Orbital Walking Barrage",
     "icon": "png/Orbital Cannons/Orbital Walking Barrage.png",
     "cooldown": 240,
@@ -91,8 +91,8 @@
       "down"
     ]
   },
-  "orbital_120mm_he_barrage": {
-    "id": "orbital_120mm_he_barrage",
+  "orbital_120": {
+    "id": "orbital_120",
     "name": "Orbital 120MM HE Barrage",
     "icon": "png/Orbital Cannons/Orbital 120MM HE Barrage.png",
     "cooldown": 180,
@@ -111,8 +111,8 @@
       "down"
     ]
   },
-  "orbital_380mm_he_barrage": {
-    "id": "orbital_380mm_he_barrage",
+  "orbital_380": {
+    "id": "orbital_380",
     "name": "Orbital 380MM HE Barrage",
     "icon": "png/Orbital Cannons/Orbital 380MM HE Barrage.png",
     "cooldown": 240,
@@ -132,8 +132,8 @@
       "down"
     ]
   },
-  "orbital_napalm_barrage": {
-    "id": "orbital_napalm_barrage",
+  "orbital_fire": {
+    "id": "orbital_fire",
     "name": "Orbital Napalm Barrage",
     "icon": "png/Orbital Cannons/Orbital Napalm Barrage.png",
     "cooldown": 240,

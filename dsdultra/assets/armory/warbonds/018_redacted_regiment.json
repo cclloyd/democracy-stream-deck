@@ -1,6 +1,6 @@
 {
-  "c4_pack": {
-    "id": "c4_pack",
+  "weapon_c4": {
+    "id": "weapon_c4",
     "name": "B/MD C4 Pack",
     "icon": "png/Redacted Regiment/C4 Pack.png",
     "cooldown": 480,

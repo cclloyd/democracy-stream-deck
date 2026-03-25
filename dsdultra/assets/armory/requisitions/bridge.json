@@ -1,6 +1,6 @@
 {
-  "orbital_precision_strike": {
-    "id": "orbital_precision_strike",
+  "orbital_precision": {
+    "id": "orbital_precision",
     "name": "Orbital Precision Strike",
     "icon": "png/Bridge/Orbital Precision Strike.png",
     "cooldown": 90,
@@ -15,8 +15,8 @@
       "up"
     ]
   },
-  "orbital_gas_strike": {
-    "id": "orbital_gas_strike",
+  "orbital_gas": {
+    "id": "orbital_gas",
     "name": "Orbital Gas Strike",
     "icon": "png/Bridge/Orbital Gas Strike.png",
     "cooldown": 75,
@@ -32,8 +32,8 @@
       "right"
     ]
   },
-  "orbital_ems_strike": {
-    "id": "orbital_ems_strike",
+  "orbital_stun": {
+    "id": "orbital_stun",
     "name": "Orbital EMS Strike",
     "icon": "png/Bridge/Orbital EMS Strike.png",
     "cooldown": 75,
@@ -50,8 +50,8 @@
       "down"
     ]
   },
-  "orbital_smoke_strike": {
-    "id": "orbital_smoke_strike",
+  "orbital_smoke": {
+    "id": "orbital_smoke",
     "name": "Orbital Smoke Strike",
     "icon": "png/Bridge/Orbital Smoke Strike.png",
     "cooldown": 75,
@@ -67,8 +67,8 @@
       "up"
     ]
   },
-  "tesla_tower": {
-    "id": "tesla_tower",
+  "tower_arc": {
+    "id": "tower_arc",
     "name": "A/ARC-3 Tesla Tower",
     "icon": "png/Bridge/Tesla Tower.png",
     "cooldown": 120,
@@ -87,8 +87,8 @@
       "right"
     ]
   },
-  "shield_generator_relay": {
-    "id": "shield_generator_relay",
+  "tower_shield": {
+    "id": "tower_shield",
     "name": "FX-12 Shield Generator Relay",
     "icon": "png/Bridge/Shield Generator Relay.png",
     "cooldown": 90,
@@ -107,8 +107,8 @@
       "right"
     ]
   },
-  "hmg_emplacement": {
-    "id": "hmg_emplacement",
+  "emplacement_hmg": {
+    "id": "emplacement_hmg",
     "name": "E/MG-101 HMG Emplacement",
     "icon": "png/Bridge/HMG Emplacement.png",
     "cooldown": 180,
@@ -126,8 +126,8 @@
       "left"
     ]
   },
-  "grenadier_battlement": {
-    "id": "grenadier_battlement",
+  "emplacement_grenadier": {
+    "id": "emplacement_grenadier",
     "name": "E/GL-21 Grenadier Battlement",
     "icon": "png/Bridge/Grenadier Battlement.png",
     "cooldown": 120,

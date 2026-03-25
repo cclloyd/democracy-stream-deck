@@ -1,6 +1,6 @@
 {
-  "breaching_hammer": {
-    "id": "breaching_hammer",
+  "weapon_hammer": {
+    "id": "weapon_hammer",
     "name": "CQC-20 Breaching Hammer",
     "icon": "png/Siege Breakers/CQC-20.png",
     "cooldown": 480,
@@ -17,8 +17,8 @@
       "up"
     ]
   },
-  "leveler": {
-    "id": "leveler",
+  "weapon_leveler": {
+    "id": "weapon_leveler",
     "name": "EAT-411 Leveller",
     "icon": "png/Siege Breakers/EAT-411.png",
     "cooldown": 140,
@@ -36,8 +36,8 @@
       "down"
     ]
   },
-  "belt_fed_grenade_launcher": {
-    "id": "belt_fed_grenade_launcher",
+  "weapon_grenade_backpack": {
+    "id": "weapon_grenade_backpack",
     "name": "GL-28 Belt-Fed Grenade Launcher",
     "icon": "png/Siege Breakers/GL-28.png",
     "cooldown": 480,
@@ -55,8 +55,8 @@
       "up"
     ]
   },
-  "bastion": {
-    "id": "bastion",
+  "vehicle_bastion": {
+    "id": "vehicle_bastion",
     "name": "TD-220 Bastion MK XVI",
     "icon": "png/Siege Breakers/Bastion MK XVI.png",
     "cooldown": 780,

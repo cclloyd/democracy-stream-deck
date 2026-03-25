@@ -1,6 +1,6 @@
 {
-  "speargun": {
-    "id": "speargun",
+  "weapon_speargun": {
+    "id": "weapon_speargun",
     "name": "S-11 Speargun",
     "icon": "png/Dust Devils/Speargun.png",
     "cooldown": 480,
@@ -18,8 +18,8 @@
       "right"
     ]
   },
-  "solo_silo": {
-    "id": "solo_silo",
+  "weapon_silo": {
+    "id": "weapon_silo",
     "name": "MS-11 Solo Silo",
     "icon": "png/Dust Devils/Solo Silo.png",
     "cooldown": 180,
@@ -36,8 +36,8 @@
       "down"
     ]
   },
-  "expendable_napalm": {
-    "id": "expendable_napalm",
+  "weapon_expendable_fire": {
+    "id": "weapon_expendable_fire",
     "name": "EAT-700 Expendable Napalm",
     "icon": "png/Dust Devils/Expendable Napalm.png",
     "cooldown": 140,

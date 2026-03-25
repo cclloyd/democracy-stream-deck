@@ -1,6 +1,6 @@
 {
-  "guard_dog_k9": {
-    "id": "guard_dog_k9",
+  "backpack_guard_dog_arc": {
+    "id": "backpack_guard_dog_arc",
     "name": "AX/ARC-3 \"Guard Dog\" K-9",
     "icon": "png/Force of Law/Guard Dog K-9.png",
     "cooldown": 480,

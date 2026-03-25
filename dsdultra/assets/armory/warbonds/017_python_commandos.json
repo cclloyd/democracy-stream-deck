@@ -1,6 +1,6 @@
 {
-  "maxigun": {
-    "id": "maxigun",
+  "weapon_maxigun": {
+    "id": "weapon_maxigun",
     "name": "M-1000 Maxigun",
     "icon": "png/Python Commandos/Maxigun.png",
     "cooldown": 480,
@@ -18,8 +18,8 @@
       "up"
     ]
   },
-  "defoliation_tool": {
-    "id": "defoliation_tool",
+  "weapon_chainsaw": {
+    "id": "weapon_chainsaw",
     "name": "CQC-9 Defoliation Tool",
     "icon": "png/Python Commandos/Defoliation Tool.png",
     "cooldown": 480,
@@ -36,8 +36,8 @@
       "down"
     ]
   },
-  "guard_dog_hot_dog": {
-    "id": "guard_dog_hot_dog",
+  "weapon_guard_dog_fire": {
+    "id": "weapon_guard_dog_fire",
     "name": "AX/FLAM-75 \"Guard Dog\" Hot Dog",
     "icon": "png/Python Commandos/Guard Dog Hot Dog.png",
     "cooldown": 480,

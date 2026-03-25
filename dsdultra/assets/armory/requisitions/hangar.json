@@ -1,6 +1,6 @@
 {
-  "jump_pack": {
-    "id": "jump_pack",
+  "backpack_jump": {
+    "id": "backpack_jump",
     "name": "LIFT-850 Jump Pack",
     "icon": "png/Hangar/Jump Pack.png",
     "cooldown": 480,
@@ -14,8 +14,8 @@
       "up"
     ]
   },
-  "fast_recon_vehicle": {
-    "id": "fast_recon_vehicle",
+  "vehicle_frv": {
+    "id": "vehicle_frv",
     "name": "M-102 Fast Recon Vehicle",
     "icon": "png/Hangar/Fast Recon Vehicle.png",
     "cooldown": 480,
@@ -33,8 +33,8 @@
       "up"
     ]
   },
-  "eagle_strafing_run": {
-    "id": "eagle_strafing_run",
+  "eagle_strafe": {
+    "id": "eagle_strafe",
     "name": "Eagle Strafing Run",
     "icon": "png/Hangar/Eagle Strafing Run.png",
     "cooldown": 150,
@@ -74,8 +74,8 @@
       "right"
     ]
   },
-  "eagle_500kg_bomb": {
-    "id": "eagle_500kg_bomb",
+  "eagle_500": {
+    "id": "eagle_500",
     "name": "Eagle 500kg Bomb",
     "icon": "png/Hangar/Eagle 500KG Bomb.png",
     "cooldown": 150,
@@ -95,8 +95,8 @@
       "down"
     ]
   },
-  "eagle_napalm_airstrike": {
-    "id": "eagle_napalm_airstrike",
+  "eagle_airstrike_fire": {
+    "id": "eagle_airstrike_fire",
     "name": "Eagle Napalm Airstrike",
     "icon": "png/Hangar/Eagle Napalm Airstrike.png",
     "cooldown": 150,
@@ -116,8 +116,8 @@
       "up"
     ]
   },
-  "eagle_cluster_bomb": {
-    "id": "eagle_cluster_bomb",
+  "eagle_cluster": {
+    "id": "eagle_cluster",
     "name": "Eagle Cluster Bomb",
     "icon": "png/Hangar/Eagle Cluster Bomb.png",
     "cooldown": 150,
@@ -138,8 +138,8 @@
       "right"
     ]
   },
-  "eagle_110mm_rocket_pods": {
-    "id": "eagle_110mm_rocket_pods",
+  "eagle_rocket": {
+    "id": "eagle_rocket",
     "name": "Eagle 110MM Rocket Pods",
     "icon": "png/Hangar/Eagle 110MM Rocket Pods.png",
     "cooldown": 150,
@@ -159,8 +159,8 @@
       "down"
     ]
   },
-  "eagle_smoke_strike": {
-    "id": "eagle_smoke_strike",
+  "eagle_smoke": {
+    "id": "eagle_smoke",
     "name": "Eagle Smoke Strike",
     "icon": "png/Hangar/Eagle Smoke Strike.png",
     "cooldown": 150,

@@ -1,6 +1,6 @@
 {
-  "one_true_flag": {
-    "id": "one_true_flag",
+  "weapon_flag": {
+    "id": "weapon_flag",
     "name": "CQC-1 One True Flag",
     "icon": "png/Masters of Ceremony/One True Flag.png",
     "cooldown": 480,

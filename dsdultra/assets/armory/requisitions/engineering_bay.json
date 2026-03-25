@@ -1,6 +1,6 @@
 {
-  "grenade_launcher": {
-    "id": "grenade_launcher",
+  "weapon_grenade": {
+    "id": "weapon_grenade",
     "name": "GL-21 Grenade Launcher",
     "icon": "png/Engineering Bay/Grenade Launcher.png",
     "cooldown": 480,
@@ -17,8 +17,8 @@
       "down"
     ]
   },
-  "laser_cannon": {
-    "id": "laser_cannon",
+  "weapon_laser": {
+    "id": "weapon_laser",
     "name": "LAS-98 Laser Cannon",
     "icon": "png/Engineering Bay/Laser Cannon.png",
     "cooldown": 480,
@@ -37,8 +37,8 @@
       "left"
     ]
   },
-  "quasar_cannon": {
-    "id": "quasar_cannon",
+  "weapon_quasar": {
+    "id": "weapon_quasar",
     "name": "LAS-99 Quasar Cannon",
     "icon": "png/Engineering Bay/Quasar Cannon.png",
     "cooldown": 480,
@@ -57,8 +57,8 @@
       "right"
     ]
   },
-  "arc_thrower": {
-    "id": "arc_thrower",
+  "weapon_arc_thrower": {
+    "id": "weapon_arc_thrower",
     "name": "ARC-3 Arc Thrower",
     "icon": "png/Engineering Bay/Arc Thrower.png",
     "cooldown": 480,
@@ -77,8 +77,8 @@
       "left"
     ]
   },
-  "guard_dog_rover": {
-    "id": "guard_dog_rover",
+  "backpack_guard_dog_laser": {
+    "id": "backpack_guard_dog_laser",
     "name": "AX/LAS-5 \"Guard Dog\" Rover",
     "icon": "png/Engineering Bay/Guard Dog Rover.png",
     "cooldown": 480,
@@ -96,8 +96,8 @@
       "right"
     ]
   },
-  "supply_pack": {
-    "id": "supply_pack",
+  "backpack_ammo": {
+    "id": "backpack_ammo",
     "name": "B-1 Supply Pack",
     "icon": "png/Engineering Bay/Supply Pack.png",
     "cooldown": 480,
@@ -113,8 +113,8 @@
       "down"
     ]
   },
-  "shield_generator_pack": {
-    "id": "shield_generator_pack",
+  "backpack_shield_energy": {
+    "id": "shield_shield_energy",
     "name": "SH-32 Shield Generator Pack",
     "icon": "png/Engineering Bay/Shield Generator Pack.png",
     "cooldown": 480,
@@ -132,8 +132,8 @@
       "right"
     ]
   },
-  "ballistic_shield_backpack": {
-    "id": "ballistic_shield_backpack",
+  "backpack_shield_ballistic": {
+    "id": "backpack_shield_ballistic",
     "name": "SH-20 Ballistic Shield Backpack",
     "icon": "png/Engineering Bay/Ballistic Shield Backpack.png",
     "cooldown": 480,
@@ -149,8 +149,8 @@
       "left"
     ]
   },
-  "anti_personnel_minefield": {
-    "id": "anti_personnel_minefield",
+  "mine_infantry": {
+    "id": "mine_infantry",
     "name": "MD-6 Anti-Personnel Minefield",
     "icon": "png/Engineering Bay/Anti-Personnel Minefield.png",
     "cooldown": 120,
@@ -166,8 +166,8 @@
       "right"
     ]
   },
-  "incendiary_mines": {
-    "id": "incendiary_mines",
+  "mine_fire": {
+    "id": "mine_fire",
     "name": "MD-I4 Incendiary Mines",
     "icon": "png/Engineering Bay/Incendiary Mines.png",
     "cooldown": 120,
@@ -183,8 +183,8 @@
       "down"
     ]
   },
-  "gas_mines": {
-    "id": "gas_mines",
+  "mine_gas": {
+    "id": "mine_gas",
     "name": "MD-8 Gas Mines",
     "icon": "png/Engineering Bay/Gas Mine.png",
     "cooldown": 120,
@@ -200,8 +200,8 @@
       "right"
     ]
   },
-  "anti_tank_mines": {
-    "id": "anti_tank_mines",
+  "mine_tank": {
+    "id": "mine_tank",
     "name": "MD-17 Anti-Tank Mines",
     "icon": "png/Engineering Bay/Anti-Tank Mines.png",
     "cooldown": 120,
