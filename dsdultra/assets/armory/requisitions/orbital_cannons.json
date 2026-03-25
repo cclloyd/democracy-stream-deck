@@ -66,6 +66,7 @@
     "uses": 3,
     "type": "orbital",
     "is_laser": true,
+    "annotation": "L",
     "code": [
       "right",
       "down",
@@ -87,6 +88,7 @@
     "type": "orbital",
     "is_barrage": true,
     "is_explosive": true,
+    "annotation": "W",
     "code": [
       "right",
       "down",
@@ -108,6 +110,7 @@
     "type": "orbital",
     "is_barrage": true,
     "is_explosive": true,
+    "annotation": 120,
     "code": [
       "right",
       "right",
@@ -129,6 +132,7 @@
     "type": "orbital",
     "is_barrage": true,
     "is_explosive": true,
+    "annotation": 380,
     "code": [
       "right",
       "down",

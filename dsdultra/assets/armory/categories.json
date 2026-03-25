@@ -3,88 +3,103 @@
     "id": "backpacks",
     "name": "Backpacks",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Backpack.png"
   },
   "weapons": {
     "id": "weapons",
     "name": "Weapons",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Weapons.png"
   },
   "vehicles": {
     "id": "vehicles",
     "name": "Vehicles",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Vehicle.png"
   },
   "orbitals": {
     "id": "orbitals",
     "name": "Orbitals",
     "color": "red",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Orbital.png"
   },
   "eagles": {
     "id": "eagles",
     "name": "Eagles",
     "color": "red",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Eagle.png"
   },
   "mines": {
     "id": "mines",
     "name": "Mines",
     "color": "green",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Mines.png"
   },
   "sentries": {
     "id": "sentries",
     "name": "Sentries",
     "color": "green",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Sentry.png"
   },
   "emplacements": {
     "id": "emplacements",
     "name": "Emplacements",
     "color": "green",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Emplacement.png"
   },
   "common": {
     "id": "common",
     "name": "Common",
     "color": "yellow",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Generic.png"
   },
   "mission": {
     "id": "mission",
     "name": "Mission",
     "color": "yellow",
-    "full": true
+    "full": true,
+    "icon": "png/General Stratagems/Super Earth Flag.png"
   },
   "weapon_energy": {
     "parent": "weapons",
     "id": "weapon_energy",
     "name": "Energy Weapons",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Energy.png"
   },
   "weapon_backpack": {
     "parent": "weapons",
     "id": "weapon_backpack",
     "name": "Backpack Weapons",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Backpack.png",
+    "icon_size": 50
   },
   "weapon_standalone": {
     "parent": "weapons",
     "id": "weapon_standalone",
     "name": "Non-Backpack Weapons",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/No Backpack.png"
   },
   "weapon_disposable": {
     "parent": "weapons",
     "id": "weapon_disposable",
     "name": "Disposable Weapons",
     "color": "blue",
-    "full": true
+    "full": true,
+    "icon": "icons/groups/Disposable.png"
   }
 }
