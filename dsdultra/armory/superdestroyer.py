@@ -47,7 +47,7 @@ class StratagemGroup:
         self.color = data.get('color', 'yellow')
         self.full = data.get('full', False)
         self.icon = data.get('icon')
-        self.items = []
+        self.items = {}
         filter_type = data.get('filter_type', None)
         filter_attributes = data.get('filter_attributes', None)
         for i in items.values():
@@ -62,10 +62,16 @@ class StratagemGroup:
                     else:
                         if not getattr(i, attr, False):
                             continue
-            self.items.append(i)
+            self.items[i.id] = i
 
     def __iter__(self):
-        return iter(self.items)
+        return iter(self.items.values())
 
     def __len__(self):
         return len(self.items)
+
+    def __getitem__(self, key):
+        return self.items[key]
+
+    def __contains__(self, item):
+        return item in self.items

@@ -38,14 +38,19 @@ class PageQuickLoadout(ScrollPage):
 
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config=None, app: str = None):
         super().__init__(dsd, parent=parent, content=content, content_class=content_class, page_num=page_num, config=config, app=app)
-        firstRow = [
-            ARMORY['common']['content']['common_reinforce'],
-            ARMORY['common']['content']['common_resupply'],
-            ARMORY['mission']['content']['mission_hellbomb'],
-            ARMORY['common']['content']['common_eagle_rearm'],
-            ARMORY['mission']['content']['mission_seaf'],
+        static_row = [
+            self.dsd.armory.common['common_reinforce'],
+            self.dsd.armory.common['common_resupply'],
+            self.dsd.armory.mission['mission_hellbomb'],
+            self.dsd.armory.common['common_eagle_rearm'],
+            self.dsd.armory.mission['mission_seaf'],
+            # ARMORY['common']['content']['common_reinforce'],
+            # ARMORY['common']['content']['common_resupply'],
+            # ARMORY['mission']['content']['mission_hellbomb'],
+            # ARMORY['common']['content']['common_eagle_rearm'],
+            # ARMORY['mission']['content']['mission_seaf'],
         ]
-        self.content = firstRow + (self.content or [])
+        self.content = static_row + (self.content or [])
         # Unselect items so they aren't highlighted
         # self.content = [item.update({'selected': False}) or item if item is not None else None for item in self.content]
 

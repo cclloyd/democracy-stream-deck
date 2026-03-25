@@ -1,0 +1,162 @@
+{
+  "mission_seaf": {
+    "id": "mission_seaf",
+    "name": "SEAF Artillery",
+    "icon": "png/General Stratagems/SEAF Artillery.png",
+    "type": "mission",
+    "code": [
+      "right",
+      "up",
+      "up",
+      "down"
+    ]
+  },
+  "mission_hellbomb": {
+    "id": "mission_hellbomb",
+    "name": "NUX-223 Hellbomb",
+    "short_name": "NUX-223 Hellbomb",
+    "icon": "png/General Stratagems/Hellbomb.png",
+    "type": "mission",
+    "cooldown": 30,
+    "max_cooldown": 28.5,
+    "summon_time": 10,
+    "code": [
+      "down",
+      "up",
+      "left",
+      "down",
+      "up",
+      "right",
+      "down",
+      "up"
+    ]
+  },
+  "mission_flag": {
+    "id": "mission_flag",
+    "name": "Super Earth Flag",
+    "icon": "png/General Stratagems/Super Earth Flag.png",
+    "type": "mission",
+    "summon_time": 10,
+    "code": [
+      "down",
+      "up",
+      "down",
+      "up"
+    ]
+  },
+  "mission_sssd": {
+    "id": "mission_sssd",
+    "name": "SSSD Delivery",
+    "icon": "png/General Stratagems/Upload Data.png",
+    "type": "mission",
+    "summon_time": 4,
+    "code": [
+      "down",
+      "down",
+      "down",
+      "up",
+      "up"
+    ]
+  },
+  "mission_upload": {
+    "id": "mission_upload",
+    "name": "Upload Data",
+    "icon": "png/General Stratagems/Upload Data.png",
+    "type": "mission",
+    "summon_time": 4,
+    "code": [
+      "left",
+      "right",
+      "up",
+      "up",
+      "up"
+    ]
+  },
+  "mission_seismic_probe": {
+    "id": "mission_seismic_probe",
+    "name": "Seismic Probe",
+    "icon": "png/General Stratagems/Seismic Probe.png",
+    "type": "mission",
+    "summon_time": 10,
+    "code": [
+      "up",
+      "up",
+      "left",
+      "right",
+      "down",
+      "down"
+    ]
+  },
+  "mission_dark_fluid": {
+    "id": "mission_dark_fluid",
+    "name": "Dark Fluid Vessel",
+    "icon": "png/General Stratagems/Dark Fluid Vessel.png",
+    "type": "mission",
+    "summon_time": 10,
+    "code": [
+      "up",
+      "left",
+      "right",
+      "down",
+      "up",
+      "up"
+    ]
+  },
+  "mission_drill_prospecting": {
+    "id": "mission_drill_prospecting",
+    "name": "Prospecting Drill",
+    "icon": "png/General Stratagems/Prospecting Drill.png",
+    "type": "mission",
+    "summon_time": 10,
+    "code": [
+      "down",
+      "down",
+      "left",
+      "right",
+      "down",
+      "down"
+    ]
+  },
+  "mission_drill_tectonic": {
+    "id": "mission_drill_tectonic",
+    "name": "Tectonic Drill",
+    "icon": "png/General Stratagems/Tectonic Drill.png",
+    "type": "mission",
+    "summon_time": 10,
+    "code": [
+      "up",
+      "down",
+      "up",
+      "down",
+      "up",
+      "down"
+    ]
+  },
+  "mission_drill_hive": {
+    "id": "mission_drill_hive",
+    "name": "Hive Breaker Drill",
+    "icon": "png/General Stratagems/Hive Breaker Drill.png",
+    "type": "mission",
+    "summon_time": 10,
+    "code": [
+      "left",
+      "up",
+      "down",
+      "right",
+      "down",
+      "down"
+    ]
+  },
+  "mission_flare": {
+    "id": "mission_flare",
+    "name": "Orbital Illumination Flare",
+    "icon": "png/General Stratagems/Orbital Illumination Flare.png",
+    "type": "mission",
+    "code": [
+      "right",
+      "right",
+      "left",
+      "left"
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "common_reinforce": {
+    "id": "common_reinforce",
+    "name": "Reinforce",
+    "icon": "png/General Stratagems/Reinforce.png",
+    "type": "common",
+    "code": [
+      "up",
+      "down",
+      "right",
+      "left",
+      "up"
+    ]
+  },
+  "common_resupply": {
+    "id": "common_resupply",
+    "name": "Resupply",
+    "icon": "png/General Stratagems/Resupply.png",
+    "type": "common",
+    "cooldown": 180,
+    "max_cooldown": 171,
+    "summon_time": 8,
+    "code": [
+      "down",
+      "down",
+      "up",
+      "right"
+    ]
+  },
+  "common_eagle_rearm": {
+    "id": "common_eagle_rearm",
+    "name": "Eagle Rearm",
+    "icon": "png/Hangar/Eagle Rearm.png",
+    "type": "common",
+    "cooldown": 150,
+    "max_cooldown": 108,
+    "code": [
+      "up",
+      "up",
+      "left",
+      "up",
+      "right"
+    ]
+  },
+  "common_sos": {
+    "id": "common_sos",
+    "name": "SOS Beacon",
+    "icon": "png/General Stratagems/SOS Beacon.png",
+    "type": "common",
+    "summon_time": 1,
+    "code": [
+      "up",
+      "down",
+      "right",
+      "up"
+    ]
+  }
+}
