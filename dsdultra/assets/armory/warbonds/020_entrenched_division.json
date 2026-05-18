@@ -11,7 +11,14 @@
     "type": "weapon",
     "is_fire": true,
     "is_backpack": true,
-    "code": []
+    "code": [
+      "down",
+      "down",
+      "right",
+      "down",
+      "up",
+      "up"
+    ]
   },
   "sentry_mortar_gas": {
     "id": "sentry_mortar_gas",
@@ -25,6 +32,12 @@
     "type": "sentry",
     "is_mortar": true,
     "is_gas": true,
-    "code": []
+    "code": [
+      "down",
+      "up",
+      "right",
+      "down",
+      "left"
+    ]
   }
 }

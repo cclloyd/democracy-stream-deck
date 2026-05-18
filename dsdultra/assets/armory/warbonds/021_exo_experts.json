@@ -1,0 +1,65 @@
+{
+  "weapon_bullet_storm": {
+    "id": "weapon_bullet_storm",
+    "name": "MGX-42 Bullet Storm",
+    "short_name": "Bullet Storm",
+    "icon": "png/Exo Experts/Bullet Storm.png",
+    "cooldown": 70,
+    "max_cooldown": 66.5,
+    "summon_time": 6.75,
+    "max_summon_time": 3.75,
+    "type": "weapon",
+    "is_disposable": true,
+    "code": [
+      "down",
+      "left",
+      "down",
+      "right",
+      "up",
+      "left"
+    ]
+  },
+  "vehicle_breakthrough": {
+    "id": "vehicle_breakthrough",
+    "name": "EXO-55 Breakthrough Exosuit",
+    "short_name": "Breakthrough",
+    "icon": "png/Exo Experts/Breakthrough Exosuit.png",
+    "cooldown": 600,
+    "max_cooldown": 370,
+    "summon_time": 10.5,
+    "max_summon_time": 10.5,
+    "type": "vehicle",
+    "is_vehicle": true,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "left",
+      "right",
+      "down",
+      "up"
+    ]
+  },
+  "vehicle_lumberer": {
+    "id": "vehicle_lumberer",
+    "name": "EXO-51 Lumberer Exosuit",
+    "short_name": "Lumberer",
+    "icon": "png/Exo Experts/Lumberer Exosuit.png",
+    "cooldown": 600,
+    "max_cooldown": 370,
+    "summon_time": 10.5,
+    "max_summon_time": 10.5,
+    "type": "vehicle",
+    "is_vehicle": true,
+    "is_fire": true,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "up",
+      "right",
+      "left",
+      "up"
+    ]
+  }
+}
