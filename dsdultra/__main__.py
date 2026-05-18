@@ -8,7 +8,7 @@ from pathlib import Path
 from dsdultra.args import parse_args
 from dsdultra.console import show_console
 from dsdultra.installer import InstallerWizard
-from dsdultra.log import redirect_output_to_file
+from dsdultra.logging import redirect_output_to_file
 
 
 def main():

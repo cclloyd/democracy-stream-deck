@@ -1,13 +1,12 @@
 from .base import ScrollPage
 from ..buttons.back import ButtonBack
-from ..buttons.exit import ButtonExit
-from ..buttons.home import ButtonHome, ButtonHomeConfirm
+from ..buttons.edit import ButtonSwap, ButtonRemove
+from ..buttons.exit import ButtonExit, ButtonExitConfirm
+from ..buttons.home import ButtonHomeConfirm
 from ..buttons.loadouts.save import ButtonSave
 from ..buttons.obs import ButtonRecord
 from ..buttons.quick import ButtonQuickStart, ButtonQuickInfo, ButtonQuickLoadout
 from ..buttons.stratagem import ButtonStratagem
-from ..buttons.edit import ButtonSwap, ButtonRemove
-from ..nav.armory import ARMORY
 
 
 class PageQuickLoadout(ScrollPage):
@@ -18,7 +17,7 @@ class PageQuickLoadout(ScrollPage):
 
     ICON_TYPE_MAP = [
         ButtonHomeConfirm,
-        None,
+        ButtonExitConfirm,
         ButtonQuickInfo,
         None,
         ButtonRecord,
@@ -44,15 +43,8 @@ class PageQuickLoadout(ScrollPage):
             self.dsd.armory.mission['mission_hellbomb'],
             self.dsd.armory.common['common_eagle_rearm'],
             self.dsd.armory.mission['mission_seaf'],
-            # ARMORY['common']['content']['common_reinforce'],
-            # ARMORY['common']['content']['common_resupply'],
-            # ARMORY['mission']['content']['mission_hellbomb'],
-            # ARMORY['common']['content']['common_eagle_rearm'],
-            # ARMORY['mission']['content']['mission_seaf'],
         ]
         self.content = static_row + (self.content or [])
-        # Unselect items so they aren't highlighted
-        # self.content = [item.update({'selected': False}) or item if item is not None else None for item in self.content]
 
 
 class PageQuickInfo(ScrollPage):

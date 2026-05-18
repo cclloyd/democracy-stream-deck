@@ -25,6 +25,17 @@ from typing import Optional, Tuple
 import shutil
 import os
 
+from PIL import Image, ImageChops
+
+
+MASKED_FOLDERS = {
+    Path("General Stratagems"),
+}
+MASK_EXCLUDED_FILES = {
+    Path("General Stratagems/SEAF Artillery.png"),
+}
+MASK_PATH = Path("dsdultra/assets/icons/groups/mask256.png")
+
 
 def which(cmd: str) -> Optional[str]:
     return shutil.which(cmd)
@@ -68,6 +79,28 @@ def up_to_date(src: Path, dst: Path) -> bool:
         return dst.exists() and dst.stat().st_mtime >= src.stat().st_mtime
     except Exception:
         return False
+
+
+def should_mask_output(output_dir: Path, dst: Path) -> bool:
+    rel = dst.relative_to(output_dir)
+
+    if rel in MASK_EXCLUDED_FILES:
+        return False
+
+    rel_parent = rel.parent
+    return any(rel_parent == folder or folder in rel_parent.parents for folder in MASKED_FOLDERS)
+
+
+def apply_alpha_mask(path: Path, mask_path: Path) -> None:
+    img = Image.open(path).convert("RGBA")
+    mask = Image.open(mask_path).convert("L")
+
+    if mask.size != img.size:
+        raise ValueError(f"Mask size {mask.size} does not match image size {img.size}: {path}")
+
+    alpha = img.getchannel("A")
+    img.putalpha(ImageChops.multiply(alpha, mask))
+    img.save(path)
 
 
 def convert_svg_to_png_im(
@@ -132,6 +165,11 @@ def convert_all(
 
         try:
             convert_svg_to_png_im(im_bin, use_subcmd, svg, dst, size[0], size[1], density)
+
+            if should_mask_output(output_dir, dst):
+                apply_alpha_mask(dst, MASK_PATH)
+                print(f"Masked: {dst}")
+
             converted += 1
             print(f"Converted: {svg} -> {dst}")
         except subprocess.CalledProcessError as e:

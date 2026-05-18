@@ -18,7 +18,7 @@ from dsdultra.armory.superdestroyer import SuperDestroyer
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
-from dsdultra.log import close_log_file
+from dsdultra.logging import close_log_file
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
 from dsdultra.util import is_linux, is_frozen
@@ -42,6 +42,7 @@ class DSDUltra:
         self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
         self.stratagems = Stratagem.load_stratagems()
         self.armory = SuperDestroyer(self)
+        self.ASSET_DIR = Path(__file__).parent / 'assets'
 
         self.qt_app: QApplication | None = None
         self.tray_icon: QSystemTrayIcon | None = None
@@ -70,7 +71,7 @@ class DSDUltra:
         initial_page.render()
 
         while self.deck.is_open() and not self.stop_event.is_set():
-            self.stop_event.wait(0.25)
+            self.stop_event.wait(0.1)
 
         try:
             if self.deck.is_open():

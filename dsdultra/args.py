@@ -32,4 +32,9 @@ def parse_args():
         action='store_true',
         help='Keep log file after closing.'
     )
+    parser.add_argument(
+        '--trace',
+        action='store_true',
+        help='Enable trace logging.'
+    )
     return parser.parse_args()

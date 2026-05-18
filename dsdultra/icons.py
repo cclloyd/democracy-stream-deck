@@ -7,6 +7,7 @@ from PIL import ImageEnhance
 from PIL import ImageChops
 from StreamDeck.ImageHelpers import PILHelper
 from dsdultra import ASSETS_DIR
+from dsdultra.armory.stratagems import Stratagem
 from dsdultra.buttons.base import ButtonBase
 from typing import TYPE_CHECKING
 
@@ -53,7 +54,7 @@ class IconGenerator:
         if not self.bg:
             bg_path = ASSETS_DIR / 'icons/Background.png'
             selected_path = ASSETS_DIR / 'icons/borders/Selected2.png'
-            icon_mask_path = ASSETS_DIR / 'icons/groups/mask72.png'
+            icon_mask_path = ASSETS_DIR / 'icons/groups/mask72-1.png'
             gild_path = ASSETS_DIR / 'icons/groups/Gild Half.png'
             gild_path_full = ASSETS_DIR / 'icons/groups/Gild Full.png'
             # Precompute a blank background at the correct key size

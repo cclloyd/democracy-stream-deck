@@ -1,10 +1,12 @@
 import traceback
 from typing import Optional
 
+from dsdultra import logging
 from dsdultra.buttons.back import ButtonBack
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.buttons.exit import ButtonExit
 from dsdultra.buttons.nav import ButtonPrev, ButtonNext
+from dsdultra.logging import log
 
 
 class BasePage:
@@ -24,6 +26,8 @@ class BasePage:
     selected = []
     select_type = None
     toggle_active = {}
+    prev_index = None
+    next_index = None
 
     @property
     def app(self):
@@ -70,6 +74,7 @@ class BasePage:
                 config = {'app': self.appname or self.parent}
             config.update({'selected': {}})
             app = self.app
+
             if cls is None:
                 buttons.append(None)
             elif cls == 'app':
@@ -79,11 +84,16 @@ class BasePage:
             elif cls == 'content' and self.content_class is not None:
                 if added < len(data):
                     if data[added]:
-                        config.update(data[added] if isinstance(data[added], dict) else data[added].config)
+                        if isinstance(data[added], dict):
+                            config.update(data[added])
+                        else:
+                            config.update(data[added].config)
+
                     if self.select_type:
                         config['selected'][self.select_type] = any(item.config.get('id') == config.get('id') for item in self.selected)
                     elif self.app.select_type:
                         config['selected'][app.select_type] = any(item.config.get('id') == config.get('id') for item in app.selected)
+
                     if data[added] is None:
                         buttons.append(None)
                     else:
@@ -91,16 +101,18 @@ class BasePage:
                     added += 1
                 else:  # We ran out of content
                     buttons.append(None)
-            elif cls == ButtonPrev and isinstance(cls, type):
-                buttons.append(cls(self.dsd, page=self, config={
+            # Replace buttons with Page Navigation buttons, but only if length of content is greater than the allotted spots, and only if a spot for the nav buttons were specified, either via ICON_MAP or nav indexes.
+            elif (len(self.content or []) > self.ICON_TYPE_MAP.count('content') and k == self.prev_index) or cls == ButtonPrev and isinstance(cls, type):
+                buttons.append(ButtonPrev(self.dsd, page=self, config={
                     'enabled': self.page_num > 0,
                     'page_num': self.page_num,
                 }))
-            elif cls == ButtonNext and isinstance(cls, type):
-                buttons.append(cls(self.dsd, page=self, config={
+            elif (len(self.content or []) > self.ICON_TYPE_MAP.count('content') and k == self.next_index) or cls == ButtonNext and isinstance(cls, type):
+                buttons.append(ButtonNext(self.dsd, page=self, config={
                     'enabled': len(self.get_content()) - (self.page_num * self.MAX_CONTENT) > self.MAX_CONTENT,
                     'page_num': self.page_num,
                 }))
+            # Append button class directly
             elif isinstance(cls, type):
                 buttons.append(cls(self.dsd, page=self))
             else:
@@ -163,7 +175,7 @@ class BasePage:
                 button.run()
         except Exception as e:
             traceback.print_exc()
-            print(f'Error running button', e, button)
+            log.info(f'Error running button', e, button)
 
 
 class ScrollPage(BasePage):

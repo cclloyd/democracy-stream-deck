@@ -1,11 +1,57 @@
-def capture_warnings_into_logging() -> None:
-    logging.captureWarnings(True)
-    warnings.simplefilter("default")
-
+import inspect
 import logging
 import sys
 import warnings
 from pathlib import Path
+
+from dsdultra.args import parse_args
+from dsdultra.util import is_frozen
+
+
+class CallstackFormatter(logging.Formatter):
+    def format(self, record: logging.LogRecord) -> str:
+        stack = inspect.stack()
+
+        calls = []
+        for frame_info in stack:
+            module = frame_info.frame.f_globals.get("__name__", "")
+
+            if module.startswith("logging"):
+                continue
+            if module == __name__:
+                continue
+
+            filename = Path(frame_info.filename).name
+            calls.append(f"{filename}:{frame_info.function}")
+
+        record.callstack = " > ".join(reversed(calls[:5])) if calls else record.filename
+        return super().format(record)
+
+
+log = logging.getLogger(__name__)
+handler = logging.StreamHandler(sys.stdout)
+handler.setLevel(logging.DEBUG)
+_args = parse_args()
+if is_frozen():
+    log.setLevel(logging.INFO)
+    formatter = logging.Formatter('[%(levelname)s] %(message)s')
+elif _args.debug:
+    log.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('[%(filename)s][%(levelname)s] %(message)s')
+elif _args.trace:
+    log.setLevel(logging.DEBUG)
+    formatter = CallstackFormatter('[%(callstack)s][%(levelname)s] %(message)s')
+else:
+    log.setLevel(logging.DEBUG)
+    formatter = logging.Formatter('[%(filename)s][%(levelname)s] %(message)s')
+handler.setFormatter(formatter)
+log.addHandler(handler)
+
+
+def capture_warnings_into_logging() -> None:
+    logging.captureWarnings(True)
+    warnings.simplefilter("default")
+
 
 
 # Keep state so we can close/revert cleanly.

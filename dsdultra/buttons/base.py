@@ -2,6 +2,7 @@ import sys
 import traceback
 import importlib
 from dsdultra import ASSETS_DIR
+from dsdultra.logging import log
 
 
 def resolve_class(dotted_path: str):
@@ -41,15 +42,15 @@ class ButtonBase:
         if config.get('content', None) is not None:
             self.content = config['content']
         if config.get('icon_size', None) is not None:
-            self.icon_size = config['icon_size']
+            self.icon_size = config.get('icon_size', 60)
         if config.get('icon_rotate', None) is not None:
-            self.icon_rotate = config['icon_rotate']
+            self.icon_rotate = config.get('icon_rotate', 0)
         if config.get('border_size', None) is not None:
-            self.border_size = config['border_size']
+            self.border_size = config.get('border_size', 90)
         if config.get('color', None) is not None:
-            self.color = config['color']
+            self.color = config.get('color', 'yellow')
         if config.get('full', None) is not None:
-            self.full = config['full']
+            self.full = config.get('full', False)
 
         self.content = config.get('content', self.content)
         tmp_cls = config.get('content_class', None)
@@ -63,14 +64,16 @@ class ButtonBase:
 
     def run(self):
         if not self.config.get('enabled', True):
-            return
+            log.info(f'Default button action: {self.__class__}')
+            self.shutdown()
+
+    def shutdown(self):
         try:
             if self.content:
                 from dsdultra.pages.base import ScrollPage
                 page = ScrollPage(self.dsd, parent=self.page, content=list(self.content.values()) if isinstance(self.content, dict) else self.content, content_class=self.content_class, app=self.config.get('app', None) or self.page.appname)
                 page.render()
             else:
-                print('Default button action')
                 self.dsd.shutdown()
         except:
             traceback.print_exc()

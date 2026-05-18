@@ -1,12 +1,34 @@
 import json
 from pathlib import Path
+from pprint import pprint
 
+from dsdultra.buttons.stratagem import ButtonStratagem
+from dsdultra.logging import log
+
+ARROWS = {'up': '↑', 'down': '↓', 'left': '←', 'right': '→'}
+COLOR_MAP = {
+    'backpack': 'blue',
+    'vehicle': 'blue',
+    'weapon': 'blue',
+    'weapon_disposable': 'blue',
+    'weapon_backpack': 'blue',
+    'weapon_energy': 'blue',
+    'weapon_standalone': 'blue',
+    'orbital': 'red',
+    'eagle': 'red',
+    'sentry': 'green',
+    'emplacement': 'green',
+    'mine': 'green',
+    'mission': 'yellow',
+    'common': 'yellow',
+}
 
 class Stratagem:
+    content_class = ButtonStratagem
     id: str
     name: str
     short_name: str
-    icon: str
+    icon: Path
     cooldown: int
     max_cooldown: int | None
     use_cooldown: int | None
@@ -38,8 +60,9 @@ class Stratagem:
         self.id = data.get('id')
         self.name = data.get('name')
         self.short_name = data.get('short_name')
-        self.icon = data.get('icon')
+        self.icon = Path(__file__).resolve().parent.parent / 'assets' / data.get('icon')
         self.cooldown = data.get('cooldown', 0)
+        self._color = data.get('color', None)
         self.max_cooldown = data.get('max_cooldown', None)
         self.use_cooldown = data.get('use_cooldown', None)
         self.max_use_cooldown = data.get('max_use_cooldown', None)
@@ -70,6 +93,21 @@ class Stratagem:
             if direction not in {'up', 'down', 'left', 'right'}:
                 raise ValueError(f"Invalid direction '{direction}' in stratagem code for '{self.name}'. Only 'up', 'down', 'left', or 'right' are allowed.")
 
+    @property
+    def config(self):
+        # Backwards compatible function with to-be-replaced button.config option
+        config = dict(self.__dict__)
+        # Add required accessible class properties
+        config['color'] = self.color
+        config['color'] = self.color
+        return config
+
+    @property
+    def color(self):
+        if self._color:
+            return self._color
+        return COLOR_MAP.get(self.type)
+
     @staticmethod
     def load_stratagems():
         stratagems = {}
@@ -92,4 +130,25 @@ class Stratagem:
                 for stratagem_data in data.values():
                     item = Stratagem(stratagem_data)
                     stratagems[item.id] = item
+
         return stratagems
+
+    def __str__(self):
+        code_str = ''.join(ARROWS.get(direction, direction) for direction in self.code)
+        return f'<Stratagem:{self.id}:{code_str}>'
+
+    def __repr__(self):
+        return str(self)
+
+    def filter(self, attributes):
+        if not attributes:
+            return True
+        for attr in attributes:
+            invert = attr.startswith('!')
+            attr_name = attr[1:] if invert else attr
+            attr_value = getattr(self, attr_name, False)
+            if invert and attr_value:
+                return False
+            if not invert and not attr_value:
+                return False
+        return True

@@ -16,7 +16,6 @@ class ButtonStratagem(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Close.png'
     icon_size = 60
     border_size = 90
-    color = 'blue'
 
     def run(self):
         # Select stratagem instead of activating it
