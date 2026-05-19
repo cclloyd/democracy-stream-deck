@@ -5,6 +5,9 @@ on:
     tags:
       - '*'
 
+permissions:
+  contents: write
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -116,5 +119,4 @@ jobs:
             release-assets/dsd.exe/dsd.exe
             release-assets/dsd.AppImage/dsd.AppImage
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-
+          GITHUB_TOKEN: ${{ github.token }}
