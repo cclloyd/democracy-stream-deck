@@ -13,10 +13,16 @@ class ButtonSave(ButtonBase):
     highlight_hue = 77
 
     def run(self):
-        from dsdultra.pages.save import PageSave
-        if not isinstance(self.page, PageSave):
-            page = PageSave(self.dsd, parent=self.page, app='save', config={'select_active': False})
-            page.render()
+        if self.dsd.ui_bridge is None:
+            print('Qt UI bridge is not ready; cannot open save dialog')
+            return
+
+        self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
+        return
+        # from dsdultra.pages.save import PageSave
+        # if not isinstance(self.page, PageSave):
+        #     page = PageSave(self.dsd, parent=self.page, app='save', config={'select_active': False})
+        #     page.render()
 
 
 class ButtonLabelIcon(ButtonBase):

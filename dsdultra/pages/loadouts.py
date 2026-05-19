@@ -10,29 +10,30 @@ class PageLoadouts(BasePage):
 
     ICON_TYPE_MAP = [
         ButtonBack,
-        ButtonExit,
-        None,
         ButtonPrev,
+        None,
         ButtonNext,
+        ButtonExit,
         # Row 2
-        None,
-        None,
-        None,
-        None,
-        None,
+        'content',
+        'content',
+        'content',
+        'content',
+        'content',
         # Row 3
-        None,
-        None,
-        None,
-        None,
-        None,
+        'content',
+        'content',
+        'content',
+        'content',
+        'content',
     ]
+
+    def __init__(self, *args, content=None, parent=None, **kwargs):
+        super().__init__(*args, content=content, parent=parent, **kwargs)
+        self.content = content or [c for c in self.dsd.loadouts.loadouts]
 
     def get_buttons_cb(self, cls: type):
         return cls(self.dsd, page=self)
 
-    def get_content(self):
-        if not self.content:
-            loadouts = self.dsd.config.get('loadouts', [])
-            self.content = loadouts
-        return self.content
+    # TODO: Add Loadout button that run() loads PageQuick or whatever the final run page for a loadout is
+    # TODO: Make loadout button icon show the 4 weapon icons, and then add the faction icon, and other icon options

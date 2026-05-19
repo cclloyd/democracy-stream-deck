@@ -7,12 +7,17 @@ import os
 import signal
 from pathlib import Path
 
-from PyQt6.QtCore import QTimer, QSocketNotifier
+from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal
 from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
 
+
+class DSDUltraUiBridge(QObject):
+    save_loadout_requested = pyqtSignal(object)
+
 from dsdultra import ASSETS_DIR
+from dsdultra.armory.loadouts import Loadouts
 from dsdultra.armory.stratagems import Stratagem
 from dsdultra.armory.superdestroyer import SuperDestroyer
 from dsdultra.config import DSDConfig
@@ -43,11 +48,13 @@ class DSDUltra:
         self.started = started
         self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
         self.stratagems = Stratagem.load_stratagems()
-        self.armory = SuperDestroyer(self)
         self.ASSET_DIR = Path(__file__).parent / 'assets'
+        self.armory = SuperDestroyer(self)
+        self.loadouts = Loadouts(self)
 
         self.qt_app: QApplication | None = None
         self.tray_icon: QSystemTrayIcon | None = None
+        self.ui_bridge: DSDUltraUiBridge | None = None
         self._sigint_timer: QTimer | None = None
 
         self._signal_rfd: int | None = None
@@ -87,6 +94,10 @@ class DSDUltra:
 
     def create_tray_icon(self):
         self.qt_app = QApplication.instance() or QApplication(sys.argv)
+
+        self.ui_bridge = DSDUltraUiBridge()
+        self.ui_bridge.save_loadout_requested.connect(self.loadouts.open_save_dialog)
+
         icon_path = ASSETS_DIR / 'icons/DSDIcon.png'
         qicon = QIcon(str(icon_path))
         self.qt_app.setWindowIcon(qicon)
