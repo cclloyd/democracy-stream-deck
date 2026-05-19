@@ -21,6 +21,7 @@ from dsdultra.icons import IconGenerator
 from dsdultra.logging import close_log_file
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
+from dsdultra.ui.config import ConfigWindow
 from dsdultra.util import is_linux, is_frozen
 
 
@@ -80,12 +81,16 @@ class DSDUltra:
         except Exception as e:
             print(f'Error closing deck: {e}')
 
+    def show_config_window(self):
+        dialog = ConfigWindow(self)
+        dialog.exec()
 
     def create_tray_icon(self):
         self.qt_app = QApplication.instance() or QApplication(sys.argv)
-
         icon_path = ASSETS_DIR / 'icons/DSDIcon.png'
         qicon = QIcon(str(icon_path))
+        self.qt_app.setWindowIcon(qicon)
+        self.qt_app.setQuitOnLastWindowClosed(False)
 
         self.tray_icon = QSystemTrayIcon(qicon)
         self.tray_icon.setToolTip('Democracy StreamDeck')
@@ -96,6 +101,10 @@ class DSDUltra:
         title.setEnabled(False)
         menu.addAction(title)
         menu.addSeparator()
+
+        action_config = QAction('Config')
+        action_config.triggered.connect(self.show_config_window)
+        menu.addAction(action_config)
 
         action_console = QAction('Show Console')
         action_console.triggered.connect(lambda checked=False: show_console(log_path=self.log_path))
