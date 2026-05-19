@@ -18,7 +18,8 @@
       "down",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 4
   },
   "sentry_mortar_gas": {
     "id": "sentry_mortar_gas",
@@ -38,6 +39,7 @@
       "right",
       "down",
       "left"
-    ]
+    ],
+    "max_ap": 6
   }
 }

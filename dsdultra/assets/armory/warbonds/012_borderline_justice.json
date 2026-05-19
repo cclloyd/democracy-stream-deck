@@ -15,6 +15,7 @@
       "down",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 0
   }
 }

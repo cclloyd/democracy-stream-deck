@@ -9,7 +9,8 @@
       "up",
       "up",
       "down"
-    ]
+    ],
+    "max_ap": 10
   },
   "mission_hellbomb": {
     "id": "mission_hellbomb",
@@ -29,7 +30,8 @@
       "right",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 10
   },
   "mission_flag": {
     "id": "mission_flag",
@@ -42,7 +44,8 @@
       "up",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 0
   },
   "mission_sssd": {
     "id": "mission_sssd",
@@ -56,7 +59,8 @@
       "down",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 10
   },
   "mission_upload": {
     "id": "mission_upload",
@@ -70,7 +74,8 @@
       "up",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 0
   },
   "mission_seismic_probe": {
     "id": "mission_seismic_probe",
@@ -85,7 +90,8 @@
       "right",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 10
   },
   "mission_dark_fluid": {
     "id": "mission_dark_fluid",
@@ -100,7 +106,8 @@
       "down",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 0
   },
   "mission_drill_prospecting": {
     "id": "mission_drill_prospecting",
@@ -115,7 +122,8 @@
       "right",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 0
   },
   "mission_drill_tectonic": {
     "id": "mission_drill_tectonic",
@@ -130,7 +138,8 @@
       "down",
       "up",
       "down"
-    ]
+    ],
+    "max_ap": 10
   },
   "mission_drill_hive": {
     "id": "mission_drill_hive",
@@ -145,7 +154,8 @@
       "right",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 0
   },
   "mission_flare": {
     "id": "mission_flare",
@@ -157,6 +167,7 @@
       "right",
       "left",
       "left"
-    ]
+    ],
+    "max_ap": 0
   }
 }

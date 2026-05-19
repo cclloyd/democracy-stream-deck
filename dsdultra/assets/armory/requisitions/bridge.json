@@ -14,7 +14,8 @@
       "right",
       "right",
       "up"
-    ]
+    ],
+    "max_ap": 8
   },
   "orbital_gas": {
     "id": "orbital_gas",
@@ -32,7 +33,8 @@
       "right",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 6
   },
   "orbital_stun": {
     "id": "orbital_stun",
@@ -51,7 +53,8 @@
       "right",
       "left",
       "down"
-    ]
+    ],
+    "max_ap": 0
   },
   "orbital_smoke": {
     "id": "orbital_smoke",
@@ -69,7 +72,8 @@
       "right",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 0
   },
   "tower_arc": {
     "id": "tower_arc",
@@ -90,7 +94,8 @@
       "up",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 4
   },
   "tower_shield": {
     "id": "tower_shield",
@@ -111,7 +116,8 @@
       "right",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": -1
   },
   "emplacement_hmg": {
     "id": "emplacement_hmg",
@@ -131,7 +137,8 @@
       "right",
       "right",
       "left"
-    ]
+    ],
+    "max_ap": 4
   },
   "emplacement_grenadier": {
     "id": "emplacement_grenadier",
@@ -152,6 +159,7 @@
       "down",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 3
   }
 }

@@ -68,6 +68,7 @@ class Stratagem:
         self.max_use_cooldown = data.get('max_use_cooldown', None)
         self.summon_time = data.get('summon_time', 0)
         self.max_summon_time = data.get('max_summon_time', None)
+        self.max_ap = data.get('max_ap', -1)
         self.code = data.get('code', [])
         self.passengers = data.get('passengers', None)
         self.hint = data.get('hint', None)

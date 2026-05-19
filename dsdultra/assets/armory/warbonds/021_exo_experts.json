@@ -17,7 +17,8 @@
       "right",
       "up",
       "left"
-    ]
+    ],
+    "max_ap": 3
   },
   "vehicle_breakthrough": {
     "id": "vehicle_breakthrough",
@@ -38,7 +39,8 @@
       "right",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 5
   },
   "vehicle_lumberer": {
     "id": "vehicle_lumberer",
@@ -60,6 +62,7 @@
       "right",
       "left",
       "up"
-    ]
+    ],
+    "max_ap": 8
   }
 }

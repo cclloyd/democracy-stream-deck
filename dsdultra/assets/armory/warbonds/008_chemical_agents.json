@@ -16,7 +16,8 @@
       "up",
       "down",
       "left"
-    ]
+    ],
+    "max_ap": 0
   },
   "backpack_guard_dog_gas": {
     "id": "backpack_guard_dog_gas",
@@ -35,6 +36,7 @@
       "up",
       "right",
       "up"
-    ]
+    ],
+    "max_ap": 6
   }
 }

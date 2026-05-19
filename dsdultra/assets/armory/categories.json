@@ -121,6 +121,18 @@
     "filter_type": "weapon",
     "filter_attributes": ["!is_disposable", "!is_backpack", "!is_energy"]
   },
+  "weapon_ap0": {
+    "parent": "weapons",
+    "id": "weapons_ap0",
+    "name": "No Hitbox",
+    "color": "blue",
+    "full": true,
+    "icon": null,
+    "icon_text": "AP-",
+    "hint": "NO  DMG",
+    "filter_type": null,
+    "filter_attributes": ["max_ap<0"]
+  },
   "weapon_ap1": {
     "parent": "weapons",
     "id": "weapons_ap1",
@@ -129,8 +141,8 @@
     "full": true,
     "icon": null,
     "icon_text": "AP0",
-    "filter_type": "weapon",
-    "filter_attributes": ["max_ap<2"]
+    "filter_type": null,
+    "filter_attributes": ["max_ap<2", "max_ap>-1"]
   },
   "weapon_ap2": {
     "parent": "weapons",
@@ -141,7 +153,7 @@
     "icon": null,
     "icon_text": "AP2",
     "hint": "L",
-    "filter_type": "weapon",
+    "filter_type": null,
     "filter_attributes": ["max_ap=2"]
   },
   "weapon_ap3": {
@@ -153,7 +165,7 @@
     "icon": null,
     "icon_text": "AP3",
     "hint": "M",
-    "filter_type": "weapon",
+    "filter_type": null,
     "filter_attributes": ["max_ap=3"]
   },
   "weapon_ap4": {
@@ -165,7 +177,7 @@
     "icon": null,
     "icon_text": "AP4",
     "hint": "H",
-    "filter_type": "weapon",
+    "filter_type": null,
     "filter_attributes": ["max_ap=4"]
   },
   "weapon_ap5": {
@@ -176,7 +188,7 @@
     "full": true,
     "icon": null,
     "icon_text": "AP5",
-    "filter_type": "weapon",
+    "filter_type": null,
     "hint": "AT",
     "filter_attributes": ["max_ap=5"]
   }

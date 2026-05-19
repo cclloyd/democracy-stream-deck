@@ -15,7 +15,8 @@
       "down",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "weapon_anti_materiel_rifle": {
     "id": "weapon_anti_materiel_rifle",
@@ -33,7 +34,8 @@
       "right",
       "up",
       "down"
-    ]
+    ],
+    "max_ap": 4
   },
   "weapon_lmg": {
     "id": "weapon_lmg",
@@ -52,7 +54,8 @@
       "up",
       "up",
       "left"
-    ]
+    ],
+    "max_ap": 2
   },
   "weapon_eat": {
     "id": "weapon_eat",
@@ -72,7 +75,8 @@
       "left",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 6
   },
   "weapon_recoilless_rifle": {
     "id": "weapon_recoilless_rifle",
@@ -92,7 +96,8 @@
       "right",
       "right",
       "left"
-    ]
+    ],
+    "max_ap": 6
   },
   "weapon_flamethrower": {
     "id": "weapon_weapon_flamethrower",
@@ -111,7 +116,8 @@
       "up",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 4
   },
   "weapon_autocannon": {
     "id": "weapon_autocannon",
@@ -132,7 +138,8 @@
       "up",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 4
   },
   "weapon_hmg": {
     "id": "weapon_hmg",
@@ -150,7 +157,8 @@
       "up",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 4
   },
   "railgun": {
     "id": "railgun",
@@ -170,7 +178,8 @@
       "down",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 7
   },
   "weapon_spear": {
     "id": "weapon_spear",
@@ -190,7 +199,8 @@
       "up",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 8
   },
   "weapon_airburst_rocket": {
     "id": "weapon_airburst_rocket",
@@ -210,7 +220,8 @@
       "up",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "weapon_commando": {
     "id": "weapon_commando",
@@ -230,7 +241,8 @@
       "up",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 6
   },
   "weapon_wasp": {
     "id": "weapon_wasp",
@@ -250,6 +262,7 @@
       "up",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 6
   }
 }

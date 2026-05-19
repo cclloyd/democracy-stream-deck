@@ -17,7 +17,8 @@
       "left",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "weapon_silo": {
     "id": "weapon_silo",
@@ -36,7 +37,8 @@
       "right",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 9
   },
   "weapon_expendable_fire": {
     "id": "weapon_expendable_fire",
@@ -57,6 +59,7 @@
       "left",
       "up",
       "left"
-    ]
+    ],
+    "max_ap": 3
   }
 }

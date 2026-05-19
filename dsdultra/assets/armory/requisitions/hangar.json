@@ -13,7 +13,8 @@
       "up",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 0
   },
   "vehicle_frv": {
     "id": "vehicle_frv",
@@ -33,7 +34,8 @@
       "right",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 4
   },
   "eagle_strafe": {
     "id": "eagle_strafe",
@@ -54,7 +56,8 @@
       "up",
       "right",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "eagle_airstrike": {
     "id": "eagle_airstrike",
@@ -76,7 +79,8 @@
       "right",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 7
   },
   "eagle_500": {
     "id": "eagle_500",
@@ -98,7 +102,8 @@
       "down",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 7
   },
   "eagle_airstrike_fire": {
     "id": "eagle_airstrike_fire",
@@ -120,7 +125,8 @@
       "right",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 3
   },
   "eagle_cluster": {
     "id": "eagle_cluster",
@@ -143,7 +149,8 @@
       "down",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "eagle_rocket": {
     "id": "eagle_rocket",
@@ -165,7 +172,8 @@
       "right",
       "up",
       "down"
-    ]
+    ],
+    "max_ap": 7
   },
   "eagle_smoke": {
     "id": "eagle_smoke",
@@ -187,6 +195,7 @@
       "right",
       "up",
       "down"
-    ]
+    ],
+    "max_ap": 0
   }
 }

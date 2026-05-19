@@ -15,7 +15,8 @@
       "up",
       "right",
       "down"
-    ]
+    ],
+    "max_ap": 2
   },
   "exosuit_patriot": {
     "id": "{",
@@ -38,7 +39,8 @@
       "left",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 6
   },
   "exosuit_emancipator": {
     "id": "exosuit_emancipator",
@@ -61,7 +63,8 @@
       "left",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 5
   },
   "sentry_gatling": {
     "id": "sentry_gatling",
@@ -78,7 +81,8 @@
       "up",
       "right",
       "left"
-    ]
+    ],
+    "max_ap": 3
   },
   "sentry_machine_gun": {
     "id": "sentry_machine_gun",
@@ -96,7 +100,8 @@
       "right",
       "right",
       "up"
-    ]
+    ],
+    "max_ap": 3
   },
   "sentry_autocannon": {
     "id": "sentry_autocannon",
@@ -116,7 +121,8 @@
       "up",
       "left",
       "up"
-    ]
+    ],
+    "max_ap": 5
   },
   "sentry_rocket": {
     "id": "sentry_rocket",
@@ -135,7 +141,8 @@
       "right",
       "right",
       "left"
-    ]
+    ],
+    "max_ap": 5
   },
   "sentry_mortar": {
     "id": "sentry_mortar",
@@ -155,7 +162,8 @@
       "right",
       "right",
       "down"
-    ]
+    ],
+    "max_ap": 3
   },
   "sentry_mortar_stun": {
     "id": "sentry_mortar_stun",
@@ -176,6 +184,7 @@
       "right",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 0
   }
 }

@@ -17,7 +17,8 @@
       "up",
       "right",
       "left"
-    ]
+    ],
+    "max_ap": 7
   },
   "de_escalator": {
     "id": "de_escalator",
@@ -36,6 +37,7 @@
       "up",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 3
   }
 }

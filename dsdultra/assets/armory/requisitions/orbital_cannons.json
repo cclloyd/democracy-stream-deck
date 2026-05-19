@@ -17,7 +17,8 @@
       "left",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 5
   },
   "orbital_airburst": {
     "id": "orbital_airburst",
@@ -34,7 +35,8 @@
       "right",
       "right",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "orbital_railcannon": {
     "id": "orbital_railcannon",
@@ -52,7 +54,8 @@
       "down",
       "down",
       "right"
-    ]
+    ],
+    "max_ap": 7
   },
   "orbital_laser": {
     "id": "orbital_laser",
@@ -74,7 +77,8 @@
       "right",
       "down",
       "up"
-    ]
+    ],
+    "max_ap": 10
   },
   "orbital_walking": {
     "id": "orbital_walking",
@@ -96,7 +100,8 @@
       "down",
       "right",
       "down"
-    ]
+    ],
+    "max_ap": 10
   },
   "orbital_120": {
     "id": "orbital_120",
@@ -118,7 +123,8 @@
       "left",
       "right",
       "down"
-    ]
+    ],
+    "max_ap": 10
   },
   "orbital_380": {
     "id": "orbital_380",
@@ -141,7 +147,8 @@
       "left",
       "down",
       "down"
-    ]
+    ],
+    "max_ap": 10
   },
   "orbital_fire": {
     "id": "orbital_fire",
@@ -163,6 +170,7 @@
       "left",
       "right",
       "up"
-    ]
+    ],
+    "max_ap": 3
   }
 }

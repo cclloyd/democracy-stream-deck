@@ -16,7 +16,8 @@
       "down",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 0
   },
   "weapon_epoch": {
     "id": "weapon_epoch",
@@ -35,7 +36,8 @@
       "up",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "sentry_laser": {
     "id": "sentry_laser",
@@ -56,6 +58,7 @@
       "up",
       "up",
       "left"
-    ]
+    ],
+    "max_ap": 4
   }
 }

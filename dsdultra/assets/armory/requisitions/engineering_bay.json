@@ -16,7 +16,8 @@
       "up",
       "left",
       "down"
-    ]
+    ],
+    "max_ap": 3
   },
   "weapon_laser": {
     "id": "weapon_laser",
@@ -37,7 +38,8 @@
       "down",
       "up",
       "left"
-    ]
+    ],
+    "max_ap": 4
   },
   "weapon_quasar": {
     "id": "weapon_quasar",
@@ -58,7 +60,8 @@
       "up",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 5
   },
   "weapon_arc_thrower": {
     "id": "weapon_arc_thrower",
@@ -79,7 +82,8 @@
       "down",
       "left",
       "left"
-    ]
+    ],
+    "max_ap": 7
   },
   "backpack_guard_dog_laser": {
     "id": "backpack_guard_dog_laser",
@@ -99,7 +103,8 @@
       "up",
       "right",
       "right"
-    ]
+    ],
+    "max_ap": 4
   },
   "backpack_ammo": {
     "id": "backpack_ammo",
@@ -117,7 +122,8 @@
       "up",
       "up",
       "down"
-    ]
+    ],
+    "max_ap": 0
   },
   "backpack_shield_energy": {
     "id": "shield_shield_energy",
@@ -137,7 +143,8 @@
       "right",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": -1
   },
   "backpack_shield_ballistic": {
     "id": "backpack_shield_ballistic",
@@ -155,7 +162,8 @@
       "down",
       "up",
       "left"
-    ]
+    ],
+    "max_ap": 0
   },
   "mine_infantry": {
     "id": "mine_infantry",
@@ -173,7 +181,8 @@
       "left",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "mine_fire": {
     "id": "mine_fire",
@@ -191,7 +200,8 @@
       "left",
       "left",
       "down"
-    ]
+    ],
+    "max_ap": 3
   },
   "mine_gas": {
     "id": "mine_gas",
@@ -209,7 +219,8 @@
       "left",
       "left",
       "right"
-    ]
+    ],
+    "max_ap": 3
   },
   "mine_tank": {
     "id": "mine_tank",
@@ -226,6 +237,7 @@
       "left",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 5
   }
 }

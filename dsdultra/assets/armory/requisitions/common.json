@@ -10,7 +10,8 @@
       "right",
       "left",
       "up"
-    ]
+    ],
+    "max_ap": 10
   },
   "common_resupply": {
     "id": "common_resupply",
@@ -25,7 +26,8 @@
       "down",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 10
   },
   "common_eagle_rearm": {
     "id": "common_eagle_rearm",
@@ -40,7 +42,8 @@
       "left",
       "up",
       "right"
-    ]
+    ],
+    "max_ap": 0
   },
   "common_sos": {
     "id": "common_sos",
@@ -53,6 +56,7 @@
       "down",
       "right",
       "up"
-    ]
+    ],
+    "max_ap": 10
   }
 }

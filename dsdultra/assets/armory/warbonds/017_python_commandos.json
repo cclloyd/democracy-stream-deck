@@ -17,7 +17,8 @@
       "down",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 4
   },
   "weapon_chainsaw": {
     "id": "weapon_chainsaw",
@@ -36,7 +37,8 @@
       "right",
       "right",
       "down"
-    ]
+    ],
+    "max_ap": 0
   },
   "weapon_guard_dog_fire": {
     "id": "weapon_guard_dog_fire",
@@ -55,6 +57,7 @@
       "up",
       "left",
       "left"
-    ]
+    ],
+    "max_ap": 4
   }
 }

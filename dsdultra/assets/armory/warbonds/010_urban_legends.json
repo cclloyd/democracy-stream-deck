@@ -16,7 +16,8 @@
       "right",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": -1
   },
   "emplacement_tank": {
     "id": "emplacement_tank",
@@ -37,7 +38,8 @@
       "right",
       "right",
       "right"
-    ]
+    ],
+    "max_ap": 6
   },
   "sentry_fire": {
     "id": "sentry_fire",
@@ -57,6 +59,7 @@
       "down",
       "up",
       "up"
-    ]
+    ],
+    "max_ap": 4
   }
 }

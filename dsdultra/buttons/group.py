@@ -32,7 +32,7 @@ class ButtonGroup(ButtonBase):
             # Populate from stratagems in that category
             content = []
             for i in self.dsd.armory.all.values():
-                if i.type != self.config['filter_type']:
+                if self.config['filter_type'] is not None and i.type != self.config['filter_type']:
                     continue
                 if not i.filter(self.config.get('filter_attributes', None)):
                     continue
