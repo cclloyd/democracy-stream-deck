@@ -120,5 +120,64 @@
     "icon": "icons/groups/No Backpack.png",
     "filter_type": "weapon",
     "filter_attributes": ["!is_disposable", "!is_backpack", "!is_energy"]
+  },
+  "weapon_ap1": {
+    "parent": "weapons",
+    "id": "weapons_ap1",
+    "name": "Unarmored Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": null,
+    "icon_text": "AP0",
+    "filter_type": "weapon",
+    "filter_attributes": ["max_ap<2"]
+  },
+  "weapon_ap2": {
+    "parent": "weapons",
+    "id": "weapons_ap2",
+    "name": "Light Pen Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": null,
+    "icon_text": "AP2",
+    "hint": "L",
+    "filter_type": "weapon",
+    "filter_attributes": ["max_ap=2"]
+  },
+  "weapon_ap3": {
+    "parent": "weapons",
+    "id": "weapons_ap3",
+    "name": "Medium Pen Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": null,
+    "icon_text": "AP3",
+    "hint": "M",
+    "filter_type": "weapon",
+    "filter_attributes": ["max_ap=3"]
+  },
+  "weapon_ap4": {
+    "parent": "weapons",
+    "id": "weapons_ap4",
+    "name": "Heavy Pen Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": null,
+    "icon_text": "AP4",
+    "hint": "H",
+    "filter_type": "weapon",
+    "filter_attributes": ["max_ap=4"]
+  },
+  "weapon_ap5": {
+    "parent": "weapons",
+    "id": "weapons_ap5",
+    "name": "Anti-Tank Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": null,
+    "icon_text": "AP5",
+    "filter_type": "weapon",
+    "hint": "AT",
+    "filter_attributes": ["max_ap=5"]
   }
 }

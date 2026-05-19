@@ -37,7 +37,7 @@ class Stratagem:
     max_summon_time: float | None
     code: list[str]
     passengers: int | None
-    annotation: str | None
+    hint: str | None
     type: str | None
     is_arc: bool
     is_backpack: bool
@@ -70,7 +70,7 @@ class Stratagem:
         self.max_summon_time = data.get('max_summon_time', None)
         self.code = data.get('code', [])
         self.passengers = data.get('passengers', None)
-        self.annotation = data.get('annotation', None)
+        self.hint = data.get('hint', None)
         self.type = data.get('type', None)
         self.is_arc = data.get('is_arc', False)
         self.is_backpack = data.get('is_backpack', False)
@@ -144,11 +144,36 @@ class Stratagem:
         if not attributes:
             return True
         for attr in attributes:
-            invert = attr.startswith('!')
-            attr_name = attr[1:] if invert else attr
-            attr_value = getattr(self, attr_name, False)
-            if invert and attr_value:
-                return False
-            if not invert and not attr_value:
-                return False
+            # Operator comparison
+            for operator in ('<', '>', '='):
+                if operator in attr:
+                    attr_name, expected_value = attr.split(operator, 1)
+                    attr_value = getattr(self, attr_name, None)
+
+                    if attr_value is None:
+                        return False
+
+                    try:
+                        attr_value = float(attr_value)
+                        expected_value = float(expected_value)
+                    except (TypeError, ValueError):
+                        return False
+
+                    if operator == '<' and not attr_value < expected_value:
+                        return False
+                    if operator == '>' and not attr_value > expected_value:
+                        return False
+                    if operator == '=' and not attr_value == expected_value:
+                        return False
+
+                    break
+            else:
+                # Boolean comparison
+                invert = attr.startswith('!')
+                attr_name = attr[1:] if invert else attr
+                attr_value = getattr(self, attr_name, False)
+                if invert and attr_value:
+                    return False
+                if not invert and not attr_value:
+                    return False
         return True

@@ -15,8 +15,10 @@ def resolve_class(dotted_path: str):
 
 
 class ButtonBase:
-    icon = ASSETS_DIR / 'icons/groups/Unknown.png'
+    icon = None
     icon_size = 50
+    icon_text = None
+    icon_text_size = 16
     icon_rotate = 0
     border_size = 90
     color = 'yellow'
@@ -45,6 +47,10 @@ class ButtonBase:
             self.icon_size = config.get('icon_size', 60)
         if config.get('icon_rotate', None) is not None:
             self.icon_rotate = config.get('icon_rotate', 0)
+        if config.get('icon_text', None) is not None:
+            self.icon_text = config.get('icon_text')
+        if config.get('icon_text_size', None) is not None:
+            self.icon_text_size = config.get('icon_text_size', 16)
         if config.get('border_size', None) is not None:
             self.border_size = config.get('border_size', 90)
         if config.get('color', None) is not None:

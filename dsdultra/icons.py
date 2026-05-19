@@ -5,6 +5,7 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageEnhance
 from PIL import ImageChops
+from PIL import ImageDraw
 from StreamDeck.ImageHelpers import PILHelper
 from dsdultra import ASSETS_DIR
 from dsdultra.armory.stratagems import Stratagem
@@ -103,19 +104,22 @@ class IconGenerator:
         border_path = BORDERS[button.color]['full' if button.full else 'half']
         enabled = button.config.get('enabled', True)
 
-        if not Path(icon_path).exists():
-            icon_path = ASSETS_DIR / 'icons/groups/Unknown.png'
+        icon_img = None
+        if icon_path is not None:
+            if not Path(icon_path).exists():
+                icon_path = ASSETS_DIR / 'icons/groups/Unknown.png'
 
-        # Load layers
-        icon_img = Image.open(icon_path).convert("RGBA")
-        icon_img = self.resize_for_iconbox(icon_img, button.icon_size)
+            # Load layers
+            icon_img = Image.open(icon_path).convert("RGBA")
+            icon_img = self.resize_for_iconbox(icon_img, button.icon_size)
+
         if border_path:
             border_img = Image.open(border_path).convert("RGBA")
 
         key_img = self.bg.copy()
 
         # Mask the icon to remove the gild corners from the default icon set (we add them back later if we want them)
-        if border_path:
+        if border_path and icon_img is not None:
             icon_alpha = icon_img.getchannel("A")
             mask = self.icon_mask_img
             if mask.size != icon_img.size:
@@ -124,15 +128,17 @@ class IconGenerator:
             icon_img.putalpha(combined_alpha)
 
         # Adjust saturation levels for icons to display better on streamdeck
-        if button.color == 'red':
-            icon_img = ImageEnhance.Color(icon_img).enhance(4)
-        if button.color == 'green':
-            icon_img = ImageEnhance.Color(icon_img).enhance(4)
-        if button.color == 'blue':
-            icon_img = ImageEnhance.Color(icon_img).enhance(3)
+        if icon_img is not None:
+            if button.color == 'red':
+                icon_img = ImageEnhance.Color(icon_img).enhance(4)
+            if button.color == 'green':
+                icon_img = ImageEnhance.Color(icon_img).enhance(4)
+            if button.color == 'blue':
+                icon_img = ImageEnhance.Color(icon_img).enhance(3)
 
-        if button.icon_rotate != 0:
-            icon_img = icon_img.rotate(button.icon_rotate, expand=True)
+            if button.icon_rotate != 0:
+                icon_img = icon_img.rotate(button.icon_rotate, expand=True)
+
         selected = False
         if button.page.select_active and button.config.get('selected', {}).get(button.page.select_type, False):
             selected = True
@@ -162,17 +168,35 @@ class IconGenerator:
         # Paste the colored border
         if border_path:
             self._paste_center(key_img, border_img, button.border_size, keep_aspect=True)
-        # Paste the icon
-        self._paste_center(key_img, icon_img, 100, keep_aspect=True)
-        
+
+        if button.icon_text is not None:
+            draw = ImageDraw.Draw(key_img)
+            icon_text = str(button.icon_text)
+            font = self.get_font(button.icon_text_size)
+            bbox = draw.textbbox((0, 0), icon_text, font=font, stroke_width=2)
+            text_width = bbox[2] - bbox[0]
+            text_height = bbox[3] - bbox[1]
+            text_x = (key_img.width - text_width) / 2 - bbox[0]
+            text_y = (key_img.height - text_height) / 2 - bbox[1]
+            draw.text(
+                (text_x, text_y),
+                icon_text,
+                fill="white",
+                font=font,
+                stroke_width=2,
+                stroke_fill="black",
+            )
+        elif icon_img is not None:
+            # Paste the icon
+            self._paste_center(key_img, icon_img, 100, keep_aspect=True)
+    
         if button.config.get('hint', None) and button.page.app.select_active:
-            from PIL import ImageDraw
             draw = ImageDraw.Draw(key_img)
             hint_text = str(button.config['hint'])
             font_size = 8
             font = self.get_font(font_size)
             text_length = draw.textlength(font=font, text=hint_text)
-            draw.text((key_img.width - text_length - 8, 6), hint_text, fill="white", font=font)
+            draw.text((key_img.width - text_length - 12, 10), hint_text, fill="white", font=font)
 
         # Darken entire image if disabled
         if not enabled:

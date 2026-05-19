@@ -21,7 +21,7 @@ def get_categories():
             with json_file.open(encoding='utf-8') as file:
                 data = json.load(file)
                 for c in data.values():
-                    c['icon'] = Path(__file__).resolve().parent.parent / 'assets' / c['icon']
+                    c['icon'] = Path(__file__).resolve().parent.parent / 'assets' / (c['icon'] if c['icon'] else 'icons/groups/blank72.png')
                     c['content_class'] = ButtonGroup
                     categories[c['id']] = c
 
