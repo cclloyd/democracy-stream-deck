@@ -191,5 +191,35 @@
     "filter_type": null,
     "hint": "AT",
     "filter_attributes": ["max_ap=5"]
+  },
+  "weapon_fire": {
+    "parent": "weapons",
+    "id": "weapons_fire",
+    "name": "Fire Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": "icons/groups/fire.png",
+    "filter_type": null,
+    "filter_attributes": ["is_fire"]
+  },
+  "weapon_gas": {
+    "parent": "weapons",
+    "id": "weapons_gas",
+    "name": "Gas Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": "icons/groups/gas.png",
+    "filter_type": null,
+    "filter_attributes": ["is_gas"]
+  },
+  "weapon_arc": {
+    "parent": "weapons",
+    "id": "weapons_arc",
+    "name": "Arc Weapons",
+    "color": "blue",
+    "full": true,
+    "icon": "icons/groups/arc3.png",
+    "filter_type": null,
+    "filter_attributes": ["is_arc"]
   }
 }
