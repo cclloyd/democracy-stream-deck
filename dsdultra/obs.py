@@ -12,9 +12,10 @@ class OBS:
 
     def __init__(self, dsd: 'DSDUltra'):
         self.dsd = dsd
-        self.OBS_HOST = getenv('OBS_HOST', 'localhost')
-        self.OBS_PORT = getenv('OBS_PORT', 4455)
-        self.OBS_PASSWORD = getenv('OBS_PASSWORD', None)
+        self.OBS_HOST = getenv('OBS_HOST', None) or self.dsd.config.obs_host or 'localhost'
+        self.OBS_PORT = getenv('OBS_PORT', 4455) or self.dsd.config.obs_port or 4455
+        self.OBS_PASSWORD = getenv('OBS_PASSWORD', None) or self.dsd.config.obs_password
+
 
     def open(self):
         pass

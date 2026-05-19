@@ -1,6 +1,6 @@
 import os
 import json
-from pathlib import Path
+from pathlib import Path, WindowsPath
 from collections.abc import MutableMapping
 
 class DSDConfig(MutableMapping):
@@ -11,12 +11,22 @@ class DSDConfig(MutableMapping):
         appdata = os.environ['APPDATA']
     config_path = Path(appdata) / 'dsd' / 'dsd-config.json'
 
+    obs_host = None
+    obs_port = None
+    obs_password = None
+    elgato_path = WindowsPath('C:\\Program Files\\Elgato\\StreamDeck\\StreamDeck.exe')
+    loadout_path = Path(appdata) / 'dsd' / 'loadouts.json'
+
     def __init__(self, dsd):
         self.dsd = dsd
         self.config_path.parent.mkdir(parents=True, exist_ok=True)
         if self.config_path.exists():
             with open(self.config_path, 'r') as f:
                 self.config = json.load(f)
+                self.elgato_path = self.config.get('elgato_path', self.elgato_path)
+                self.obs_host = self.config.get('obs_host', self.obs_host)
+                self.obs_port = self.config.get('obs_port', self.obs_port)
+                self.obs_password = self.config.get('obs_password', self.obs_password)
         else:
             self.config = dict()
 

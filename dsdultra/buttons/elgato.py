@@ -20,7 +20,7 @@ class ButtonElgato(ButtonBase):
 
     def run(self):
         if self.page.toggle_active.get('elgato', False):
-            elgato_path = WindowsPath('C:\\Program Files\\Elgato\\StreamDeck\\StreamDeck.exe')
+            elgato_path = self.dsd.config.elgato_path
             subprocess.Popen([str(elgato_path)], close_fds=True)
             self.shutdown()
         else:

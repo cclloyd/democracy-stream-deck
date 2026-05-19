@@ -31,6 +31,7 @@ class DSDUltra:
     apps: dict = dict()
 
     def __init__(self, deck, args: Namespace, started=None):
+        self.config = DSDConfig(self)
         self.deck: StreamDeckDevice = deck
         self.tray: threading.Thread | None = None
         self.stop_event = threading.Event()
@@ -53,7 +54,6 @@ class DSDUltra:
         self._signal_notifier: QSocketNotifier | None = None
 
     def start(self):
-        self.config = DSDConfig(self)
         deck_thread = threading.Thread(target=self._deck_loop, name='StreamDeckThread', daemon=True)
         deck_thread.start()
         print('Started streamdeck thread')
