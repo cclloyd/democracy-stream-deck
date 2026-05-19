@@ -24,6 +24,7 @@ class ButtonBase:
     color = 'yellow'
     full = False
     toggle_id = None
+    toggle_timeout = 2
     highlight_hue = 0
 
     page = None

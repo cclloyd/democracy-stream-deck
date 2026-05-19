@@ -1,5 +1,6 @@
 from .base import BasePage
 from ..buttons.armory import ButtonArmory
+from ..buttons.elgato import ButtonElgato
 from ..buttons.exit import ButtonExit
 from ..buttons.loadouts import ButtonLoadouts
 from ..buttons.quick import ButtonQuickLoadout
@@ -10,7 +11,7 @@ class PageHome(BasePage):
         None,
         None,
         None,
-        None,
+        ButtonElgato,
         ButtonExit,
         # Row 2
         None,

@@ -1,6 +1,7 @@
 from .base import ScrollPage
 from ..buttons.back import ButtonBack
 from ..buttons.edit import ButtonSwap, ButtonRemove
+from ..buttons.elgato import ButtonElgato
 from ..buttons.exit import ButtonExit, ButtonExitConfirm
 from ..buttons.home import ButtonHomeConfirm
 from ..buttons.loadouts.save import ButtonSave
@@ -19,7 +20,7 @@ class PageQuickLoadout(ScrollPage):
         ButtonHomeConfirm,
         ButtonExitConfirm,
         ButtonQuickInfo,
-        None,
+        ButtonElgato,
         ButtonRecord,
         # Row 2
         'content',
