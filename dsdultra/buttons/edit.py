@@ -44,3 +44,16 @@ class ButtonRemove(ButtonBase):
             self.page.select_active = 'remove'
             self.page.render(True)
 
+
+
+class ButtonEdit(ButtonBase):
+    icon = ASSETS_DIR / 'icons/groups/Edit.png'
+    icon_size = 30
+    border_size = 90
+    color = 'yellow'
+    full = True
+
+    def run(self):
+        # TODO: Allow double-pressing to save and overwrite with current settings w/o prompt
+        self.dsd.loadouts.open_save_dialog(self.page)
+

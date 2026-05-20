@@ -3,6 +3,7 @@ from StreamDeck.ImageHelpers import PILHelper
 
 from dsdultra.buttons.base import ButtonBase
 from dsdultra import ASSETS_DIR
+from dsdultra.pages.loadouts import PageLoadouts
 
 
 class ButtonQuickLoadout(ButtonBase):
@@ -30,13 +31,14 @@ class ButtonQuickInfo(ButtonBase):
     def run(self):
         from dsdultra.pages.quick import PageQuickInfo
         if type(self.page) != PageQuickInfo:
-            page = PageQuickInfo(self.dsd, parent=self.page, app='quick', config=self.page.parent.config, content=self.page.app.selected)
+            content = self.page.content[5:] if isinstance(self.page.app, PageLoadouts) else self.page.app.selected
+            page = PageQuickInfo(self.dsd, parent=self.page, app='quick', config=self.page.config if isinstance(self.page.app, PageLoadouts) else self.page.parent.config, content=content)
             page.app.select_active = False
             page.render()
 
     def draw_image(self):
         key_img = self.dsd.icons.bg.copy()
-        self.dsd.icons._paste_center(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
+        self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
 
         current = len(self.page.app.selected)
@@ -62,7 +64,7 @@ class ButtonQuickStart(ButtonBase):
 
     def draw_image(self):
         key_img = self.dsd.icons.bg.copy()
-        self.dsd.icons._paste_center(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
+        self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
         draw.text((36, 14), 'START', fill='white', anchor='mm', font=self.dsd.icons.get_font(14))
 

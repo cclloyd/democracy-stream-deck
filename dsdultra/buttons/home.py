@@ -37,6 +37,7 @@ class ButtonHomeConfirm(ButtonBase):
     highlight_hue = 320
 
     def run(self):
+        # TODO: toggle home is bringing me back to previous page when toggle goes inactive again.  Need to check if page changed or not.  Probably store "active" page on dsd somewhere.
         if self.page.toggle_active.get('home', False):
             self.page.app.close()
             self.dsd.apps.get('dsd').render(True)

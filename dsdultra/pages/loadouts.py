@@ -1,12 +1,17 @@
+from typing import TYPE_CHECKING
+
 from .base import BasePage
+if TYPE_CHECKING:
+    from ..armory.loadouts import Loadout
 from ..buttons.back import ButtonBack
 from ..buttons.exit import ButtonExit
-from ..buttons.group import ButtonGroup
+from ..buttons.loadout import ButtonLoadout
 from ..buttons.nav import ButtonNext, ButtonPrev
 
 
 class PageLoadouts(BasePage):
-    content_class = ButtonGroup
+    content_class = ButtonLoadout
+    content: list[Loadout]
 
     ICON_TYPE_MAP = [
         ButtonBack,
@@ -34,6 +39,3 @@ class PageLoadouts(BasePage):
 
     def get_buttons_cb(self, cls: type):
         return cls(self.dsd, page=self)
-
-    # TODO: Add Loadout button that run() loads PageQuick or whatever the final run page for a loadout is
-    # TODO: Make loadout button icon show the 4 weapon icons, and then add the faction icon, and other icon options

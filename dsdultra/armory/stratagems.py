@@ -1,9 +1,11 @@
 import json
 from pathlib import Path
-from pprint import pprint
+from typing import TYPE_CHECKING
 
 from dsdultra.buttons.stratagem import ButtonStratagem
-from dsdultra.logging import log
+
+if TYPE_CHECKING:
+    from dsdultra.dsd import DSDUltra
 
 ARROWS = {'up': '↑', 'down': '↓', 'left': '←', 'right': '→'}
 COLOR_MAP = {
@@ -133,6 +135,10 @@ class Stratagem:
                     stratagems[item.id] = item
 
         return stratagems
+
+    @staticmethod
+    def parse_stratagems(dsd: DSDUltra, stratagem_ids: list[str]):
+        return [s for s in dsd.armory.all.values() if s.id in stratagem_ids]
 
     def __str__(self):
         code_str = ''.join(ARROWS.get(direction, direction) for direction in self.code)

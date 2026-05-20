@@ -7,7 +7,7 @@ import os
 import signal
 from pathlib import Path
 
-from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal
+from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal, Qt
 from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
@@ -96,7 +96,10 @@ class DSDUltra:
         self.qt_app = QApplication.instance() or QApplication(sys.argv)
 
         self.ui_bridge = DSDUltraUiBridge()
-        self.ui_bridge.save_loadout_requested.connect(self.loadouts.open_save_dialog)
+        self.ui_bridge.save_loadout_requested.connect(
+            self.loadouts.open_save_dialog,
+            Qt.ConnectionType.QueuedConnection,
+        )
 
         icon_path = ASSETS_DIR / 'icons/DSDIcon.png'
         qicon = QIcon(str(icon_path))

@@ -33,7 +33,7 @@ class ButtonLabelIcon(ButtonBase):
 
     def draw_image(self):
         key_img = self.dsd.icons.bg.copy()
-        self.dsd.icons._paste_center(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
+        self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
 
         draw.text((36, 20), 'CHOOSE', fill='white', anchor='mm', font=self.dsd.icons.get_font(12))
@@ -54,7 +54,7 @@ class ButtonLabelBorder(ButtonBase):
 
     def draw_image(self):
         key_img = self.dsd.icons.bg.copy()
-        self.dsd.icons._paste_center(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
+        self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
 
         draw.text((36, 20), 'CHOOSE', fill='white', anchor='mm', font=self.dsd.icons.get_font(12))

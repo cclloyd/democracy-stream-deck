@@ -2,6 +2,8 @@ import re
 import traceback
 
 from PyQt6.QtWidgets import (
+    QCheckBox,
+    QComboBox,
     QDialog,
     QDialogButtonBox,
     QFormLayout,
@@ -19,6 +21,7 @@ class LoadoutSaveWindow(QDialog):
         super().__init__(parent)
         self.dsd = dsd
         self.data = data
+        print('data', data)
 
         self.setWindowTitle('Save Loadout')
         self.setMinimumWidth(520)
@@ -35,6 +38,23 @@ class LoadoutSaveWindow(QDialog):
         self.hint_input = QLineEdit(data.get('hint') or '')
         self.hint_input.setPlaceholderText('Optional description')
 
+        self.color_input = QComboBox()
+        self.color_input.addItem('Yellow', 'yellow')
+        self.color_input.addItem('Red', 'red')
+        self.color_input.addItem('Blue', 'blue')
+        self.color_input.addItem('Green', 'green')
+        self.color_input.addItem('Rainbow', 'rainbow')
+        color = data.get('color') or 'yellow'
+        color_index = self.color_input.findData(color)
+        self.color_input.setCurrentIndex(color_index if color_index >= 0 else self.color_input.findData('yellow'))
+
+        self.full_input = QCheckBox('Full border')
+        self.full_input.setChecked(data.get('full', True))
+
+        color_layout = QHBoxLayout()
+        color_layout.addWidget(self.color_input)
+        color_layout.addWidget(self.full_input)
+
         self.icon1_input = QLineEdit(data.get('icon1') or '')
         self.icon2_input = QLineEdit(data.get('icon2') or '')
         self.icon3_input = QLineEdit(data.get('icon3') or '')
@@ -45,6 +65,7 @@ class LoadoutSaveWindow(QDialog):
         form.addRow('Name:', self.name_input)
         form.addRow('ID:', self.id_input)
         form.addRow('Hint:', self.hint_input)
+        form.addRow('Color:', color_layout)
         form.addRow('Icon 1:', self.icon1_input)
         form.addRow('Icon 2:', self.icon2_input)
         form.addRow('Icon 3:', self.icon3_input)
@@ -58,21 +79,20 @@ class LoadoutSaveWindow(QDialog):
             stratagem = self.dsd.stratagems.get(stratagem_id)
             stratagem_names.append(stratagem.name if stratagem else stratagem_id)
 
-        summary = QLabel('Stratagems: ' + (', '.join(stratagem_names) if stratagem_names else 'None selected'))
-        summary.setWordWrap(True)
-        layout.addWidget(summary)
-
         icon_buttons = QHBoxLayout()
+        all_icons_button = QPushButton('Use all stratagem icons')
         icon1_button = QPushButton('Use first stratagem icon')
         icon2_button = QPushButton('Use second stratagem icon')
         icon3_button = QPushButton('Use third stratagem icon')
         icon4_button = QPushButton('Use fourth stratagem icon')
 
+        all_icons_button.clicked.connect(self.use_all_stratagem_icons)
         icon1_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon1_input, 0))
         icon2_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon2_input, 1))
         icon3_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon3_input, 2))
         icon4_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon4_input, 3))
 
+        icon_buttons.addWidget(all_icons_button)
         icon_buttons.addWidget(icon1_button)
         icon_buttons.addWidget(icon2_button)
         icon_buttons.addWidget(icon3_button)
@@ -104,7 +124,19 @@ class LoadoutSaveWindow(QDialog):
         if stratagem:
             input_widget.setText(str(stratagem.id))
 
+    def use_all_stratagem_icons(self):
+        inputs = [
+            self.icon1_input,
+            self.icon2_input,
+            self.icon3_input,
+            self.icon4_input,
+        ]
+
+        for index, input_widget in enumerate(inputs):
+            self.use_stratagem_icon(input_widget, index)
+
     def save(self):
+        print('save')
         try:
             name = self.name_input.text().strip() or 'New Loadout'
             loadout_id = self.id_input.text().strip() or re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_') or 'new_loadout'
@@ -112,6 +144,8 @@ class LoadoutSaveWindow(QDialog):
                 'id': loadout_id,
                 'name': name,
                 'hint': self.hint_input.text().strip() or None,
+                'color': self.color_input.currentData(),
+                'full': self.full_input.isChecked(),
                 'icon1': self.icon1_input.text().strip() or None,
                 'icon2': self.icon2_input.text().strip() or None,
                 'icon3': self.icon3_input.text().strip() or None,

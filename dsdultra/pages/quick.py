@@ -1,6 +1,6 @@
 from .base import ScrollPage
 from ..buttons.back import ButtonBack
-from ..buttons.edit import ButtonSwap, ButtonRemove
+from ..buttons.edit import ButtonSwap, ButtonRemove, ButtonEdit
 from ..buttons.elgato import ButtonElgato
 from ..buttons.exit import ButtonExit, ButtonExitConfirm
 from ..buttons.home import ButtonHomeConfirm
@@ -63,7 +63,7 @@ class PageQuickInfo(ScrollPage):
         ButtonExit,
         # Row 2
         None,
-        None,
+        ButtonEdit,
         ButtonSave,
         ButtonRemove,
         ButtonSwap,
