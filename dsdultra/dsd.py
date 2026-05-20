@@ -12,6 +12,8 @@ from PyQt6.QtGui import QIcon, QAction
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
 
+from dsdultra.state import StateManager
+
 
 class DSDUltraUiBridge(QObject):
     save_loadout_requested = pyqtSignal(object)
@@ -44,6 +46,7 @@ class DSDUltra:
         self.args = args
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
+        self.state = StateManager(self)
         self.BUTTON_SIZE = 72
         self.started = started
         self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'

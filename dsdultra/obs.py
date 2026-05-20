@@ -8,8 +8,6 @@ if TYPE_CHECKING:
 class OBS:
     dsd: 'DSDUltra' = None
 
-    # TODO: Add tray menu option to edit config settings
-
     def __init__(self, dsd: 'DSDUltra'):
         self.dsd = dsd
         self.OBS_HOST = getenv('OBS_HOST', None) or self.dsd.config.obs_host or 'localhost'

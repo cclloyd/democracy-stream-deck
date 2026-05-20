@@ -1,7 +1,9 @@
-import sys
-import traceback
 import importlib
-from dsdultra import ASSETS_DIR
+import traceback
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from dsdultra.dsd import DSDUltra
 from dsdultra.logging import log
 
 
@@ -33,8 +35,7 @@ class ButtonBase:
     content_class = None
 
 
-    def __init__(self, dsd, page=None, config: dict = None):
-        from dsdultra.dsd import DSDUltra
+    def __init__(self, dsd, page, config: dict = None):
         self.dsd: DSDUltra = dsd
         self.page = page
         if not config:
