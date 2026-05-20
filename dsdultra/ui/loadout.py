@@ -1,6 +1,7 @@
 import re
 import traceback
 
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
     QCheckBox,
     QComboBox,
@@ -21,7 +22,6 @@ class LoadoutSaveWindow(QDialog):
         super().__init__(parent)
         self.dsd = dsd
         self.data = data
-        print('data', data)
 
         self.setWindowTitle('Save Loadout')
         self.setMinimumWidth(520)
@@ -80,12 +80,22 @@ class LoadoutSaveWindow(QDialog):
             stratagem_names.append(stratagem.name if stratagem else stratagem_id)
 
         icon_buttons = QHBoxLayout()
-        all_icons_button = QPushButton('Use all stratagem icons')
-        icon1_button = QPushButton('Use first stratagem icon')
-        icon2_button = QPushButton('Use second stratagem icon')
-        icon3_button = QPushButton('Use third stratagem icon')
-        icon4_button = QPushButton('Use fourth stratagem icon')
-        icon5_button = QPushButton('Use fifth stratagem icon')
+        all_icons_button = QPushButton('Use All')
+        icon1_button = QPushButton('Use 1st stratagem icon')
+        icon2_button = QPushButton('Use 2nd stratagem icon')
+        icon3_button = QPushButton('Use 3rd stratagem icon')
+        icon4_button = QPushButton('Use 4th stratagem icon')
+        icon5_button = QPushButton('Use 5th stratagem icon')
+
+        for button in (
+            all_icons_button,
+            icon1_button,
+            icon2_button,
+            icon3_button,
+            icon4_button,
+            icon5_button,
+        ):
+            button.setFocusPolicy(Qt.FocusPolicy.NoFocus)
 
         all_icons_button.clicked.connect(self.use_all_stratagem_icons)
         icon1_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon1_input, 0))
@@ -125,7 +135,26 @@ class LoadoutSaveWindow(QDialog):
 
         stratagem = self.dsd.stratagems.get(stratagem_ids[index])
         if stratagem:
-            input_widget.setText(str(stratagem.id))
+            target_input = self.get_stratagem_icon_target_input(input_widget)
+            target_input.setText(str(stratagem.id))
+
+    def get_stratagem_icon_target_input(self, fallback_input):
+        inputs = [
+            self.icon1_input,
+            self.icon2_input,
+            self.icon3_input,
+            self.icon4_input,
+        ]
+
+        focused_widget = self.focusWidget()
+        if focused_widget in inputs:
+            return focused_widget
+
+        for input_widget in inputs:
+            if not input_widget.text().strip():
+                return input_widget
+
+        return fallback_input
 
     def use_all_stratagem_icons(self):
         inputs = [
@@ -135,8 +164,14 @@ class LoadoutSaveWindow(QDialog):
             self.icon4_input,
         ]
 
+        stratagem_ids = self.data.get('stratagems') or []
         for index, input_widget in enumerate(inputs):
-            self.use_stratagem_icon(input_widget, index)
+            if index >= len(stratagem_ids):
+                return
+
+            stratagem = self.dsd.stratagems.get(stratagem_ids[index])
+            if stratagem:
+                input_widget.setText(str(stratagem.id))
 
     def save(self):
         try:

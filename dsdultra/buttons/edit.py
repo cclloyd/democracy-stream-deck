@@ -49,7 +49,7 @@ class ButtonRemove(ButtonBase):
 
 class ButtonEdit(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Edit.png'
-    icon_size = 30
+    icon_size = 35
     border_size = 90
     color = 'yellow'
     full = True
