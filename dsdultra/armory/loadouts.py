@@ -22,7 +22,6 @@ class Loadouts:
                     self.loadouts.append(Loadout(**json.loads(line)))
 
     def save_loadout(self, config, overwrite=False):
-        print('saving loadout', config, overwrite)
         try:
             self.dsd.config.loadout_path.parent.mkdir(parents=True, exist_ok=True)
 

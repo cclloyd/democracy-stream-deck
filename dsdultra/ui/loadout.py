@@ -136,7 +136,6 @@ class LoadoutSaveWindow(QDialog):
             self.use_stratagem_icon(input_widget, index)
 
     def save(self):
-        print('save')
         try:
             name = self.name_input.text().strip() or 'New Loadout'
             loadout_id = self.id_input.text().strip() or re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_') or 'new_loadout'

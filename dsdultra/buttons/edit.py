@@ -1,5 +1,6 @@
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
+from dsdultra.logging import log
 
 
 class ButtonSwap(ButtonBase):
@@ -55,5 +56,9 @@ class ButtonEdit(ButtonBase):
 
     def run(self):
         # TODO: Allow double-pressing to save and overwrite with current settings w/o prompt
-        self.dsd.loadouts.open_save_dialog(self.page)
+        if self.dsd.ui_bridge is None:
+            log.warn('Qt UI bridge is not ready; cannot open save dialog')
+            return
+
+        self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
 
