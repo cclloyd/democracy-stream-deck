@@ -85,18 +85,21 @@ class LoadoutSaveWindow(QDialog):
         icon2_button = QPushButton('Use second stratagem icon')
         icon3_button = QPushButton('Use third stratagem icon')
         icon4_button = QPushButton('Use fourth stratagem icon')
+        icon5_button = QPushButton('Use fifth stratagem icon')
 
         all_icons_button.clicked.connect(self.use_all_stratagem_icons)
         icon1_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon1_input, 0))
         icon2_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon2_input, 1))
         icon3_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon3_input, 2))
         icon4_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon4_input, 3))
+        icon5_button.clicked.connect(lambda: self.use_stratagem_icon(self.icon4_input, 4))
 
         icon_buttons.addWidget(all_icons_button)
         icon_buttons.addWidget(icon1_button)
         icon_buttons.addWidget(icon2_button)
         icon_buttons.addWidget(icon3_button)
         icon_buttons.addWidget(icon4_button)
+        icon_buttons.addWidget(icon5_button)
         layout.addLayout(icon_buttons)
 
         buttons = QDialogButtonBox(
