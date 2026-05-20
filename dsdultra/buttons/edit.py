@@ -55,7 +55,6 @@ class ButtonEdit(ButtonBase):
     full = True
 
     def run(self):
-        # TODO: Allow double-pressing to save and overwrite with current settings w/o prompt
         if self.dsd.ui_bridge is None:
             log.warn('Qt UI bridge is not ready; cannot open save dialog')
             return

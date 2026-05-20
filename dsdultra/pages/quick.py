@@ -1,4 +1,7 @@
+import traceback
+
 from .base import ScrollPage
+from .loadouts import PageLoadouts
 from ..buttons.back import ButtonBack
 from ..buttons.edit import ButtonSwap, ButtonRemove, ButtonEdit
 from ..buttons.elgato import ButtonElgato
@@ -46,6 +49,10 @@ class PageQuickLoadout(ScrollPage):
             self.dsd.armory.mission['mission_seaf'],
         ]
         self.content = static_row + (self.content or [])
+        if isinstance(parent, PageLoadouts):
+            self.ICON_TYPE_MAP[0] = ButtonBack
+        else:
+            self.ICON_TYPE_MAP[0] = ButtonHomeConfirm
 
 
 class PageQuickInfo(ScrollPage):
@@ -54,6 +61,7 @@ class PageQuickInfo(ScrollPage):
     select_limit = 2
     # TODO: Support multiple select type per page
     select_type = 'swap'
+    _selected = []
 
     ICON_TYPE_MAP = [
         ButtonBack,
@@ -75,10 +83,21 @@ class PageQuickInfo(ScrollPage):
         'content',
     ]
 
+    @property
+    def selected(self):
+        return self._selected
+
+    @selected.setter
+    def selected(self, value):
+        if value != self._selected:
+            print(f"selected changed: {self._selected!r} -> {value!r}")
+            traceback.print_stack()
+        self._selected = value
+
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config=None, app: str = None):
         super().__init__(dsd, parent=parent, content=content, content_class=content_class, page_num=page_num, config=config, app=app)
         self.content = self.content or []
 
-    def refresh(self):
-        self.content = self.app.selected[:] # Clone list
-        super().refresh()
+    # def refresh(self):
+    #     self.content = self.app.selected[:] # Clone list
+    #     super().refresh()

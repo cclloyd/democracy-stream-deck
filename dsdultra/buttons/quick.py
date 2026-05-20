@@ -32,6 +32,7 @@ class ButtonQuickInfo(ButtonBase):
         from dsdultra.pages.quick import PageQuickInfo
         if type(self.page) != PageQuickInfo:
             content = self.page.content[5:] if isinstance(self.page.app, PageLoadouts) else self.page.app.selected
+            print('config2', self.page.config)
             page = PageQuickInfo(self.dsd, parent=self.page, app='quick', config=self.page.config if isinstance(self.page.app, PageLoadouts) else self.page.parent.config, content=content)
             page.app.select_active = False
             page.render()

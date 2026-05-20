@@ -16,6 +16,7 @@ class Loadouts:
     def __init__(self, dsd):
         self.dsd: DSDUltra = dsd
         self.loadouts = []
+        self.save_dialog = None
         if self.dsd.config.loadout_path.exists():
             with open(self.dsd.config.loadout_path, 'r') as f:
                 for line in f:
@@ -68,6 +69,12 @@ class Loadouts:
             if stratagem_id:
                 stratagems.append(stratagem_id)
 
+        if self.save_dialog is not None and self.save_dialog.isVisible():
+            self.save_dialog.data['stratagems'] = stratagems
+            self.save_dialog.save(overwrite=True)
+            self.save_dialog = None
+            return
+
         if isinstance(page.app, PageLoadouts):
             data = {
                 'id': page.config.get('id', 'new_loadout'),
@@ -88,8 +95,9 @@ class Loadouts:
                 'stratagems': stratagems,
             }
 
-        dialog = LoadoutSaveWindow(self.dsd, data)
-        dialog.exec()
+        self.save_dialog = LoadoutSaveWindow(self.dsd, data)
+        self.save_dialog.finished.connect(lambda: setattr(self, 'save_dialog', None))
+        self.save_dialog.exec()
 
 
 class Loadout:

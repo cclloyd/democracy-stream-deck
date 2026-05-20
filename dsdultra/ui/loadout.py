@@ -173,7 +173,7 @@ class LoadoutSaveWindow(QDialog):
             if stratagem:
                 input_widget.setText(str(stratagem.id))
 
-    def save(self):
+    def save(self, overwrite=False):
         try:
             name = self.name_input.text().strip() or 'New Loadout'
             loadout_id = self.id_input.text().strip() or re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_') or 'new_loadout'
@@ -190,7 +190,7 @@ class LoadoutSaveWindow(QDialog):
                 'stratagems': self.data.get('stratagems') or [],
             }
 
-            saved = self.dsd.loadouts.save_loadout(config)
+            saved = self.dsd.loadouts.save_loadout(config, overwrite=overwrite)
             if not saved:
                 response = QMessageBox.question(
                     self,

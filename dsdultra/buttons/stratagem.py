@@ -27,6 +27,8 @@ class ButtonStratagem(ButtonBase):
         # Run select for page
         if page.select_active == 'swap':
             if len(page.selected) == 0:
+                print(self.page)
+                print(self.page.selected)
                 page.selected.append(self)
                 self.page.render(True)
             elif len(page.selected) >= 1:
@@ -41,7 +43,7 @@ class ButtonStratagem(ButtonBase):
                     page.app.selected[idx1], page.app.selected[idx2] = page.app.selected[idx2], page.app.selected[idx1]
                 # Reset selection
                 page.selected = []
-                self.page.render(True)
+                return self.page.render(True)
 
         elif page.select_active == 'remove':
             page.app.selected = [item for item in page.app.selected if item.config['id'] != self.config['id']]
