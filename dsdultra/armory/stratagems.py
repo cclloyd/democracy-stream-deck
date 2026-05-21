@@ -137,8 +137,17 @@ class Stratagem:
         return stratagems
 
     @staticmethod
-    def parse_stratagems(dsd: DSDUltra, stratagem_ids: list[str]):
-        return [s for s in dsd.armory.all.values() if s.id in stratagem_ids]
+    def parse_stratagems(dsd: DSDUltra, stratagem_ids: list[str | Stratagem]):
+        result = []
+        for item in stratagem_ids:
+            if isinstance(item, Stratagem):
+                result.append(item)
+            else:
+                # item is a string ID, look it up
+                stratagem = dsd.armory.all.get(item)
+                if stratagem:
+                    result.append(stratagem)
+        return result
 
     def __str__(self):
         code_str = ''.join(ARROWS.get(direction, direction) for direction in self.code)

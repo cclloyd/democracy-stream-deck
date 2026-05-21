@@ -37,7 +37,9 @@ class ButtonHomeConfirm(ButtonBase):
         if self.page.is_highlight_active(self.toggle_id):
             self.page.set_highlight(self.toggle_id, False, rerender=False)
             self.page.app.close()
-            self.dsd.apps.get('dsd').render(True)
+            from dsdultra.pages.home import PageHome
+            app = self.dsd.apps.get('dsd', PageHome(self.dsd, app='dsd'))
+            app.render(True)
         else:
             self.page.set_highlight('home', True)
             def _reset():

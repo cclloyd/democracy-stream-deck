@@ -22,32 +22,44 @@ class ButtonStratagem(ButtonBase):
     def run(self):
         from dsdultra.pages.quick import PageQuickInfo
 
+        # TODO: Should this swap/remove logic be moved to those respective buttons if possible?
+
         # Active on edit page when swap button is pressed to swap 2 slots
         if self.page.select_active('swap'):
             if len(self.page.selected('swap')) == 0:
                 self.page.add_select('swap', self)
             else:
+                item1 = self.page.selected('swap')[0]
+                item2 = self
                 selected = self.page.selected(self.toggle_id)
-                swap_item = self.page.selected('swap')[0]
-                i = next(i for i, item in enumerate(selected) if item.config['id'] == swap_item.config['id'])
-                j = next(i for i, item in enumerate(selected) if item.config['id'] == self.config['id'])
+                i = next(i for i, item in enumerate(selected) if item.config['id'] == item1.config['id'])
+                j = next(i for i, item in enumerate(selected) if item.config['id'] == item2.config['id'])
                 selected[i], selected[j] = selected[j], selected[i]
-                self.page.clear_select('swap')
-                self.page.set_select_active('swap', False)
-                self.page.set_highlight('swap', False)
+                self.page.clear_select('swap', rerender=False)
+                self.page.set_select_active('swap', False, rerender=False)
+                self.page.set_highlight('swap', False, rerender=False)
+                self.page.content = [*selected]  # Write changes back to page content to persist rerendering
+                self.page.get_store('active_loadout').set_stratagems(self.dsd, self.page.content)
+                self.page.render(True)
 
         # Active on edit page when delete button is pressed to remove stratagem from selection
         elif self.page.select_active('remove'):
-            self.page.set_highlight('remove', False, False)
-            self.page.set_select_active('remove', False, False)
-            self.page.remove_select('stratagems', self)
+            self.page.set_highlight('remove', False, rerender=False)
+            self.page.set_select_active('remove', False, rerender=False)
+            self.page.remove_select('stratagems', self, rerender=False)
+            self.page.content = self.page.selected('stratagems')
+            self.page.get_store('active_loadout').set_stratagems(self.dsd, self.page.content)
+
+            # self.page.refresh()
 
         # Active when still selecting stratagems for a loadout
         elif self.page.select_active('stratagems'):
             if self.is_selected():
                 self.page.remove_select('stratagems', self, False)
+                self.page.get_store('active_loadout').set_stratagems(self.dsd, self.page.selected('stratagems'))
             else:
                 self.page.add_select('stratagems', self, False)
+                self.page.get_store('active_loadout').set_stratagems(self.dsd, self.page.selected('stratagems'))
             self.page.app.render(True)
 
         # Do keyboard input

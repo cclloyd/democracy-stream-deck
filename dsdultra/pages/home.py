@@ -1,9 +1,13 @@
+from typing import TYPE_CHECKING
+
 from .base import BasePage
 from ..buttons.armory import ButtonArmory
 from ..buttons.elgato import ButtonElgato
 from ..buttons.exit import ButtonExit
 from ..buttons.loadouts.loadouts import ButtonLoadouts
 from ..buttons.quick import ButtonQuickLoadout
+if TYPE_CHECKING:
+    from ..dsd import DSDUltra
 
 
 class PageHome(BasePage):
@@ -26,3 +30,7 @@ class PageHome(BasePage):
         None,
         None,
     ]
+
+    def __init__(self, dsd: DSDUltra, *args, **kwargs):
+        super().__init__(dsd, *args, **kwargs)
+        dsd.state.register_app(self, 'dsd')

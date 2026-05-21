@@ -12,6 +12,7 @@ class StateManager:
     selected: dict[str, dict[str, list[Any]]] = {} # {appname: {select_type: list_of_selected_items}}
     select_limit: dict[str, dict[str, int]] = {} # {appname: {select_type: int}}
     highlight_active: dict[str, dict[str, bool | str]] = {}
+    store: dict[str, dict[str, Any]] = {}
 
     def __init__(self, dsd: DSDUltra):
         self.dsd = dsd
@@ -19,6 +20,7 @@ class StateManager:
         self.selected = {}
         self.select_limit = {}
         self.highlight_active = {}
+        self.store = {}
 
     def register_app(self, app: BasePage, appname: str):
         app.appname = app.appname if app.appname else appname

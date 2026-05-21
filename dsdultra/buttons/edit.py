@@ -24,7 +24,7 @@ class ButtonRemove(ButtonBase):
     toggle_id = 'remove'
 
     def run(self):
-        self.page.toggle_select(self.toggle_id)
+        self.page.toggle_select(self.toggle_id, rerender=False)
         self.page.toggle_highlight(self.toggle_id)
 
 
@@ -39,4 +39,3 @@ class ButtonEdit(ButtonBase):
             log.warn('Qt UI bridge is not ready; cannot open save dialog')
             return
         self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
-

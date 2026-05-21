@@ -2,7 +2,6 @@ import traceback
 import uuid
 from typing import Optional
 
-from dsdultra import logging
 from dsdultra.buttons.back import ButtonBack
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.buttons.exit import ButtonExit
@@ -13,7 +12,6 @@ from dsdultra.logging import log
 class BasePage:
     id: str
     ICON_TYPE_MAP: list[None | ButtonBase | str] = [None] * 15
-
 
     # For scrollable pages
     appname: str = None
@@ -33,7 +31,10 @@ class BasePage:
         return self.dsd.state.apps.get(self.appname, None)
 
     def close(self):
-        del self.dsd.apps[self.appname]
+        self.dsd.apps.pop(self.appname, None)
+
+    def nav_callback(self):
+        pass
 
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config: dict = {}, app: str = None):
         self.id = str(uuid.uuid4())
@@ -91,9 +92,22 @@ class BasePage:
             self.dsd.state.selected[self.appname][select_type] = []
         return self.dsd.state.selected[self.appname][select_type]
 
-    def add_select(self, select_type: str, item: ButtonBase, rerender=True, force=True):
-        if item.config['id'] not in [b.config['id'] for b in self.dsd.state.selected[self.appname][select_type]]:
-            self.dsd.state.selected[self.appname][select_type].append(item)
+    def add_select(self, select_type: str, item: ButtonBase | list[ButtonBase], rerender=True, force=True):
+        if isinstance(item, list):
+            for i in item:
+                if i.config['id'] not in [b.config['id'] for b in self.dsd.state.selected[self.appname][select_type]]:
+                    self.dsd.state.selected[self.appname][select_type].append(i)
+        else:
+            if item.config['id'] not in [b.config['id'] for b in self.dsd.state.selected[self.appname][select_type]]:
+                self.dsd.state.selected[self.appname][select_type].append(item)
+        if rerender:
+            self.render(force)
+
+    def set_select(self, select_type: str, item: ButtonBase | list[ButtonBase], rerender=True, force=True):
+        if isinstance(item, list):
+            self.dsd.state.selected[self.appname][select_type] = item
+        else:
+            self.dsd.state.selected[self.appname][select_type] = [item]
         if rerender:
             self.render(force)
 
@@ -118,36 +132,26 @@ class BasePage:
             pass
         if rerender:
             self.render(force)
-        return
-        if len(page.selected) == 0:
-            page.selected.append(self)
-            self.page.render(True)
-        elif len(page.selected) >= 1:
-            page.selected.append(self)
-            # Find indices of selected items in page.content
-            idx1 = next((i for i, item in enumerate(page.app.selected)
-                         if item and item.config.get('id') == page.selected[0].config.get('id')), -1)
-            idx2 = next((i for i, item in enumerate(page.app.selected)
-                         if item and item.config.get('id') == page.selected[1].config.get('id')), -1)
-            # Swap items if both found
-            if idx1 >= 0 and idx2 >= 0:
-                page.app.selected[idx1], page.app.selected[idx2] = page.app.selected[idx2], page.app.selected[idx1]
-            # Reset selection
-            page.selected = []
-            return self.page.render(True)
+
+    def set_store(self, store_type, item, rerender=True, force=True):
+        if self.appname not in self.dsd.state.store:
+            self.dsd.state.store[self.appname] = {}
+        self.dsd.state.store[self.appname][store_type] = item
+
+    def get_store(self, store_type):
+        if self.appname not in self.dsd.state.store:
+            self.dsd.state.store[self.appname] = {}
+        return self.dsd.state.store[self.appname].get(store_type, None)
 
     def get_buttons_cb(self, cls: type, k: int, added: int):
         pass
 
-    def get_content(self):
-        return self.content
-
-    def get_buttons(self):
-        if len(self.buttons) > 0:
+    def get_buttons(self, force=False):
+        if len(self.buttons) > 0 and not force:
             return self.buttons
         buttons = []
         added = 0
-        data = (self.get_content() or [])[self.page_num * self.MAX_CONTENT:(self.page_num + 1) * self.MAX_CONTENT]
+        data = (self.content or [])[self.page_num * self.MAX_CONTENT:(self.page_num + 1) * self.MAX_CONTENT]
         for k, cls in enumerate(self.ICON_TYPE_MAP):
             config = {}
             if type(self) == ScrollPage:
@@ -168,11 +172,6 @@ class BasePage:
                         else:
                             config.update(data[added].config)
 
-                    # if self.select_type:
-                    #     config['selected'][self.select_type] = any(item.config.get('id') == config.get('id') for item in self.selected)
-                    # elif self.app.select_type:
-                    #     config['selected'][app.select_type] = any(item.config.get('id') == config.get('id') for item in app.selected)
-
                     if data[added] is None:
                         buttons.append(None)
                     else:
@@ -188,7 +187,7 @@ class BasePage:
                 }))
             elif (len(self.content or []) > self.ICON_TYPE_MAP.count('content') and k == self.next_index) or cls == ButtonNext and isinstance(cls, type):
                 buttons.append(ButtonNext(self.dsd, page=self, config={
-                    'enabled': len(self.get_content()) - (self.page_num * self.MAX_CONTENT) > self.MAX_CONTENT,
+                    'enabled': len(self.content or []) - (self.page_num * self.MAX_CONTENT) > self.MAX_CONTENT,
                     'page_num': self.page_num,
                 }))
             # Append button class directly
@@ -207,11 +206,11 @@ class BasePage:
         self.buttons = buttons
         return self.buttons
 
-    def get_icons(self):
-        if len(self.icons) > 0:
+    def get_icons(self, force=False):
+        if len(self.icons) > 0 and not force:
             return self.icons
         icons = []
-        for b in self.get_buttons():
+        for b in self.get_buttons(force=force):
             if b is None or not b.should_render():
                 icons.append(None)
                 continue
@@ -228,7 +227,7 @@ class BasePage:
             self.refresh()
         key_count = self.dsd.deck.key_count()
         # Draw icons sequentially across keys (assume enough space per user)
-        for k, img in enumerate(self.get_icons()):
+        for k, img in enumerate(self.get_icons(force=force)):
             if k >= key_count:
                 break  # don't exceed available keys
             try:
@@ -255,8 +254,8 @@ class BasePage:
             if button and pressed:
                 button.run()
         except Exception as e:
+            log.error(f'Error running button: {e}, {button}')
             traceback.print_exc()
-            log.info(f'Error running button', e, button)
 
 
 class ScrollPage(BasePage):

@@ -1,8 +1,12 @@
+from typing import TYPE_CHECKING
+
 from PIL import ImageDraw, Image
 from StreamDeck.ImageHelpers import PILHelper
 
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
+if TYPE_CHECKING:
+    from dsdultra.pages.quick import PageQuickInfo, PageQuickLoadout
 
 
 class ButtonQuickLoadout(ButtonBase):
@@ -17,21 +21,33 @@ class ButtonQuickLoadout(ButtonBase):
         return self.page.appname in ('quick', 'dsd')
 
     def run(self):
+        from dsdultra.armory.loadouts import Loadout
         from dsdultra.pages.armory import PageArmory
         page = PageArmory(self.dsd, parent=self.page, app='quick')
         page.app.set_select_active(self.toggle_id, True)
-        page.render()
+        page.set_store('active_loadout', page.get_store('active_loadout') or Loadout(self.dsd), rerender=False)
+        page.render(True)
 
 
 class ButtonQuickInfo(ButtonBase):
     toggle_id = 'stratagems'
+    page: PageQuickLoadout | PageQuickInfo
 
     def run(self):
         from dsdultra.pages.loadouts import PageLoadouts
         from dsdultra.pages.quick import PageQuickInfo
         if not isinstance(self.page, PageQuickInfo):
-            content = self.page.content[5:] if isinstance(self.page.app, PageLoadouts) else self.page.app.selected(self.toggle_id)
-            page = PageQuickInfo(self.dsd, parent=self.page, config=self.page.config if isinstance(self.page.app, PageLoadouts) else self.page.parent.config, content=content)
+            if isinstance(self.page.app, PageLoadouts):
+                content = self.page.content[5:]
+            else:
+                content = self.page.get_store('active_loadout').stratagems
+                # self.dsd.loadouts.unsaved.stratagems = content
+            page = PageQuickInfo(
+                self.dsd,
+                parent=self.page,
+                config=self.page.config if isinstance(self.page.app, PageLoadouts) else self.page.parent.config,
+                content=content,
+            )
             page.app.set_select_active(self.toggle_id, False, rerender=False)
             page.render(True)
 
@@ -47,9 +63,6 @@ class ButtonQuickInfo(ButtonBase):
         # Convert to native key format and set image
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
         return native_img
-
-    # def should_render(self):
-    #     return self.page.appname == 'quick'
 
 
 class ButtonQuickStart(ButtonBase):

@@ -1,5 +1,6 @@
 import re
 import traceback
+from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
@@ -9,19 +10,27 @@ from PyQt6.QtWidgets import (
     QDialogButtonBox,
     QFormLayout,
     QHBoxLayout,
-    QLabel,
     QLineEdit,
     QMessageBox,
     QPushButton,
     QVBoxLayout,
 )
 
+from dsdultra.armory.stratagems import Stratagem
+
+if TYPE_CHECKING:
+    from dsdultra.armory.loadouts import Loadout
+
 
 class LoadoutSaveWindow(QDialog):
-    def __init__(self, dsd, data, parent=None):
+    def __init__(self, dsd, data: dict | Loadout, parent=None):
         super().__init__(parent)
         self.dsd = dsd
         self.data = data
+        if hasattr(data, 'icon1'):
+            self.loadout = data
+            self.data = data.config
+        self.data['stratagems'] = Stratagem.parse_stratagems(self.dsd, self.data['stratagems'])
 
         self.setWindowTitle('Save Loadout')
         self.setMinimumWidth(520)
@@ -29,13 +38,13 @@ class LoadoutSaveWindow(QDialog):
         layout = QVBoxLayout(self)
         form = QFormLayout()
 
-        self.name_input = QLineEdit(data.get('name') or '')
+        self.name_input = QLineEdit(self.data.get('name') or '')
         self.name_input.setPlaceholderText('New Loadout')
 
-        self.id_input = QLineEdit(data.get('id') or '')
+        self.id_input = QLineEdit(self.data.get('id') or '')
         self.id_input.setPlaceholderText('new_loadout')
 
-        self.hint_input = QLineEdit(data.get('hint') or '')
+        self.hint_input = QLineEdit(self.data.get('hint') or '')
         self.hint_input.setPlaceholderText('Optional description')
 
         self.color_input = QComboBox()
@@ -44,21 +53,21 @@ class LoadoutSaveWindow(QDialog):
         self.color_input.addItem('Blue', 'blue')
         self.color_input.addItem('Green', 'green')
         self.color_input.addItem('Rainbow', 'rainbow')
-        color = data.get('color') or 'yellow'
+        color = self.data.get('color') or 'yellow'
         color_index = self.color_input.findData(color)
         self.color_input.setCurrentIndex(color_index if color_index >= 0 else self.color_input.findData('yellow'))
 
         self.full_input = QCheckBox('Full border')
-        self.full_input.setChecked(data.get('full', True))
+        self.full_input.setChecked(self.data.get('full', True))
 
         color_layout = QHBoxLayout()
         color_layout.addWidget(self.color_input)
         color_layout.addWidget(self.full_input)
 
-        self.icon1_input = QLineEdit(data.get('icon1') or '')
-        self.icon2_input = QLineEdit(data.get('icon2') or '')
-        self.icon3_input = QLineEdit(data.get('icon3') or '')
-        self.icon4_input = QLineEdit(data.get('icon4') or '')
+        self.icon1_input = QLineEdit(self.data.get('icon1') or '')
+        self.icon2_input = QLineEdit(self.data.get('icon2') or '')
+        self.icon3_input = QLineEdit(self.data.get('icon3') or '')
+        self.icon4_input = QLineEdit(self.data.get('icon4') or '')
 
         self.name_input.textChanged.connect(self.update_default_id)
 
@@ -73,7 +82,7 @@ class LoadoutSaveWindow(QDialog):
 
         layout.addLayout(form)
 
-        stratagem_ids = data.get('stratagems') or []
+        stratagem_ids = self.data.get('stratagems') or []
         stratagem_names = []
         for stratagem_id in stratagem_ids:
             stratagem = self.dsd.stratagems.get(stratagem_id)
@@ -129,14 +138,18 @@ class LoadoutSaveWindow(QDialog):
         self.id_input.setText(loadout_id)
 
     def use_stratagem_icon(self, input_widget, index):
-        stratagem_ids = self.data.get('stratagems') or []
-        if index >= len(stratagem_ids):
-            return
-
-        stratagem = self.dsd.stratagems.get(stratagem_ids[index])
-        if stratagem:
-            target_input = self.get_stratagem_icon_target_input(input_widget)
-            target_input.setText(str(stratagem.id))
+        try:
+            stratagems = self.data.get('stratagems') or []
+            if index >= len(stratagems):
+                return
+            stratagem = stratagems[index]
+            if stratagem:
+                target_input = self.get_stratagem_icon_target_input(input_widget)
+                target_input.setText(str(stratagem.id))
+        except Exception as e:
+            print(e)
+            traceback.print_exc()
+            raise e
 
     def get_stratagem_icon_target_input(self, fallback_input):
         inputs = [
@@ -164,12 +177,12 @@ class LoadoutSaveWindow(QDialog):
             self.icon4_input,
         ]
 
-        stratagem_ids = self.data.get('stratagems') or []
+        stratagems = self.data.get('stratagems') or []
         for index, input_widget in enumerate(inputs):
-            if index >= len(stratagem_ids):
+            if index >= len(stratagems):
                 return
 
-            stratagem = self.dsd.stratagems.get(stratagem_ids[index])
+            stratagem = stratagems[index]
             if stratagem:
                 input_widget.setText(str(stratagem.id))
 
@@ -187,9 +200,8 @@ class LoadoutSaveWindow(QDialog):
                 'icon2': self.icon2_input.text().strip() or None,
                 'icon3': self.icon3_input.text().strip() or None,
                 'icon4': self.icon4_input.text().strip() or None,
-                'stratagems': self.data.get('stratagems') or [],
+                'stratagems': [s.config['id'] for s in self.data.get('stratagems') or []],
             }
-
             saved = self.dsd.loadouts.save_loadout(config, overwrite=overwrite)
             if not saved:
                 response = QMessageBox.question(

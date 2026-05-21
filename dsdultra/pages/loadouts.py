@@ -40,3 +40,6 @@ class PageLoadouts(BasePage):
 
     def get_buttons_cb(self, cls: type):
         return cls(self.dsd, page=self)
+
+    def refresh(self):
+        self.content = [c for c in self.dsd.loadouts.loadouts]

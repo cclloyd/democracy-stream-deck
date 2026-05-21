@@ -14,11 +14,11 @@ class ButtonSave(ButtonBase):
     highlight_hue = 77
 
     def run(self):
-        if self.dsd.ui_bridge is None:
-            log.warn('Qt UI bridge is not ready; cannot open save dialog')
-            return
-
-        self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
+        if not hasattr(self.page.parent, 'loadout') or self.page.parent.loadout is None:
+            if self.dsd.ui_bridge is None:
+                log.warn('Qt UI bridge is not ready; cannot open save dialog')
+                return
+            self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
 
 
 class ButtonLabelIcon(ButtonBase):
