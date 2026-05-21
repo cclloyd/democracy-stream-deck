@@ -3,33 +3,27 @@ from StreamDeck.ImageHelpers import PILHelper
 
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
+from dsdultra.logging import log
+
 
 class ButtonSave(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Save.png'
     icon_size = 35
     border_size = 90
-    color = 'yellow'
     full = True
     highlight_hue = 77
 
     def run(self):
         if self.dsd.ui_bridge is None:
-            print('Qt UI bridge is not ready; cannot open save dialog')
+            log.warn('Qt UI bridge is not ready; cannot open save dialog')
             return
 
         self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
-        return
-        # from dsdultra.pages.save import PageSave
-        # if not isinstance(self.page, PageSave):
-        #     page = PageSave(self.dsd, parent=self.page, app='save', config={'select_active': False})
-        #     page.render()
 
 
 class ButtonLabelIcon(ButtonBase):
-
     def run(self):
-        self.page.app.select_active = False
-        self.page.render()
+        self.page.app.toggle_select(self.toggle_id)
 
     def draw_image(self):
         key_img = self.dsd.icons.bg.copy()
@@ -68,9 +62,9 @@ class ButtonLabelBorder(ButtonBase):
 class ButtonSelectBorder(ButtonBase):
     color = 'yellow'
     full = False
+    toggle_id = None
 
     def run(self):
-        self.page.app.select_active = False
-        self.page.render()
+        self.page.app.toggle_select(self.toggle_id)
 
 

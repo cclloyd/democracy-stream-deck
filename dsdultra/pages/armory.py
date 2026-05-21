@@ -9,16 +9,12 @@ class PageArmory(ScrollPage):
     content_class = ButtonGroup
 
     config = None
-    select_active = False
-    select_limit = 5
-    select_type = 'quick'
-    selected = []
     prev_index = 1
     next_index = 3
 
     ICON_TYPE_MAP = [
         ButtonBack,
-        ButtonQuickLoadout,
+        None,
         ButtonQuickInfo,
         ButtonQuickStart,
         ButtonExit,

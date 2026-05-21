@@ -2,13 +2,14 @@ from time import sleep
 
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
+from dsdultra.logging import log
 
 try:
     from pynput.keyboard import Controller as _KbController
     from pynput.keyboard import Key as _KbKey
     _kb = _KbController()
 except Exception:
-    print('WARNING: No keyboard input available.')
+    log.warn('WARNING: No keyboard input available.')
     _kb = None
 
 
@@ -16,53 +17,41 @@ class ButtonStratagem(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Close.png'
     icon_size = 60
     border_size = 90
+    toggle_id = 'stratagems'
 
     def run(self):
-        # Select stratagem instead of activating it
-        from dsdultra.pages.armory import PageArmory
         from dsdultra.pages.quick import PageQuickInfo
-        app: PageArmory = self.page.app
-        page: PageQuickInfo = self.page
 
-        # Run select for page
-        if page.select_active == 'swap':
-            if len(page.selected) == 0:
-                print(self.page)
-                print(self.page.selected)
-                page.selected.append(self)
-                self.page.render(True)
-            elif len(page.selected) >= 1:
-                page.selected.append(self)
-                # Find indices of selected items in page.content
-                idx1 = next((i for i, item in enumerate(page.app.selected)
-                             if item and item.config.get('id') == page.selected[0].config.get('id')), -1)
-                idx2 = next((i for i, item in enumerate(page.app.selected)
-                             if item and item.config.get('id') == page.selected[1].config.get('id')), -1)
-                # Swap items if both found
-                if idx1 >= 0 and idx2 >= 0:
-                    page.app.selected[idx1], page.app.selected[idx2] = page.app.selected[idx2], page.app.selected[idx1]
-                # Reset selection
-                page.selected = []
-                return self.page.render(True)
+        # Active on edit page when swap button is pressed to swap 2 slots
+        if self.page.select_active('swap'):
+            if len(self.page.selected('swap')) == 0:
+                self.page.add_select('swap', self)
+            else:
+                selected = self.page.selected(self.toggle_id)
+                swap_item = self.page.selected('swap')[0]
+                i = next(i for i, item in enumerate(selected) if item.config['id'] == swap_item.config['id'])
+                j = next(i for i, item in enumerate(selected) if item.config['id'] == self.config['id'])
+                selected[i], selected[j] = selected[j], selected[i]
+                self.page.clear_select('swap')
+                self.page.set_select_active('swap', False)
+                self.page.set_highlight('swap', False)
 
-        elif page.select_active == 'remove':
-            page.app.selected = [item for item in page.app.selected if item.config['id'] != self.config['id']]
-            page.select_active = None
-            page.toggle_active['remove'] = False
-            page.render(True)
+        # Active on edit page when delete button is pressed to remove stratagem from selection
+        elif self.page.select_active('remove'):
+            self.page.set_highlight('remove', False, False)
+            self.page.set_select_active('remove', False, False)
+            self.page.remove_select('stratagems', self)
 
-
-        # Run select for app
-        elif app and app.select_active:
-            if len(app.selected) < app.select_limit:
-                if not any(item.config.get('id') == self.config.get('id') for item in app.selected):
-                    app.selected.append(self)
-                else:
-                    app.selected = [item for item in app.selected if item.config.get('id') != self.config.get('id')]
-                self.page.app.render(True)
+        # Active when still selecting stratagems for a loadout
+        elif self.page.select_active('stratagems'):
+            if self.is_selected():
+                self.page.remove_select('stratagems', self, False)
+            else:
+                self.page.add_select('stratagems', self, False)
+            self.page.app.render(True)
 
         # Do keyboard input
-        else:
+        elif not isinstance(self.page, PageQuickInfo):
             ACTION_DELAY = 32  # Delay in ms between inputs
             KEYUP_DELAY = 32  # Delay in ms before releasing key
             if self.config and self.config.get('code'):

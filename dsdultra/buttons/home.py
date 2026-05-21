@@ -1,6 +1,7 @@
-from dsdultra.buttons.base import ButtonBase
-from dsdultra import ASSETS_DIR
 import threading
+
+from dsdultra import ASSETS_DIR
+from dsdultra.buttons.base import ButtonBase
 
 
 class ButtonHome(ButtonBase):
@@ -9,8 +10,6 @@ class ButtonHome(ButtonBase):
 
     icon = ASSETS_DIR / 'icons/borders/SE.png'
     color = 'rainbow'
-    # icon = ASSETS_DIR / 'icons/borders/SE.png'
-    # color = 'rainbow'
     icon_size = 50
     border_size = 90
     full = True
@@ -27,8 +26,6 @@ class ButtonHomeConfirm(ButtonBase):
 
     icon = ASSETS_DIR / 'icons/borders/SE.png'
     color = 'rainbow'
-    # icon = ASSETS_DIR / 'icons/borders/SE.png'
-    # color = 'rainbow'
     icon_size = 50
     border_size = 90
     full = True
@@ -37,25 +34,17 @@ class ButtonHomeConfirm(ButtonBase):
     highlight_hue = 320
 
     def run(self):
-        # TODO: toggle home is bringing me back to previous page when toggle goes inactive again.  Need to check if page changed or not.  Probably store "active" page on dsd somewhere.
-        if self.page.toggle_active.get('home', False):
+        if self.page.is_highlight_active(self.toggle_id):
+            self.page.set_highlight(self.toggle_id, False, rerender=False)
             self.page.app.close()
             self.dsd.apps.get('dsd').render(True)
         else:
-            self.page.toggle_active['home'] = True
-            self.page.render(True)
-
-            # Automatically reset the toggle after 3 seconds
+            self.page.set_highlight('home', True)
             def _reset():
                 # Only reset if still active
-                if self.page.toggle_active.get('home', False):
-                    self.page.toggle_active['home'] = False
-                    # Re-render to clear highlight
-                    try:
-                        self.page.render(True)
-                    except Exception:
-                        pass
+                if self.page.is_highlight_active(self.toggle_id):
+                    self.page.set_highlight(self.toggle_id, False)
 
-            t = threading.Timer(5, _reset)
+            t = threading.Timer(self.toggle_timeout, _reset)
             t.daemon = True
             t.start()

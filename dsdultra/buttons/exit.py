@@ -30,22 +30,15 @@ class ButtonExitConfirm(ButtonBase):
     toggle_timeout = 2
 
     def run(self):
-        if self.page.toggle_active.get('exit', False):
+        if self.page.is_highlight_active(self.toggle_id):
            self.shutdown()
         else:
-            self.page.toggle_active['exit'] = True
-            self.page.render(True)
+            self.page.set_highlight(self.toggle_id, True)
 
-            # Automatically reset the toggle after 3 seconds
             def _reset():
                 # Only reset if still active
-                if self.page.toggle_active.get('exit', False):
-                    self.page.toggle_active['exit'] = False
-                    # Re-render to clear highlight
-                    try:
-                        self.page.render(True)
-                    except Exception:
-                        pass
+                if self.page.is_highlight_active(self.toggle_id):
+                    self.page.set_highlight(self.toggle_id, False)
 
             t = threading.Timer(self.toggle_timeout, _reset)
             t.daemon = True

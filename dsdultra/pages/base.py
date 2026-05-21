@@ -1,4 +1,5 @@
 import traceback
+import uuid
 from typing import Optional
 
 from dsdultra import logging
@@ -10,6 +11,7 @@ from dsdultra.logging import log
 
 
 class BasePage:
+    id: str
     ICON_TYPE_MAP: list[None | ButtonBase | str] = [None] * 15
 
 
@@ -19,24 +21,22 @@ class BasePage:
     page_num = 0
     content_class = ButtonExit
     content: Optional[dict | list] = None
-
-    # For selectable pages
-    select_active = None
-    select_limit = 5
-    selected = []
-    select_type = None
-    toggle_active = {}
     prev_index = None
     next_index = None
+    select_limits: dict[str, int] = {
+        'stratagems': 5,
+    }
+    nav_up_callback = None
 
     @property
-    def app(self):
-        return self.dsd.apps.get(self.appname, None)
+    def app(self) -> 'BasePage':
+        return self.dsd.state.apps.get(self.appname, None)
 
     def close(self):
         del self.dsd.apps[self.appname]
 
-    def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config=None, app: str = None):
+    def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config: dict = {}, app: str = None):
+        self.id = str(uuid.uuid4())
         self.dsd = dsd
         self.parent = parent
         self.buttons = []
@@ -46,15 +46,95 @@ class BasePage:
         self.page_num = page_num
         self.appname = app or self.appname or self.parent.appname
 
-        if app:
-            if app not in self.dsd.apps:
-                self.dsd.apps[app] = self
-                self.appname = app
+        if app and app not in self.dsd.state.apps:
+            self.dsd.state.register_app(self, app)
 
-        self.config = config or {}
-        self.select_active = self.config.get('select_active', False)
-        self.select_limit = self.config.get('select_limit', 5)
-        self.selected = self.config.get('selected', [])
+        self.config = config
+
+    def is_highlight_active(self, highlight_type: str) -> bool:
+        return bool(self.dsd.state.highlight_active[self.appname].get(highlight_type, False))
+
+    def toggle_highlight(self, highlight_type, rerender=True, force=True):
+        self.dsd.state.highlight_active[self.appname][highlight_type] = not self.dsd.state.highlight_active[self.appname].get(highlight_type, False)
+        if rerender:
+            self.render(force)
+
+    def set_highlight(self, highlight_type, value: bool, rerender=True, force=True):
+        self.dsd.state.highlight_active[self.appname][highlight_type] = value
+        if rerender:
+            self.render(force)
+
+    def get_highlight(self, highlight_type):
+        return self.dsd.state.highlight_active[self.appname].get(highlight_type, False)
+
+    def select_active(self, select_type) -> bool:
+        if select_type is None:
+            return False
+        return self.dsd.state.select_active[self.appname].get(select_type, False)
+
+    def toggle_select(self, select_type, rerender=True, force=True):
+        self.dsd.state.select_active[self.appname][select_type] = not self.dsd.state.select_active[self.appname].get(select_type, False)
+        if rerender:
+            self.render(force)
+
+    def set_select_active(self, select_type, active, rerender=True, force=True):
+        self.dsd.state.select_active[self.appname][select_type] = active
+        if rerender:
+            self.render(force)
+
+    def select_limit(self, select_type) -> int | None:
+        limit = self.dsd.state.select_limit.get(self.appname, {}).get(select_type, None)
+        return limit if limit is not None else self.dsd.deck.key_count()
+
+    def selected(self, select_type):
+        if self.dsd.state.selected[self.appname].get(select_type, None) is None:
+            self.dsd.state.selected[self.appname][select_type] = []
+        return self.dsd.state.selected[self.appname][select_type]
+
+    def add_select(self, select_type: str, item: ButtonBase, rerender=True, force=True):
+        if item.config['id'] not in [b.config['id'] for b in self.dsd.state.selected[self.appname][select_type]]:
+            self.dsd.state.selected[self.appname][select_type].append(item)
+        if rerender:
+            self.render(force)
+
+    def remove_select(self, select_type, item, rerender=True, force=True):
+        if item.config['id'] in [b.config['id'] for b in self.dsd.state.selected[self.appname][select_type]]:
+            idx = next((i for i, b in enumerate(self.dsd.state.selected[self.appname][select_type])
+                        if b.config['id'] == item.config['id']), -1)
+            if idx >= 0:
+                self.dsd.state.selected[self.appname][select_type].pop(idx)
+        if rerender:
+            self.render(force)
+
+    def clear_select(self, select_type, rerender=True, force=True):
+        self.dsd.state.selected[self.appname][select_type] = []
+        if rerender:
+            self.render(force)
+
+    def swap_select(self, select_type, item, rerender=True, force=True):
+        if len(self.dsd.state.selected[self.appname][select_type]) == 0:
+            self.add_select(select_type, item, rerender=False)
+        else:
+            pass
+        if rerender:
+            self.render(force)
+        return
+        if len(page.selected) == 0:
+            page.selected.append(self)
+            self.page.render(True)
+        elif len(page.selected) >= 1:
+            page.selected.append(self)
+            # Find indices of selected items in page.content
+            idx1 = next((i for i, item in enumerate(page.app.selected)
+                         if item and item.config.get('id') == page.selected[0].config.get('id')), -1)
+            idx2 = next((i for i, item in enumerate(page.app.selected)
+                         if item and item.config.get('id') == page.selected[1].config.get('id')), -1)
+            # Swap items if both found
+            if idx1 >= 0 and idx2 >= 0:
+                page.app.selected[idx1], page.app.selected[idx2] = page.app.selected[idx2], page.app.selected[idx1]
+            # Reset selection
+            page.selected = []
+            return self.page.render(True)
 
     def get_buttons_cb(self, cls: type, k: int, added: int):
         pass
@@ -73,7 +153,6 @@ class BasePage:
             if type(self) == ScrollPage:
                 config = {'app': self.appname or self.parent}
             config.update({'selected': {}})
-            app = self.app
 
             if cls is None:
                 buttons.append(None)
@@ -89,10 +168,10 @@ class BasePage:
                         else:
                             config.update(data[added].config)
 
-                    if self.select_type:
-                        config['selected'][self.select_type] = any(item.config.get('id') == config.get('id') for item in self.selected)
-                    elif self.app.select_type:
-                        config['selected'][app.select_type] = any(item.config.get('id') == config.get('id') for item in app.selected)
+                    # if self.select_type:
+                    #     config['selected'][self.select_type] = any(item.config.get('id') == config.get('id') for item in self.selected)
+                    # elif self.app.select_type:
+                    #     config['selected'][app.select_type] = any(item.config.get('id') == config.get('id') for item in app.selected)
 
                     if data[added] is None:
                         buttons.append(None)
@@ -120,8 +199,10 @@ class BasePage:
 
         # Highlight togglable buttons
         for b in buttons:
-            if b and b.page.toggle_active.get(b.toggle_id, None):
-                b.config['highlight'] = True
+            if b:
+                if ((b.page.select_active(b.toggle_id) and b.is_selected()) or
+                        b.page.is_highlight_active(b.toggle_id)):
+                    b.highlight = True
 
         self.buttons = buttons
         return self.buttons

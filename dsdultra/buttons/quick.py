@@ -1,49 +1,46 @@
-from PIL import ImageDraw, ImageFont, Image
+from PIL import ImageDraw, Image
 from StreamDeck.ImageHelpers import PILHelper
 
-from dsdultra.buttons.base import ButtonBase
 from dsdultra import ASSETS_DIR
-from dsdultra.pages.loadouts import PageLoadouts
+from dsdultra.buttons.base import ButtonBase
 
 
 class ButtonQuickLoadout(ButtonBase):
     icon = ASSETS_DIR / 'icons/borders/SE.png'
     icon_size = 45
     border_size = 90
-    color = 'yellow'
     full = True
     gild = True
+    toggle_id = 'stratagems'
 
     def should_render(self):
-        return self.page.appname == 'quick' or self.page.appname == 'dsd'
+        return self.page.appname in ('quick', 'dsd')
 
     def run(self):
         from dsdultra.pages.armory import PageArmory
-        page = PageArmory(self.dsd, parent=self.page, app='quick', config={
-            'select_active': True,
-            'select_limit': 5,
-        })
-        page.app.select_active = True
+        page = PageArmory(self.dsd, parent=self.page, app='quick')
+        page.app.set_select_active(self.toggle_id, True)
         page.render()
 
 
 class ButtonQuickInfo(ButtonBase):
+    toggle_id = 'stratagems'
+
     def run(self):
+        from dsdultra.pages.loadouts import PageLoadouts
         from dsdultra.pages.quick import PageQuickInfo
-        if type(self.page) != PageQuickInfo:
-            content = self.page.content[5:] if isinstance(self.page.app, PageLoadouts) else self.page.app.selected
-            print('config2', self.page.config)
-            page = PageQuickInfo(self.dsd, parent=self.page, app='quick', config=self.page.config if isinstance(self.page.app, PageLoadouts) else self.page.parent.config, content=content)
-            page.app.select_active = False
-            page.render()
+        if not isinstance(self.page, PageQuickInfo):
+            content = self.page.content[5:] if isinstance(self.page.app, PageLoadouts) else self.page.app.selected(self.toggle_id)
+            page = PageQuickInfo(self.dsd, parent=self.page, config=self.page.config if isinstance(self.page.app, PageLoadouts) else self.page.parent.config, content=content)
+            page.app.set_select_active(self.toggle_id, False, rerender=False)
+            page.render(True)
 
     def draw_image(self):
         key_img = self.dsd.icons.bg.copy()
         self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
-
-        current = len(self.page.app.selected)
-        limit = self.page.app.select_limit
+        current = len(self.page.app.selected(self.toggle_id))
+        limit = self.page.app.select_limit(self.toggle_id)
         draw.text((36, 15), 'SELECTED', fill='white', anchor='mm', font=self.dsd.icons.get_font(9))
         draw.text((36, 45), f'{current} / {limit}', fill='white' if current < limit-1 else '#F6D535', anchor='mm', font=self.dsd.icons.get_font(18))
 
@@ -51,14 +48,14 @@ class ButtonQuickInfo(ButtonBase):
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
         return native_img
 
-    def should_render(self):
-        return self.page.appname == 'quick'
-
+    # def should_render(self):
+    #     return self.page.appname == 'quick'
 
 
 class ButtonQuickStart(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Hellpod1.png'
     icon_size = 45
+    toggle_id = 'stratagems'
 
     def should_render(self):
         return self.page.appname == 'quick'
@@ -79,7 +76,7 @@ class ButtonQuickStart(ButtonBase):
 
     def run(self):
         from dsdultra.pages.quick import PageQuickLoadout
-        content = self.page.app.selected
-        page = PageQuickLoadout(self.dsd, parent=self.page, app='quick', config={ 'select_active': False }, content=content)
-        page.app.select_active = False
-        page.render()
+        content = self.page.app.selected(self.toggle_id)
+        self.page.app.set_select_active(self.toggle_id, False, rerender=False)
+        page = PageQuickLoadout(self.dsd, parent=self.page, content=content)
+        page.render(True)

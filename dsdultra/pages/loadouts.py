@@ -1,11 +1,12 @@
 from typing import TYPE_CHECKING
 
 from .base import BasePage
+from ..buttons.loadouts.loadout import ButtonLoadout
+
 if TYPE_CHECKING:
     from ..armory.loadouts import Loadout
 from ..buttons.back import ButtonBack
 from ..buttons.exit import ButtonExit
-from ..buttons.loadout import ButtonLoadout
 from ..buttons.nav import ButtonNext, ButtonPrev
 
 

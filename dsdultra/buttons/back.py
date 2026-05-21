@@ -10,7 +10,6 @@ class ButtonBack(ButtonBase):
     icon_size = 35
     icon_rotate = 180
     border_size = 90
-    color = 'yellow'
     full = True
     gild = True
 

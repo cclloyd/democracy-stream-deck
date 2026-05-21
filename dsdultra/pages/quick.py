@@ -1,7 +1,6 @@
 import traceback
 
 from .base import ScrollPage
-from .loadouts import PageLoadouts
 from ..buttons.back import ButtonBack
 from ..buttons.edit import ButtonSwap, ButtonRemove, ButtonEdit
 from ..buttons.elgato import ButtonElgato
@@ -15,9 +14,6 @@ from ..buttons.stratagem import ButtonStratagem
 
 class PageQuickLoadout(ScrollPage):
     content_class = ButtonStratagem
-
-    config = None
-    select_active = False
 
     ICON_TYPE_MAP = [
         ButtonHomeConfirm,
@@ -41,6 +37,7 @@ class PageQuickLoadout(ScrollPage):
 
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config=None, app: str = None):
         super().__init__(dsd, parent=parent, content=content, content_class=content_class, page_num=page_num, config=config, app=app)
+        from .loadouts import PageLoadouts
         static_row = [
             self.dsd.armory.common['common_reinforce'],
             self.dsd.armory.common['common_resupply'],
@@ -57,11 +54,6 @@ class PageQuickLoadout(ScrollPage):
 
 class PageQuickInfo(ScrollPage):
     content_class = ButtonStratagem
-
-    select_limit = 2
-    # TODO: Support multiple select type per page
-    select_type = 'swap'
-    _selected = []
 
     ICON_TYPE_MAP = [
         ButtonBack,
@@ -83,21 +75,6 @@ class PageQuickInfo(ScrollPage):
         'content',
     ]
 
-    @property
-    def selected(self):
-        return self._selected
-
-    @selected.setter
-    def selected(self, value):
-        if value != self._selected:
-            print(f"selected changed: {self._selected!r} -> {value!r}")
-            traceback.print_stack()
-        self._selected = value
-
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config=None, app: str = None):
         super().__init__(dsd, parent=parent, content=content, content_class=content_class, page_num=page_num, config=config, app=app)
         self.content = self.content or []
-
-    # def refresh(self):
-    #     self.content = self.app.selected[:] # Clone list
-    #     super().refresh()

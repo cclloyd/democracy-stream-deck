@@ -12,7 +12,7 @@ from dsdultra.armory.stratagems import Stratagem
 from dsdultra.buttons.base import ButtonBase
 from typing import TYPE_CHECKING
 
-from dsdultra.buttons.loadout import ButtonLoadout
+from dsdultra.buttons.loadouts.loadout import ButtonLoadout
 
 if TYPE_CHECKING:
     from dsdultra.dsd import DSDUltra
@@ -150,19 +150,11 @@ class IconGenerator:
                     img = img.rotate(button.icon_rotate, expand=True)
                 icon_imgs[i] = img
 
-        selected = False
-        if button.page.select_active and button.config.get('selected', {}).get(button.page.select_type, False):
-            selected = True
-        if button.page.app and button.page.app.select_active and button.config.get('selected', {}).get(button.page.app.select_type, False):
-            selected = True
-        if button.config.get('highlight', False):
-            selected = True
-
         # Assemble the image
         # Background fills 100%, stretched to key size
         self._paste_img(key_img, self.bg_img, 100, keep_aspect=True)
         # Paste the glow for selected items
-        if selected:
+        if button.highlight:
             selected_img = self.selected_img.copy()
             if button.highlight_hue:
                 pixels = selected_img.load()
@@ -265,7 +257,6 @@ class IconGenerator:
             return self.make_image_multi(button)
         icon_path = button.icon
         border_path = BORDERS[button.color]['full' if button.full else 'half']
-        enabled = button.config.get('enabled', True)
 
         icon_img = None
         if icon_path is not None:
@@ -302,19 +293,11 @@ class IconGenerator:
             if button.icon_rotate != 0:
                 icon_img = icon_img.rotate(button.icon_rotate, expand=True)
 
-        selected = False
-        if button.page.select_active and button.config.get('selected', {}).get(button.page.select_type, False):
-            selected = True
-        if button.page.app and button.page.app.select_active and button.config.get('selected', {}).get(button.page.app.select_type, False):
-            selected = True
-        if button.config.get('highlight', False):
-            selected = True
-
         # Assemble the image
         # Background fills 100%, stretched to key size
         self._paste_img(key_img, self.bg_img, 100, keep_aspect=True)
         # Paste the glow for selected items
-        if selected:
+        if button.highlight:
             selected_img = self.selected_img.copy()
             if button.highlight_hue:
                 pixels = selected_img.load()
@@ -353,16 +336,16 @@ class IconGenerator:
             # Paste the icon
             self._paste_img(key_img, icon_img, 100, keep_aspect=True)
 
-        if button.config.get('hint', None) and button.page.app.select_active:
+        if button.hint:
             draw = ImageDraw.Draw(key_img)
-            hint_text = str(button.config['hint'])
+            hint_text = str(button.hint)
             font_size = 8
             font = self.get_font(font_size)
             text_length = draw.textlength(font=font, text=hint_text)
             draw.text((key_img.width - text_length - 12, 10), hint_text, fill="white", font=font)
 
         # Darken entire image if disabled
-        if not enabled:
+        if not button.enabled:
             key_img = key_img.point(lambda x: x * 0.3)
 
         # Convert to native key format and set image

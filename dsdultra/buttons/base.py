@@ -2,7 +2,9 @@ import importlib
 import traceback
 from typing import TYPE_CHECKING
 
+
 if TYPE_CHECKING:
+    from dsdultra.pages.base import BasePage
     from dsdultra.dsd import DSDUltra
 from dsdultra.logging import log
 
@@ -27,7 +29,10 @@ class ButtonBase:
     full = False
     toggle_id = None
     toggle_timeout = 2
+    highlight = False
     highlight_hue = 0
+    hint = None
+    enabled = True
 
     page = None
     config = None
@@ -37,7 +42,7 @@ class ButtonBase:
 
     def __init__(self, dsd, page, config: dict = None):
         self.dsd: DSDUltra = dsd
-        self.page = page
+        self.page: BasePage = page
         if not config:
             config = dict()
         self.config = config
@@ -59,6 +64,12 @@ class ButtonBase:
             self.color = config.get('color', 'yellow')
         if config.get('full', None) is not None:
             self.full = config.get('full', False)
+        if config.get('highlight', None) is not None:
+            self.highlight = config.get('highlight', False)
+        if config.get('hint', None) is not None:
+            self.hint = config.get('hint', None)
+        if config.get('enabled', None) is not None:
+            self.enabled = config.get('enabled', True)
 
         self.content = config.get('content', self.content)
         tmp_cls = config.get('content_class', None)
@@ -69,6 +80,15 @@ class ButtonBase:
             self.content_class = resolved
         else:
             self.content_class = tmp_cls
+
+    def is_selected(self, select_type=None):
+        if select_type is None:
+            select_type = self.toggle_id
+        if select_type is None:
+            return False
+        if 'id' not in self.config:
+            return False
+        return self.config['id'] in [b.config['id'] for b in self.page.selected(select_type)]
 
     def run(self):
         if not self.config.get('enabled', True):

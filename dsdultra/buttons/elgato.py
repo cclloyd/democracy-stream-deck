@@ -19,24 +19,17 @@ class ButtonElgato(ButtonBase):
     highlight_hue = 210
 
     def run(self):
-        if self.page.toggle_active.get('elgato', False):
+        if self.page.is_highlight_active(self.toggle_id):
             elgato_path = self.dsd.config.elgato_path
             subprocess.Popen([str(elgato_path)], close_fds=True)
             self.shutdown()
         else:
-            self.page.toggle_active['elgato'] = True
-            self.page.render(True)
+            self.page.set_highlight(self.toggle_id, True)
 
-            # Automatically reset the toggle after 3 seconds
             def _reset():
                 # Only reset if still active
-                if self.page.toggle_active.get('elgato', False):
-                    self.page.toggle_active['elgato'] = False
-                    # Re-render to clear highlight
-                    try:
-                        self.page.render(True)
-                    except Exception:
-                        pass
+                if self.page.is_highlight_active(self.toggle_id):
+                    self.page.set_highlight(self.toggle_id, False)
 
             t = threading.Timer(self.toggle_timeout, _reset)
             t.daemon = True

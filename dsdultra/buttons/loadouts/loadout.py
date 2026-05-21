@@ -11,5 +11,7 @@ class ButtonLoadout(ButtonBase):
     def run(self):
         from dsdultra.pages.quick import PageQuickLoadout
         parent = self.page
+        # TODO: Need to pass buttons instead of config dict to selection
+        self.page.add_select('stratagems', self.config)
         page = PageQuickLoadout(self.dsd, parent=parent, config=self.config, content=Stratagem.parse_stratagems(self.dsd, self.config.get('stratagems', [])))
         page.render(True)
