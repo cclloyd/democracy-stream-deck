@@ -80,3 +80,7 @@ class DSDConfig(MutableMapping):
 
     def get(self, key, default=None):
         return self.config.get(key, default)
+
+    @property
+    def loadout_path(self):
+        return self.config_dir / 'loadouts.json'
