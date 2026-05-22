@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 from dsdultra.pages.base import BasePage
@@ -6,7 +7,7 @@ if TYPE_CHECKING:
     from dsdultra.dsd import DSDUltra
 
 class StateManager:
-    dsd: DSDUltra = None
+    dsd: 'DSDUltra' = None
     apps: dict[str, BasePage] = {}
     select_active: dict[str, dict[str, bool]]  # {appname: {select_type: bool}}
     selected: dict[str, dict[str, list[Any]]] = {} # {appname: {select_type: list_of_selected_items}}
@@ -14,7 +15,7 @@ class StateManager:
     highlight_active: dict[str, dict[str, bool | str]] = {}
     store: dict[str, dict[str, Any]] = {}
 
-    def __init__(self, dsd: DSDUltra):
+    def __init__(self, dsd: 'DSDUltra'):
         self.dsd = dsd
         self.select_active = {}
         self.selected = {}

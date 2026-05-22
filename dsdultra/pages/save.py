@@ -1,3 +1,4 @@
+from __future__ import annotations
 from .base import ScrollPage
 from ..buttons.exit import ButtonExit
 from ..buttons.loadouts.save import ButtonLabelIcon, ButtonLabelBorder, ButtonSave, ButtonSelectBorder

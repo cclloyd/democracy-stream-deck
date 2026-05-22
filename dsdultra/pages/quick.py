@@ -1,4 +1,4 @@
-import traceback
+from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from .base import ScrollPage

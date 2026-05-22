@@ -1,3 +1,4 @@
+from __future__ import annotations
 from .base import ScrollPage
 from ..buttons.back import ButtonBack
 from ..buttons.exit import ButtonExit

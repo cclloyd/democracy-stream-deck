@@ -1,3 +1,4 @@
+from __future__ import annotations
 import json
 from pathlib import Path
 from typing import TYPE_CHECKING
@@ -137,7 +138,7 @@ class Stratagem:
         return stratagems
 
     @staticmethod
-    def parse_stratagems(dsd: DSDUltra, stratagem_ids: list[str | Stratagem]):
+    def parse_stratagems(dsd: 'DSDUltra', stratagem_ids: list[str | Stratagem]):
         result = []
         for item in stratagem_ids:
             if isinstance(item, Stratagem):
