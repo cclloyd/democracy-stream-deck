@@ -128,6 +128,10 @@ class DSDUltra:
         action_console.setEnabled(True if is_linux() else is_frozen())
         menu.addAction(action_console)
 
+        action_screenshot = QAction('Take Screenshot')
+        action_screenshot.triggered.connect(lambda _checked=False: self.state.screenshot())
+        menu.addAction(action_screenshot)
+
         action_exit = QAction('Exit')
         action_exit.triggered.connect(self._request_shutdown)
         menu.addAction(action_exit)

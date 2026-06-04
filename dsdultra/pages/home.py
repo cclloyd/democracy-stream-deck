@@ -38,5 +38,3 @@ class PageHome(BasePage):
     def __init__(self, dsd: DSDUltra, *args, **kwargs):
         super().__init__(dsd, *args, **kwargs)
         dsd.state.register_app(self, 'dsd')
-        if not is_frozen():
-            self.ICON_TYPE_MAP[0] = ButtonScreenshot
