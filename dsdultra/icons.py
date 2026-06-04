@@ -118,7 +118,7 @@ class IconGenerator:
         return box
 
     # TODO: Move the functions that draws the button and icon to the button itself, that accepts suggestions from the page, and maybe make more dynamic (might not be needed if moved to button)
-    def make_image_multi(self, button: ButtonLoadout):
+    def make_image_multi(self, button: ButtonLoadout, native=False):
         icon_ids = [i for i in (button.config['icon1'], button.config['icon2'], button.config['icon3'], button.config['icon4']) if i is not None]
         icon_paths = []
         icon_stratagems = []
@@ -250,11 +250,13 @@ class IconGenerator:
 
         # Convert to native key format and set image
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
+        if native:
+            return native_img, key_img
         return native_img
 
     def make_image(self, button: ButtonBase, native=False):
         if isinstance(button, ButtonLoadout):
-            return self.make_image_multi(button)
+            return self.make_image_multi(button, native=native)
         icon_path = button.icon
         border_path = BORDERS[button.color]['full' if button.full else 'half']
 
