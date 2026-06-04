@@ -14,6 +14,7 @@ class StateManager:
     select_limit: dict[str, dict[str, int]] = {} # {appname: {select_type: int}}
     highlight_active: dict[str, dict[str, bool | str]] = {}
     store: dict[str, dict[str, Any]] = {}
+    active_page: BasePage
 
     def __init__(self, dsd: 'DSDUltra'):
         self.dsd = dsd

@@ -229,6 +229,7 @@ class BasePage:
         self.icons = []
 
     def render(self, force=False):
+        self.dsd.state.active_page = self
         if force:
             self.refresh()
         key_count = self.dsd.deck.key_count()
