@@ -47,10 +47,9 @@ class ButtonStratagem(ButtonBase):
             self.page.set_highlight('remove', False, rerender=False)
             self.page.set_select_active('remove', False, rerender=False)
             self.page.remove_select('stratagems', self, rerender=False)
-            self.page.content = self.page.selected('stratagems')
+            self.page.content = [*self.page.selected('stratagems')]
             self.page.get_store('active_loadout').set_stratagems(self.dsd, self.page.content)
-
-            # self.page.refresh()
+            self.page.render(True)
 
         # Active when still selecting stratagems for a loadout
         elif self.page.select_active('stratagems'):

@@ -252,7 +252,7 @@ class IconGenerator:
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
         return native_img
 
-    def make_image(self, button: ButtonBase):
+    def make_image(self, button: ButtonBase, native=False):
         if isinstance(button, ButtonLoadout):
             return self.make_image_multi(button)
         icon_path = button.icon
@@ -350,6 +350,8 @@ class IconGenerator:
 
         # Convert to native key format and set image
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
+        if native:
+            return native_img, key_img
         return native_img
 
     def draw_icons(self, entries):
@@ -366,8 +368,8 @@ class IconGenerator:
                 # If something goes wrong with an icon, skip it and continue
                 print(f"Warn: failed to draw icon for key {k} ({icon['name']}): {e}")
 
-    def draw_icon(self, button):
+    def draw_icon(self, button, native=False):
             try:
-                return self.make_image(button)
+                return self.make_image(button, native=native)
             except Exception as e:
                 traceback.print_exc()

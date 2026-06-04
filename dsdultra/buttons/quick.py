@@ -52,7 +52,7 @@ class ButtonQuickInfo(ButtonBase):
             page.app.set_select_active(self.toggle_id, False, rerender=False)
             page.render(True)
 
-    def draw_image(self):
+    def draw_image(self, native=False):
         key_img = self.dsd.icons.bg.copy()
         self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
@@ -63,6 +63,8 @@ class ButtonQuickInfo(ButtonBase):
 
         # Convert to native key format and set image
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
+        if native:
+            return native_img, key_img
         return native_img
 
 
@@ -74,7 +76,7 @@ class ButtonQuickStart(ButtonBase):
     def should_render(self):
         return self.page.appname == 'quick'
 
-    def draw_image(self):
+    def draw_image(self, native=False):
         key_img = self.dsd.icons.bg.copy()
         self.dsd.icons._paste_img(key_img, self.dsd.icons.bg_img, 100, keep_aspect=False)
         draw = ImageDraw.Draw(key_img)
@@ -86,6 +88,8 @@ class ButtonQuickStart(ButtonBase):
         key_img.paste(icon_img, icon_pos, icon_img)
 
         native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
+        if native:
+            return native_img, key_img
         return native_img
 
     def run(self):

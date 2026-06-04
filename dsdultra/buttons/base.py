@@ -110,5 +110,5 @@ class ButtonBase:
     def should_render(self):
         return True
 
-    def draw_image(self):
+    def draw_image(self, native=False):
         pass

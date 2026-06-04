@@ -1,13 +1,19 @@
 from __future__ import annotations
+
 import traceback
 import uuid
-from typing import Optional
+from typing import Optional, TYPE_CHECKING
+
+from PIL import Image
 
 from dsdultra.buttons.back import ButtonBack
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.buttons.exit import ButtonExit
 from dsdultra.buttons.nav import ButtonPrev, ButtonNext
 from dsdultra.logging import log
+
+if TYPE_CHECKING:
+    from dsdultra.dsd import DSDUltra
 
 
 class BasePage:
@@ -39,10 +45,11 @@ class BasePage:
 
     def __init__(self, dsd, parent=None, content=None, content_class=None, page_num=0, config: dict = {}, app: str = None):
         self.id = str(uuid.uuid4())
-        self.dsd = dsd
-        self.parent = parent
-        self.buttons = []
-        self.icons = []
+        self.dsd: 'DSDUltra' = dsd
+        self.parent: Optional[BasePage] = parent
+        self.buttons: list[ButtonBase] = []
+        self.icons: list[bytes] = []
+        self.images: list[Image.Image] = []
         self.content = content or self.content
         self.content_class = content_class or self.content_class
         self.page_num = page_num
@@ -155,9 +162,6 @@ class BasePage:
         data = (self.content or [])[self.page_num * self.MAX_CONTENT:(self.page_num + 1) * self.MAX_CONTENT]
         for k, cls in enumerate(self.ICON_TYPE_MAP):
             config = {}
-            if type(self) == ScrollPage:
-                config = {'app': self.appname or self.parent}
-            config.update({'selected': {}})
 
             if cls is None:
                 buttons.append(None)
@@ -215,8 +219,9 @@ class BasePage:
             if b is None or not b.should_render():
                 icons.append(None)
                 continue
-            icons.append(b.draw_image() or self.dsd.icons.draw_icon(b))
-        self.icons = icons
+            icons.append(b.draw_image(native=True) or self.dsd.icons.draw_icon(b, native=True))
+        self.icons = [i[0] if i else None for i in icons]
+        self.images = [i[1] if i else None for i in icons]
         return self.icons
 
     def refresh(self):

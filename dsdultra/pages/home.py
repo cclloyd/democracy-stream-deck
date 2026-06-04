@@ -7,6 +7,9 @@ from ..buttons.elgato import ButtonElgato
 from ..buttons.exit import ButtonExit
 from ..buttons.loadouts.loadouts import ButtonLoadouts
 from ..buttons.quick import ButtonQuickLoadout
+from ..buttons.screenshot import ButtonScreenshot
+from ..util import is_frozen
+
 if TYPE_CHECKING:
     from ..dsd import DSDUltra
 
@@ -35,3 +38,5 @@ class PageHome(BasePage):
     def __init__(self, dsd: DSDUltra, *args, **kwargs):
         super().__init__(dsd, *args, **kwargs)
         dsd.state.register_app(self, 'dsd')
+        if not is_frozen():
+            self.ICON_TYPE_MAP[0] = ButtonScreenshot

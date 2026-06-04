@@ -23,10 +23,11 @@ class DSDConfig(MutableMapping):
     elgato_path = Path('C:\\Program Files\\Elgato\\StreamDeck\\StreamDeck.exe')
     recording_app = None
     record_key_combo = None
+    config_dir: Path
 
     def __init__(self, dsd):
         self.dsd = dsd
-        self.config_dir = DEFAULT_VALUES['config_dir']
+        self.config_dir = Path(DEFAULT_VALUES['config_dir'])
         self.config_path = self.config_dir / 'dsd-config.json'
         self.config_dir.mkdir(parents=True, exist_ok=True)
         if self.config_path.exists():
