@@ -18,6 +18,8 @@ class ButtonQuickLoadout(ButtonBase):
     gild = True
     toggle_id = 'stratagems'
 
+    # TODO: This should be a back button when navigating from the loadouts page
+
     def should_render(self):
         return self.page.appname in ('quick', 'dsd')
 
