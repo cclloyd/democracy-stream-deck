@@ -118,182 +118,77 @@ class IconGenerator:
         return box
 
     # TODO: Move the functions that draws the button and icon to the button itself, that accepts suggestions from the page, and maybe make more dynamic (might not be needed if moved to button)
-    def make_image_multi(self, button: ButtonLoadout, native=False):
-        icon_ids = [i for i in (button.config['icon1'], button.config['icon2'], button.config['icon3'], button.config['icon4']) if i is not None]
-        icon_paths = []
-        icon_stratagems = []
-        for k in icon_ids:
-            s = self.dsd.armory.all[k]
-            icon_paths.append(s.icon)
-            icon_stratagems.append(s)
-        border_path = BORDERS[button.config['color']]['full' if button.full else 'half']
-        enabled = button.config.get('enabled', True)
-
-        # Load layers
-        icon_imgs = [Image.open(p).convert("RGBA") for p in icon_paths]
-        icon_imgs = [self.resize_for_iconbox(img, button.icon_size) for img in icon_imgs] # TODO: Need to resize/recenter manually
-        border_img = Image.open(border_path).convert("RGBA")
-
-        key_img = self.bg.copy()
-
-        # Adjust saturation levels for icons to display better on streamdeck
-        for i, img in enumerate(icon_imgs):
-            if img is not None:
-                if icon_stratagems[i].color == 'red':
-                    img = ImageEnhance.Color(img).enhance(4)
-                if icon_stratagems[i].color == 'green':
-                    img = ImageEnhance.Color(img).enhance(4)
-                if icon_stratagems[i].color == 'blue':
-                    img = ImageEnhance.Color(img).enhance(3)
-
-                if button.icon_rotate != 0:
-                    img = img.rotate(button.icon_rotate, expand=True)
-                icon_imgs[i] = img
-
-        # Assemble the image
-        # Background fills 100%, stretched to key size
-        self._paste_img(key_img, self.bg_img, 100, keep_aspect=True)
-        # Paste the glow for selected items
-        if button.highlight:
-            selected_img = self.selected_img.copy()
-            if button.highlight_hue:
-                pixels = selected_img.load()
-                width, height = selected_img.size
-                for x in range(width):
-                    for y in range(height):
-                        r, g, b, a = pixels[x, y]
-                        h, s, v = rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
-                        h = (h + button.highlight_hue / 360.0) % 1.0
-                        r, g, b = hsv_to_rgb(h, s, v)
-                        pixels[x, y] = (int(r * 255), int(g * 255), int(b * 255), a)
-
-            self._paste_img(key_img, selected_img, 100, keep_aspect=True)
-        # Paste the colored border
-        if border_path:
-            self._paste_img(key_img, border_img, button.border_size, keep_aspect=True)
-
-        if button.icon_text is not None: # TODO: Adjust title text for Loadout button specifically, currently unused
-            draw = ImageDraw.Draw(key_img)
-            icon_text = str(button.icon_text)
-            font = self.get_font(button.icon_text_size)
-            bbox = draw.textbbox((0, 0), icon_text, font=font, stroke_width=2)
-            text_width = bbox[2] - bbox[0]
-            text_height = bbox[3] - bbox[1]
-            text_x = (key_img.width - text_width) / 2 - bbox[0]
-            text_y = (key_img.height - text_height) / 2 - bbox[1]
-            draw.text(
-                (text_x, text_y),
-                icon_text,
-                fill="white",
-                font=font,
-                stroke_width=2,
-                stroke_fill="black",
-            )
-        icon_count = len(icon_imgs)
-        key_size = key_img.width
-
-        if icon_count == 1:
-            self._paste_img(key_img, icon_imgs[0], 100, keep_aspect=True)
-        elif icon_count == 2:
-            icon_pct = 65
-            offset = int(key_size * 0.30)
-            self._paste_img(key_img, icon_imgs[0], icon_pct, keep_aspect=True, x=offset, y=offset)
-            self._paste_img(
-                key_img,
-                icon_imgs[1],
-                icon_pct,
-                keep_aspect=True,
-                x=key_size - int(key_size * icon_pct / 100) - offset,
-                y=key_size - int(key_size * icon_pct / 100) - offset,
-            )
-        elif icon_count == 3:
-            icon_pct = 60
-            top_x = (key_size - int(key_size * icon_pct / 100)) // 2
-            top_y = int(key_size * 0.05)
-            bottom_y = key_size - int(key_size * icon_pct / 100) - int(key_size * 0.07)
-            self._paste_img(key_img, icon_imgs[0], icon_pct, keep_aspect=True, x=top_x, y=top_y)
-            self._paste_img(key_img, icon_imgs[1], icon_pct, keep_aspect=True, x=int(key_size * 0.03), y=bottom_y)
-            self._paste_img(
-                key_img,
-                icon_imgs[2],
-                icon_pct,
-                keep_aspect=True,
-                x=key_size - int(key_size * icon_pct / 100) - int(key_size * 0.03),
-                y=bottom_y,
-            )
-        elif icon_count >= 4:
-            icon_pct = 50
-            icon_size = int(key_size * icon_pct / 100)
-            offset = int(icon_size * 0.20)
-
-            positions = (
-                (offset, offset),
-                (key_size - icon_size - offset, offset),
-                (offset, key_size - icon_size - offset),
-                (key_size - icon_size - offset, key_size - icon_size - offset),
-            )
-
-            for img, (x, y) in zip(icon_imgs[:4], positions):
-                self._paste_img(key_img, img, icon_pct, keep_aspect=True, x=x, y=y)
-    
-        if button.config.get('hint', None) and button.page.app.select_active:
-            draw = ImageDraw.Draw(key_img)
-            hint_text = str(button.config['hint'])
-            font_size = 8
-            font = self.get_font(font_size)
-            text_length = draw.textlength(font=font, text=hint_text)
-            draw.text((key_img.width - text_length - 12, 10), hint_text, fill="white", font=font)
-
-        # Darken entire image if disabled
-        if not enabled:
-            key_img = key_img.point(lambda x: x * 0.3)
-
-        # Convert to native key format and set image
-        native_img = PILHelper.to_native_key_format(self.dsd.deck, key_img)
-        if native:
-            return native_img, key_img
-        return native_img
-
-    def make_image(self, button: ButtonBase, native=False):
+    def make_image(self, button: ButtonBase, native=False, multi=False):
         if isinstance(button, ButtonLoadout):
-            return self.make_image_multi(button, native=native)
-        icon_path = button.icon
-        border_path = BORDERS[button.color]['full' if button.full else 'half']
+            multi = True
 
-        icon_img = None
-        if icon_path is not None:
-            if not Path(icon_path).exists():
-                icon_path = ASSETS_DIR / 'icons/groups/Unknown.png'
+        icon_imgs = []
+        icon_colors = []
 
-            # Load layers
-            icon_img = Image.open(icon_path).convert("RGBA")
-            icon_img = self.resize_for_iconbox(icon_img, button.icon_size)
+        if multi:
+            icon_ids = [
+                i for i in (
+                    button.config['icon1'],
+                    button.config['icon2'],
+                    button.config['icon3'],
+                    button.config['icon4'],
+                )
+                if i is not None
+            ]
 
+            for icon_id in icon_ids:
+                stratagem = self.dsd.armory.all[icon_id]
+                icon_img = Image.open(stratagem.icon).convert("RGBA")
+                icon_imgs.append(self.resize_for_iconbox(icon_img, button.icon_size))
+                icon_colors.append(stratagem.color)
+
+            border_path = BORDERS[button.config['color']]['full' if button.full else 'half']
+            enabled = button.config.get('enabled', True)
+            hint = button.config.get('hint', None) if button.page.app.select_active else None
+        else:
+            icon_path = button.icon
+            border_path = BORDERS[button.color]['full' if button.full else 'half']
+
+            if icon_path is not None:
+                if not Path(icon_path).exists():
+                    icon_path = ASSETS_DIR / 'icons/groups/Unknown.png'
+
+                icon_img = Image.open(icon_path).convert("RGBA")
+                icon_imgs.append(self.resize_for_iconbox(icon_img, button.icon_size))
+                icon_colors.append(button.color)
+
+            enabled = button.enabled and not button.should_disable()
+            hint = button.hint
+
+        border_img = None
         if border_path:
             border_img = Image.open(border_path).convert("RGBA")
 
         key_img = self.bg.copy()
 
-        # Mask the icon to remove the gild corners from the default icon set (we add them back later if we want them)
-        if border_path and icon_img is not None:
+        if not multi and border_path and icon_imgs:
+            icon_img = icon_imgs[0]
             icon_alpha = icon_img.getchannel("A")
             mask = self.icon_mask_img
             if mask.size != icon_img.size:
                 mask = mask.resize(icon_img.size, Image.LANCZOS)
             combined_alpha = ImageChops.multiply(icon_alpha, mask)
             icon_img.putalpha(combined_alpha)
+            icon_imgs[0] = icon_img
 
         # Adjust saturation levels for icons to display better on streamdeck
-        if icon_img is not None:
-            if button.color == 'red':
-                icon_img = ImageEnhance.Color(icon_img).enhance(4)
-            if button.color == 'green':
-                icon_img = ImageEnhance.Color(icon_img).enhance(4)
-            if button.color == 'blue':
-                icon_img = ImageEnhance.Color(icon_img).enhance(3)
+        for i, img in enumerate(icon_imgs):
+            if icon_colors[i] == 'red':
+                img = ImageEnhance.Color(img).enhance(4)
+            if icon_colors[i] == 'green':
+                img = ImageEnhance.Color(img).enhance(4)
+            if icon_colors[i] == 'blue':
+                img = ImageEnhance.Color(img).enhance(3)
 
             if button.icon_rotate != 0:
-                icon_img = icon_img.rotate(button.icon_rotate, expand=True)
+                img = img.rotate(button.icon_rotate, expand=True)
+
+            icon_imgs[i] = img
 
         # Assemble the image
         # Background fills 100%, stretched to key size
@@ -314,7 +209,7 @@ class IconGenerator:
 
             self._paste_img(key_img, selected_img, 100, keep_aspect=True)
         # Paste the colored border
-        if border_path:
+        if border_img is not None:
             self._paste_img(key_img, border_img, button.border_size, keep_aspect=True)
 
         if button.icon_text is not None:
@@ -334,20 +229,66 @@ class IconGenerator:
                 stroke_width=2,
                 stroke_fill="black",
             )
-        elif icon_img is not None:
-            # Paste the icon
-            self._paste_img(key_img, icon_img, 100, keep_aspect=True)
+        elif multi:
+            icon_count = len(icon_imgs)
+            key_size = key_img.width
 
-        if button.hint:
+            if icon_count == 1:
+                self._paste_img(key_img, icon_imgs[0], 100, keep_aspect=True)
+            elif icon_count == 2:
+                icon_pct = 65
+                offset = int(key_size * 0.30)
+                self._paste_img(key_img, icon_imgs[0], icon_pct, keep_aspect=True, x=offset, y=offset)
+                self._paste_img(
+                    key_img,
+                    icon_imgs[1],
+                    icon_pct,
+                    keep_aspect=True,
+                    x=key_size - int(key_size * icon_pct / 100) - offset,
+                    y=key_size - int(key_size * icon_pct / 100) - offset,
+                )
+            elif icon_count == 3:
+                icon_pct = 60
+                top_x = (key_size - int(key_size * icon_pct / 100)) // 2
+                top_y = int(key_size * 0.05)
+                bottom_y = key_size - int(key_size * icon_pct / 100) - int(key_size * 0.07)
+                self._paste_img(key_img, icon_imgs[0], icon_pct, keep_aspect=True, x=top_x, y=top_y)
+                self._paste_img(key_img, icon_imgs[1], icon_pct, keep_aspect=True, x=int(key_size * 0.03), y=bottom_y)
+                self._paste_img(
+                    key_img,
+                    icon_imgs[2],
+                    icon_pct,
+                    keep_aspect=True,
+                    x=key_size - int(key_size * icon_pct / 100) - int(key_size * 0.03),
+                    y=bottom_y,
+                )
+            elif icon_count >= 4:
+                icon_pct = 50
+                icon_size = int(key_size * icon_pct / 100)
+                offset = int(icon_size * 0.20)
+
+                positions = (
+                    (offset, offset),
+                    (key_size - icon_size - offset, offset),
+                    (offset, key_size - icon_size - offset),
+                    (key_size - icon_size - offset, key_size - icon_size - offset),
+                )
+
+                for img, (x, y) in zip(icon_imgs[:4], positions):
+                    self._paste_img(key_img, img, icon_pct, keep_aspect=True, x=x, y=y)
+        elif icon_imgs:
+            self._paste_img(key_img, icon_imgs[0], 100, keep_aspect=True)
+
+        if hint:
             draw = ImageDraw.Draw(key_img)
-            hint_text = str(button.hint)
+            hint_text = str(hint)
             font_size = 8
             font = self.get_font(font_size)
             text_length = draw.textlength(font=font, text=hint_text)
             draw.text((key_img.width - text_length - 12, 10), hint_text, fill="white", font=font)
 
         # Darken entire image if disabled
-        if not button.enabled or button.should_disable():
+        if not enabled:
             key_img = key_img.point(lambda x: x * 0.3)
 
         # Convert to native key format and set image
@@ -355,6 +296,9 @@ class IconGenerator:
         if native:
             return native_img, key_img
         return native_img
+
+    def draw_icons(self, entries):
+        key_count = self.dsd.deck.key_count()
 
     def draw_icons(self, entries):
         key_count = self.dsd.deck.key_count()
