@@ -6,6 +6,7 @@ from StreamDeck.ImageHelpers import PILHelper
 
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
+
 if TYPE_CHECKING:
     from dsdultra.pages.quick import PageQuickInfo, PageQuickLoadout
 
@@ -25,9 +26,13 @@ class ButtonQuickLoadout(ButtonBase):
         from dsdultra.armory.loadouts import Loadout
         from dsdultra.pages.armory import PageArmory
         from dsdultra.pages.quick import PageQuickInfo
+        from dsdultra.pages.home import PageHome
         page = PageArmory(self.dsd, parent=self.page.app.parent if isinstance(self.page, PageQuickInfo) else self.page, app='quick')
-        page.app.set_select_active(self.toggle_id, True)
+        page.app.set_select_active(self.toggle_id, True, rerender=False)
         page.set_store('active_loadout', page.get_store('active_loadout') or Loadout(self.dsd), rerender=False)
+        if isinstance(self.page, PageHome):
+            page.set_store('active_loadout', Loadout(self.dsd), rerender=False)
+            page.set_select('stratagems', [], rerender=False)
         page.render(True)
 
 
