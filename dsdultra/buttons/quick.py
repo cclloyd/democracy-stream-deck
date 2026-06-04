@@ -18,8 +18,6 @@ class ButtonQuickLoadout(ButtonBase):
     gild = True
     toggle_id = 'stratagems'
 
-    # TODO: This should be a back button when navigating from the loadouts page
-
     def should_render(self):
         return self.page.appname in ('quick', 'dsd')
 
@@ -70,6 +68,9 @@ class ButtonQuickInfo(ButtonBase):
             return native_img, key_img
         return native_img
 
+    def should_render(self):
+        return self.page.appname in ('quick', 'loadouts')
+
 
 class ButtonQuickStart(ButtonBase):
     icon = ASSETS_DIR / 'icons/groups/Hellpod1.png'
@@ -77,7 +78,7 @@ class ButtonQuickStart(ButtonBase):
     toggle_id = 'stratagems'
 
     def should_render(self):
-        return self.page.appname == 'quick'
+        return self.page.appname in ('quick', 'loadouts')
 
     def draw_image(self, native=False):
         key_img = self.dsd.icons.bg.copy()
