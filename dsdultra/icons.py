@@ -345,7 +345,7 @@ class IconGenerator:
             draw.text((key_img.width - text_length - 12, 10), hint_text, fill="white", font=font)
 
         # Darken entire image if disabled
-        if not button.enabled:
+        if not button.enabled or button.should_disable():
             key_img = key_img.point(lambda x: x * 0.3)
 
         # Convert to native key format and set image

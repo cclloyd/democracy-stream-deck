@@ -1,7 +1,13 @@
-import os
+from __future__ import annotations
+
 import json
-from pathlib import Path, WindowsPath
+import os
 from collections.abc import MutableMapping
+from pathlib import Path
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from dsdultra.dsd import DSDUltra
 
 unix = os.name != 'nt'
 DEFAULT_VALUES = {
@@ -16,11 +22,12 @@ DEFAULT_VALUES = {
 
 
 class DSDConfig(MutableMapping):
-    dsd = None
+    dsd: DSDUltra = None
     obs_host = None
     obs_port = None
     obs_password = None
     elgato_path = Path('C:\\Program Files\\Elgato\\StreamDeck\\StreamDeck.exe')
+    elgato_enabled = False
     recording_app = None
     record_key_combo = None
     config_dir: Path
@@ -32,10 +39,9 @@ class DSDConfig(MutableMapping):
         self.config_dir.mkdir(parents=True, exist_ok=True)
         if self.config_path.exists():
             with open(self.config_path, 'r') as f:
-                self.loadout_path = self.config_dir / 'loadouts.json'
                 self.config = json.load(f)
                 self.config_dir = self.config.get('config_dir', DEFAULT_VALUES['config_dir'])
-                self.elgato_path = self.config.get('elgato_path', DEFAULT_VALUES['elgato_path'])
+                self.elgato_path = Path(self.config.get('elgato_path', DEFAULT_VALUES['elgato_path']))
                 self.obs_host = self.config.get('obs_host', DEFAULT_VALUES['obs_host'])
                 self.obs_port = self.config.get('obs_port', DEFAULT_VALUES['obs_port'])
                 self.obs_password = self.config.get('obs_password', DEFAULT_VALUES['obs_password'])
@@ -43,6 +49,11 @@ class DSDConfig(MutableMapping):
                 self.record_key_combo = self.config.get('record_key_combo', DEFAULT_VALUES['record_key_combo'])
         else:
             self.config = dict()
+
+        self.refresh()
+
+    def refresh(self):
+        self.elgato_enabled = self.elgato_path.exists()
 
     def save(self):
         self.config_dir = Path(self.config_dir)
@@ -63,6 +74,9 @@ class DSDConfig(MutableMapping):
 
         with open(self.config_path, 'w') as f:
             json.dump(self.config, f, indent=4)
+
+        self.refresh()
+        self.dsd.state.active_page.render(True)
 
     def __getitem__(self, key):
         return self.config[key]

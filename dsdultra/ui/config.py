@@ -22,43 +22,42 @@ class ConfigWindow(QDialog):
     def __init__(self, dsd, parent=None):
         super().__init__(parent)
         self.dsd = dsd
-        self.config = dsd.config
 
         self.setWindowTitle('Democracy StreamDeck Config')
         self.setMinimumWidth(720)
 
         layout = QFormLayout(self)
 
-        self.config_dir_input = QLineEdit(str(self.config.config_dir))
-        self.config_dir_button = QPushButton('Browse...')
-        self.config_dir_button.clicked.connect(self.browse_config_dir)
+        self.dsd.config_dir_input = QLineEdit(str(self.dsd.config.config_dir))
+        self.dsd.config_dir_button = QPushButton('Browse...')
+        self.dsd.config_dir_button.clicked.connect(self.browse_config_dir)
 
-        self.elgato_path_input = QLineEdit(str(self.config.elgato_path))
+        self.elgato_path_input = QLineEdit(str(self.dsd.config.elgato_path))
         self.elgato_path_button = QPushButton('Browse...')
         self.elgato_path_button.clicked.connect(self.browse_elgato_path)
 
-        obs_host_text = '' if self.config.obs_host == DEFAULT_VALUES['obs_host'] else str(self.config.obs_host or '')
+        obs_host_text = '' if self.dsd.config.obs_host == DEFAULT_VALUES['obs_host'] else str(self.dsd.config.obs_host or '')
         self.obs_host_input = QLineEdit(obs_host_text)
         self.obs_host_input.setPlaceholderText(str(DEFAULT_VALUES['obs_host']))
 
-        obs_port_text = '' if self.config.obs_port == DEFAULT_VALUES['obs_port'] else str(self.config.obs_port or '')
+        obs_port_text = '' if self.dsd.config.obs_port == DEFAULT_VALUES['obs_port'] else str(self.dsd.config.obs_port or '')
         self.obs_port_input = QLineEdit(obs_port_text)
         self.obs_port_input.setPlaceholderText(str(DEFAULT_VALUES['obs_port']))
         self.obs_port_input.setValidator(QIntValidator(1, 65535, self))
 
-        self.obs_password_input = QLineEdit(str(self.config.obs_password or ''))
+        self.obs_password_input = QLineEdit(str(self.dsd.config.obs_password or ''))
         self.obs_password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
         self.recording_app_input = QComboBox()
         self.recording_app_input.addItem('OBS Studio', 'obs')
         self.recording_app_input.addItem('Keyboard Shortcut', 'keycombo')
-        recording_app_index = self.recording_app_input.findData(self.config.recording_app)
+        recording_app_index = self.recording_app_input.findData(self.dsd.config.recording_app)
         if recording_app_index == -1:
             recording_app_index = self.recording_app_input.findData('obs')
         self.recording_app_input.setCurrentIndex(recording_app_index)
 
         self.record_key_combo_input = QKeySequenceEdit()
-        self.record_key_combo_input.setKeySequence(QKeySequence(self.config.record_key_combo or 'Alt+Z'))
+        self.record_key_combo_input.setKeySequence(QKeySequence(self.dsd.config.record_key_combo or 'Alt+Z'))
 
         self.recording_app_input.currentIndexChanged.connect(self.update_recording_app_fields_visibility)
 
@@ -68,8 +67,8 @@ class ConfigWindow(QDialog):
 
 
         config_dir_layout = QHBoxLayout()
-        config_dir_layout.addWidget(self.config_dir_input)
-        config_dir_layout.addWidget(self.config_dir_button)
+        config_dir_layout.addWidget(self.dsd.config_dir_input)
+        config_dir_layout.addWidget(self.dsd.config_dir_button)
 
         self.obs_host_label = QLabel('OBS host:')
         self.obs_port_label = QLabel('OBS port:')
@@ -123,29 +122,28 @@ class ConfigWindow(QDialog):
         directory = QFileDialog.getExistingDirectory(
             self,
             'Select config directory',
-            self.config_dir_input.text(),
+            self.dsd.config_dir_input.text(),
         )
 
         if directory:
-            self.config_dir_input.setText(directory)
+            self.dsd.config_dir_input.setText(directory)
 
     def save(self):
         try:
-            self.config.obs_host = self.obs_host_input.text().strip() or 'localhost'
-            self.config.obs_port = int(self.obs_port_input.text().strip() or 4455)
-            self.config.obs_password = self.obs_password_input.text()
-            self.config.elgato_path = Path(self.elgato_path_input.text().strip())
-            self.config.config_dir = Path(self.config_dir_input.text().strip())
-            self.config.loadout_path = self.config.config_dir / 'loadouts.json'
-            self.config.recording_app = self.recording_app_input.currentData()
-            self.config.record_key_combo = self.record_key_combo_input.keySequence().toString()
+            self.dsd.config.obs_host = self.obs_host_input.text().strip() or 'localhost'
+            self.dsd.config.obs_port = int(self.obs_port_input.text().strip() or 4455)
+            self.dsd.config.obs_password = self.obs_password_input.text()
+            self.dsd.config.elgato_path = Path(self.elgato_path_input.text().strip())
+            self.dsd.config.config_dir = Path(self.dsd.config_dir_input.text().strip())
+            self.dsd.config.recording_app = self.recording_app_input.currentData()
+            self.dsd.config.record_key_combo = self.record_key_combo_input.keySequence().toString()
 
-            self.config.save()
+            self.dsd.config.save()
 
             if hasattr(self.dsd, 'obs') and self.dsd.obs is not None:
-                self.dsd.obs.OBS_HOST = self.config.obs_host
-                self.dsd.obs.OBS_PORT = self.config.obs_port
-                self.dsd.obs.OBS_PASSWORD = self.config.obs_password
+                self.dsd.obs.OBS_HOST = self.dsd.config.obs_host
+                self.dsd.obs.OBS_PORT = self.dsd.config.obs_port
+                self.dsd.obs.OBS_PASSWORD = self.dsd.config.obs_password
         except Exception as e:
             print(e)
             traceback.print_exc()

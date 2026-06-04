@@ -112,3 +112,6 @@ class ButtonBase:
 
     def draw_image(self, native=False):
         pass
+
+    def should_disable(self):
+        return False

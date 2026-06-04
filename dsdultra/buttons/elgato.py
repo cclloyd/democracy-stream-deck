@@ -19,6 +19,9 @@ class ButtonElgato(ButtonBase):
     highlight_hue = 210
 
     def run(self):
+        if not self.enabled or self.should_disable():
+            return
+
         if self.page.is_highlight_active(self.toggle_id):
             elgato_path = self.dsd.config.elgato_path
             subprocess.Popen([str(elgato_path)], close_fds=True)
@@ -35,3 +38,5 @@ class ButtonElgato(ButtonBase):
             t.daemon = True
             t.start()
 
+    def should_disable(self):
+        return not self.dsd.config.elgato_enabled
