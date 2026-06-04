@@ -24,7 +24,8 @@ class ButtonQuickLoadout(ButtonBase):
     def run(self):
         from dsdultra.armory.loadouts import Loadout
         from dsdultra.pages.armory import PageArmory
-        page = PageArmory(self.dsd, parent=self.page, app='quick')
+        from dsdultra.pages.quick import PageQuickInfo
+        page = PageArmory(self.dsd, parent=self.page.app.parent if isinstance(self.page, PageQuickInfo) else self.page, app='quick')
         page.app.set_select_active(self.toggle_id, True)
         page.set_store('active_loadout', page.get_store('active_loadout') or Loadout(self.dsd), rerender=False)
         page.render(True)
