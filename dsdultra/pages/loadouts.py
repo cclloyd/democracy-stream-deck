@@ -8,7 +8,7 @@ from ..buttons.loadouts.loadout import ButtonLoadout
 if TYPE_CHECKING:
     from ..armory.loadouts import Loadout
 from ..buttons.back import ButtonBack
-from ..buttons.exit import ButtonExit
+from ..buttons.exit import ButtonExitConfirm
 from ..buttons.nav import ButtonNext, ButtonPrev
 
 
@@ -21,7 +21,7 @@ class PageLoadouts(BasePage):
         ButtonPrev,
         None,
         ButtonNext,
-        ButtonExit,
+        ButtonExitConfirm,
         # Row 2
         'content',
         'content',

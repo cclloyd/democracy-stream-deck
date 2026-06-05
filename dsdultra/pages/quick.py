@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from .base import ScrollPage
@@ -10,7 +11,7 @@ if TYPE_CHECKING:
 from ..buttons.back import ButtonBack
 from ..buttons.edit import ButtonSwap, ButtonRemove, ButtonEdit
 from ..buttons.elgato import ButtonElgato
-from ..buttons.exit import ButtonExit, ButtonExitConfirm
+from ..buttons.exit import ButtonExitConfirm
 from ..buttons.home import ButtonHomeConfirm
 from ..buttons.loadouts.save import ButtonSave
 from ..buttons.obs import ButtonRecord
@@ -71,7 +72,7 @@ class PageQuickInfo(ScrollPage):
         None,
         ButtonQuickInfo,
         ButtonQuickStart,
-        ButtonExit,
+        ButtonExitConfirm,
         # Row 2
         ButtonRefreshLoadout,
         ButtonEdit,

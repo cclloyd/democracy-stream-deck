@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from .base import BasePage
 from ..buttons.armory import ButtonArmory
 from ..buttons.elgato import ButtonElgato
-from ..buttons.exit import ButtonExit
+from ..buttons.exit import ButtonExitConfirm
 from ..buttons.loadouts.loadouts import ButtonLoadouts
 from ..buttons.quick import ButtonQuickLoadout
 
@@ -19,7 +19,7 @@ class PageHome(BasePage):
         None,
         None,
         ButtonElgato,
-        ButtonExit,
+        ButtonExitConfirm,
         # Row 2
         None,
         ButtonLoadouts,

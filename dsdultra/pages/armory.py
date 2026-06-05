@@ -1,10 +1,11 @@
 from __future__ import annotations
+
 from .base import ScrollPage
 from ..buttons.back import ButtonBack
 from ..buttons.elgato import ButtonElgato
-from ..buttons.exit import ButtonExit
+from ..buttons.exit import ButtonExitConfirm
 from ..buttons.group import ButtonGroup
-from ..buttons.quick import ButtonQuickInfo, ButtonQuickStart, ButtonQuickLoadout
+from ..buttons.quick import ButtonQuickInfo, ButtonQuickStart
 
 
 class PageArmory(ScrollPage):
@@ -19,7 +20,7 @@ class PageArmory(ScrollPage):
         None,
         ButtonQuickInfo,
         ButtonQuickStart,
-        ButtonExit,
+        ButtonExitConfirm,
         # Row 2
         'content',
         'content',
