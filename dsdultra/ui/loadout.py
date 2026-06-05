@@ -162,7 +162,7 @@ class LoadoutSaveWindow(QDialog):
             '  color: white;'
             f'  border: 1px solid {border};'
             '  border-radius: 4px;'
-            '  padding: 4px 12px;'
+            '  padding: 2px 12px;'
             '}'
             'QPushButton:hover {'
             f'  background-color: {hover_background};'
