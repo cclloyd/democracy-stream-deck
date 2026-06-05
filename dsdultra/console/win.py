@@ -13,7 +13,6 @@ def _ps_single_quote(s: str) -> str:
 
 def show_console(log_path: Path, **kwargs):
     global _console_proc
-    print(f'Showing console for {log_path}')
 
     if not is_frozen():
         return

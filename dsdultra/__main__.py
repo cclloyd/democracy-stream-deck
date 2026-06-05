@@ -2,12 +2,28 @@ import signal
 import sys
 import traceback
 from datetime import datetime
+from pathlib import Path
+
+import psutil
+from PyQt6.QtWidgets import QApplication, QMessageBox
 
 from dsdultra.args import parse_args
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.installer import InstallerWizard
 from dsdultra.logging import redirect_output_to_file
+from dsdultra.util import is_frozen
+
+
+def check_elgato_running(path: Path):
+    process_name = path.stem.lower()
+    for proc in psutil.process_iter(['name']):
+        try:
+            if proc.info['name'] and process_name in proc.info['name'].lower():
+                return True
+        except (psutil.NoSuchProcess, psutil.AccessDenied):
+            pass
+    return False
 
 
 def main():
@@ -28,6 +44,15 @@ def main():
             build_func = importlib.import_module('dsdultra.build')
             build_func.build_executable()
             sys.exit(0)
+
+        if check_elgato_running(config.elgato_path):
+            message = 'Elgato StreamDeck is currently running. Please close it before launching this app.'
+            print(message)
+            if is_frozen():
+                app = QApplication(sys.argv)
+                QMessageBox.warning(None, 'DSDUltra', message)
+                app.quit()
+            sys.exit(1)
 
         redirect_output_to_file(config.log_path)
         if config.show_console:
