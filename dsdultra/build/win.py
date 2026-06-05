@@ -9,7 +9,7 @@ def build_executable():
         '--onefile',
         '--standalone',
         '--include-package=PIL',
-        '--include-distribution-metadata=Pillow',
+        '--include-distribution-metadata=pillow',
         '--include-data-dir=dsdultra/assets=dsdultra/assets',
         '--assume-yes-for-downloads',
         '--output-filename=dsd.exe',
