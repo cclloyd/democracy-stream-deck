@@ -15,8 +15,8 @@ class ButtonSave(ButtonBase):
 
     def run(self):
         if not hasattr(self.page.parent, 'loadout') or self.page.parent.loadout is None:
-            if self.dsd.ui_bridge is None:
+            if self.dsd.ui.ui_bridge is None:
                 log.warn('Qt UI bridge is not ready; cannot open save dialog')
                 return
-            self.dsd.ui_bridge.save_loadout_requested.emit(self.page)
+            self.dsd.ui.ui_bridge.save_loadout_requested.emit(self.page)
 

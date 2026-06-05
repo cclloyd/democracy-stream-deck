@@ -238,7 +238,7 @@ class BasePage:
             if k >= key_count:
                 break  # don't exceed available keys
             try:
-                self.dsd.set_image(k, img)
+                self.dsd.icons.set_image(k, img)
             except Exception as e:
                 traceback.print_exc()
                 # If something goes wrong with an icon, skip it and continue

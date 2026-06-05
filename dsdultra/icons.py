@@ -68,6 +68,11 @@ class IconGenerator:
             self.gild_img = Image.open(gild_path).convert("RGBA")
             self.gild_img_full = Image.open(gild_path_full).convert("RGBA")
 
+    def set_image(self, key_index: int, img: tuple[bytes, Image.Image] | bytes):
+        if key_index >= self.dsd.deck.key_count():
+            return
+        self.dsd.deck.set_key_image(key_index, img)
+
     def get_font(self, size):
         return ImageFont.truetype(self.font_path, size)
 
@@ -308,7 +313,7 @@ class IconGenerator:
                 break  # don't exceed available keys
             try:
                 native_img = self.make_image(icon)
-                self.dsd.set_image(k, native_img)
+                self.set_image(k, native_img)
             except Exception as e:
                 traceback.print_exc()
                 # If something goes wrong with an icon, skip it and continue

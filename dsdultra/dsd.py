@@ -1,35 +1,29 @@
-import sys
 import tempfile
 import threading
 import traceback
 from argparse import Namespace
-import os
-import signal
 from pathlib import Path
 
-from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal, Qt
-from PyQt6.QtGui import QIcon, QAction
-from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
+from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal
+from PyQt6.QtWidgets import QApplication, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
 
 from dsdultra.state import StateManager
+from dsdultra.ui.manager import DSDUIManager
 
 
 class DSDUltraUiBridge(QObject):
     save_loadout_requested = pyqtSignal(object)
 
-from dsdultra import ASSETS_DIR
+
 from dsdultra.armory.loadouts import Loadouts
 from dsdultra.armory.stratagems import Stratagem
 from dsdultra.armory.superdestroyer import SuperDestroyer
 from dsdultra.config import DSDConfig
-from dsdultra.console import show_console
 from dsdultra.icons import IconGenerator
 from dsdultra.logging import close_log_file
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
-from dsdultra.ui.config import ConfigWindow
-from dsdultra.util import is_linux, is_frozen
 
 
 class DSDUltra:
@@ -44,37 +38,28 @@ class DSDUltra:
         self.tray: threading.Thread | None = None
         self.stop_event = threading.Event()
         self.args = args
+        self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
         self.state = StateManager(self)
-        self.BUTTON_SIZE = 72
         self.started = started
-        self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
         self.stratagems = Stratagem.load_stratagems()
         self.ASSET_DIR = Path(__file__).parent / 'assets'
         self.armory = SuperDestroyer(self)
         self.loadouts = Loadouts(self)
+        self.ui = DSDUIManager(self)
 
-        self.qt_app: QApplication | None = None
-        self.tray_icon: QSystemTrayIcon | None = None
-        self.ui_bridge: DSDUltraUiBridge | None = None
-        self._sigint_timer: QTimer | None = None
-
-        self._signal_rfd: int | None = None
-        self._signal_wfd: int | None = None
-        self._signal_notifier: QSocketNotifier | None = None
 
     def start(self):
         deck_thread = threading.Thread(target=self._deck_loop, name='StreamDeckThread', daemon=True)
         deck_thread.start()
         print('Started streamdeck thread')
-        self.create_tray_icon()
+        self.ui.create_tray_icon()
         print('Created tray icon')
 
     def _deck_loop(self):
         self.deck.open()
         self.deck.reset()
-        self.BUTTON_SIZE = self.deck.KEY_PIXEL_WIDTH
         print(f'Opened: {self.deck.deck_type()}  SN: {self.deck.get_serial_number()}  FW: {self.deck.get_firmware_version()}')
 
         self.deck.set_brightness(50)
@@ -91,109 +76,13 @@ class DSDUltra:
         except Exception as e:
             print(f'Error closing deck: {e}')
 
-    def show_config_window(self):
-        dialog = ConfigWindow(self)
-        dialog.exec()
 
-    def create_tray_icon(self):
-        self.qt_app = QApplication.instance() or QApplication(sys.argv)
-
-        self.ui_bridge = DSDUltraUiBridge()
-        self.ui_bridge.save_loadout_requested.connect(
-            self.loadouts.open_save_dialog,
-            Qt.ConnectionType.QueuedConnection,
-        )
-
-        icon_path = ASSETS_DIR / 'icons/DSDIcon.png'
-        qicon = QIcon(str(icon_path))
-        self.qt_app.setWindowIcon(qicon)
-        self.qt_app.setQuitOnLastWindowClosed(False)
-
-        self.tray_icon = QSystemTrayIcon(qicon)
-        self.tray_icon.setToolTip('Democracy StreamDeck')
-
-        menu = QMenu()
-        menu.setTitle('Democracy StreamDeck')
-        title = QAction('Democracy StreamDeck')
-        title.setEnabled(False)
-        menu.addAction(title)
-        menu.addSeparator()
-
-        action_config = QAction('Config')
-        action_config.triggered.connect(self.show_config_window)
-        menu.addAction(action_config)
-
-        action_console = QAction('Show Console')
-        action_console.triggered.connect(lambda checked=False: show_console(log_path=self.log_path))
-        action_console.setEnabled(True if is_linux() else is_frozen())
-        menu.addAction(action_console)
-
-        action_screenshot = QAction('Take Screenshot')
-        action_screenshot.triggered.connect(lambda _checked=False: self.state.screenshot())
-        menu.addAction(action_screenshot)
-
-        action_exit = QAction('Exit')
-        action_exit.triggered.connect(self._request_shutdown)
-        menu.addAction(action_exit)
-
-        self.tray_icon.setContextMenu(menu)
-        self.tray_icon.show()
-
-        # Ensure SIGINT/SIGTERM reliably wakes Qt's event loop on Unix.
-        # This makes Ctrl+C work even while QApplication.exec() is running.
-        try:
-            self._signal_rfd, self._signal_wfd = os.pipe()
-            os.set_blocking(self._signal_rfd, False)
-            os.set_blocking(self._signal_wfd, False)
-            signal.set_wakeup_fd(self._signal_wfd)
-
-            self._signal_notifier = QSocketNotifier(self._signal_rfd, QSocketNotifier.Type.Read, self.qt_app)
-
-            def _on_signal_ready():
-                try:
-                    os.read(self._signal_rfd, 4096)
-                except OSError:
-                    pass
-                self._request_shutdown()
-
-            self._signal_notifier.activated.connect(_on_signal_ready)
-        except Exception:
-            # Fallback: keep a tiny timer so Python regains control periodically.
-            self._sigint_timer = QTimer()
-            self._sigint_timer.setInterval(200)
-            self._sigint_timer.timeout.connect(lambda: None)
-            self._sigint_timer.start()
-
-        try:
-            self.qt_app.exec()
-        finally:
-            # Best-effort cleanup
-            try:
-                if self._signal_notifier is not None:
-                    self._signal_notifier.setEnabled(False)
-            except Exception:
-                pass
-            try:
-                if self._signal_rfd is not None:
-                    os.close(self._signal_rfd)
-            except Exception:
-                pass
-            try:
-                if self._signal_wfd is not None:
-                    os.close(self._signal_wfd)
-            except Exception:
-                pass
-
-    def set_image(self, key, img):
-        if key >= self.deck.key_count():
-            return  # touch strip on SD+ is beyond key indexes
-        self.deck.set_key_image(key, img)
 
     def shutdown(self, code=0):
         print('Shutting down...')
-        return self._request_shutdown()
+        self.request_shutdown()
 
-    def _request_shutdown(self):
+    def request_shutdown(self):
         self.stop_event.set()
         try:
             if self.deck is not None and self.deck.is_open():
@@ -204,8 +93,8 @@ class DSDUltra:
             print(f'Error closing deck: {e}')
 
         try:
-            if self.tray_icon is not None:
-                self.tray_icon.hide()
+            if self.ui.tray_icon is not None:
+                self.ui.tray_icon.hide()
                 print('Removed tray icon')
         except Exception:
             pass
@@ -217,10 +106,5 @@ class DSDUltra:
                 self.log_path.unlink()
             except PermissionError:
                 traceback.print_exc()
-        if self.qt_app is not None:
-            self.qt_app.quit()
-
-    def get_app(self, name, cls=None):
-        if name not in self.apps:
-            self.apps[name] = cls(self)
-        return self.apps[name]
+        if self.ui.qt_app is not None:
+            self.ui.qt_app.quit()
