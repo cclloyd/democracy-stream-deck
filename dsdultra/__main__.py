@@ -6,18 +6,16 @@ from datetime import datetime
 from pathlib import Path
 
 from dsdultra.args import parse_args
+from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
 from dsdultra.installer import InstallerWizard
 from dsdultra.logging import redirect_output_to_file
 
 
 def main():
-    started = datetime.now()
     args = parse_args()
     wizard = InstallerWizard()
-    log_dir = Path(tempfile.gettempdir()) / 'dsdultra'
-    log_path = log_dir / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
-
+    config = DSDConfig(None)
 
     if args.command == 'install':
         wizard.silent_install()
@@ -32,9 +30,9 @@ def main():
         build_func.build_executable()
         sys.exit(0)
 
-    redirect_output_to_file(log_path)
-    if args.console:
-        show_console(log_path=log_path)
+    redirect_output_to_file(config.log_path)
+    if config.show_console:
+        show_console(log_path=config.log_path)
 
     from StreamDeck.DeviceManager import DeviceManager, ProbeError
     try:
@@ -62,7 +60,7 @@ def main():
 
     from dsdultra.dsd import DSDUltra
     try:
-        dsd = DSDUltra(deck, args, started=started)
+        dsd = DSDUltra(deck, args, started=datetime.now(), config=config)
 
         # Keep the script alive until the self.deck is closed (e.g., Exit pressed)
         def signal_handler(sig, frame):

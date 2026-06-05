@@ -25,7 +25,7 @@ def parse_args():
         '-c', '--config',
         dest='config_path',
         metavar='CONFIG_PATH',
-        help='Path to the configuration file.'
+        help='Path to the configuration folder.'
     )
     parser.add_argument(
         '-k', '--keep-logs',

@@ -32,8 +32,11 @@ class DSDUltra:
     icons: IconGenerator = None
     apps: dict = dict()
 
-    def __init__(self, deck, args: Namespace, started=None):
-        self.config = DSDConfig(self)
+    def __init__(self, deck, args: Namespace, started=None, config=None):
+        self.started = config.started if config else started
+        self.config = config or DSDConfig(self)
+        if config:
+            self.config.dsd = self
         self.deck: StreamDeckDevice = deck
         self.tray: threading.Thread | None = None
         self.stop_event = threading.Event()
@@ -43,7 +46,6 @@ class DSDUltra:
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
         self.state = StateManager(self)
-        self.started = started
         self.stratagems = Stratagem.load_stratagems()
         self.ASSET_DIR = Path(__file__).parent / 'assets'
         self.armory = SuperDestroyer(self)
