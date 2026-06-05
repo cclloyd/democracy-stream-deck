@@ -1,8 +1,7 @@
 import traceback
 from pathlib import Path
 
-from PyQt6.QtCore import QUrl
-from PyQt6.QtGui import QIntValidator, QKeySequence, QDesktopServices
+from PyQt6.QtGui import QIntValidator, QKeySequence
 from PyQt6.QtWidgets import (
     QDialog,
     QFormLayout,

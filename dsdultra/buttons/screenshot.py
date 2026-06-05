@@ -1,9 +1,5 @@
 import threading
 import traceback
-from pathlib import Path
-from time import strftime
-
-from PIL import Image, ImageDraw, ImageChops
 
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase

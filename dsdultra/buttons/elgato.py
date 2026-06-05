@@ -1,6 +1,5 @@
 import subprocess
 import threading
-from pathlib import WindowsPath
 
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase

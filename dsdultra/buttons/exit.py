@@ -1,7 +1,7 @@
 import threading
 
-from dsdultra.buttons.base import ButtonBase
 from dsdultra import ASSETS_DIR
+from dsdultra.buttons.base import ButtonBase
 
 
 class ButtonExit(ButtonBase):

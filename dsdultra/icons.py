@@ -1,17 +1,17 @@
 import traceback
 from colorsys import rgb_to_hsv, hsv_to_rgb
 from pathlib import Path
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageEnhance
-from PIL import ImageChops
-from PIL import ImageDraw
-from StreamDeck.ImageHelpers import PILHelper
-from dsdultra import ASSETS_DIR
-from dsdultra.armory.stratagems import Stratagem
-from dsdultra.buttons.base import ButtonBase
 from typing import TYPE_CHECKING
 
+from PIL import Image
+from PIL import ImageChops
+from PIL import ImageDraw
+from PIL import ImageEnhance
+from PIL import ImageFont
+from StreamDeck.ImageHelpers import PILHelper
+
+from dsdultra import ASSETS_DIR
+from dsdultra.buttons.base import ButtonBase
 from dsdultra.buttons.loadouts.loadout import ButtonLoadout
 
 if TYPE_CHECKING:

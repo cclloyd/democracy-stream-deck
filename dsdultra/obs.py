@@ -1,5 +1,6 @@
 from os import getenv
 from typing import TYPE_CHECKING
+
 import obsws_python as obs
 
 if TYPE_CHECKING:

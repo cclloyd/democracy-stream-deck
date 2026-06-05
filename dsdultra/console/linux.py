@@ -1,9 +1,9 @@
 import os
-import sys
 import shlex
 import shutil
-import tempfile
 import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 from dsdultra.util import is_frozen

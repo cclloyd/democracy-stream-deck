@@ -1,6 +1,3 @@
-from PIL import ImageDraw, ImageFont, Image
-from StreamDeck.ImageHelpers import PILHelper
-
 from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.logging import log
