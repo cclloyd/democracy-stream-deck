@@ -127,16 +127,8 @@ class Loadouts:
                 self.save_dialog = None
                 return
 
-            loadout = None
-            if isinstance(page.app, PageLoadouts):
-                loadout = page.parent.loadout
-            else:
-                data = {
-                    'id': 'new_loadout',
-                    'name': 'New Loadout',
-                    'stratagems': stratagems,
-                }
-            self.save_dialog = LoadoutSaveWindow(self.dsd, loadout or data)
+            loadout = page.parent.loadout if isinstance(page.app, PageLoadouts) else Loadout(self.dsd, stratagems=stratagems, new=True)
+            self.save_dialog = LoadoutSaveWindow(self.dsd, loadout)
             self.save_dialog.finished.connect(lambda: setattr(self, 'save_dialog', None))
             self.save_dialog.exec()
         except Exception as e:
@@ -157,7 +149,7 @@ class Loadout:
     full = True
     stratagems = None
 
-    def __init__(self, dsd=None, icon1=None, icon2=None, icon3=None, icon4=None, id='new_loadout', name='New Loadout', hint=None, stratagems=None, color='yellow', full=True):
+    def __init__(self, dsd=None, icon1=None, icon2=None, icon3=None, icon4=None, id='new_loadout', name='New Loadout', hint=None, stratagems=None, color='yellow', full=True, new=False):
         self.dsd = dsd
         self.icon1 = icon1
         self.icon2 = icon2
@@ -169,6 +161,9 @@ class Loadout:
         self.color = color
         self.full = full
         self.set_stratagems(dsd, stratagems or [])
+        if new:
+            self.name = f'New Loadout ({len(dsd.loadouts.loadouts) + 1})'
+            self.id = f'new_loadout{len(dsd.loadouts.loadouts) + 1}'
 
     @property
     def config(self):
