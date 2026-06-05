@@ -38,7 +38,8 @@ class DSDUltra:
         self.tray: threading.Thread | None = None
         self.stop_event = threading.Event()
         self.args = args
-        self.log_path = Path(tempfile.gettempdir()) / 'dsdultra' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
+        self.log_path = self.config.config_dir / 'logs' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
+        self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
         self.state = StateManager(self)
@@ -48,7 +49,6 @@ class DSDUltra:
         self.armory = SuperDestroyer(self)
         self.loadouts = Loadouts(self)
         self.ui = DSDUIManager(self)
-
 
     def start(self):
         deck_thread = threading.Thread(target=self._deck_loop, name='StreamDeckThread', daemon=True)
@@ -75,8 +75,6 @@ class DSDUltra:
                 self.deck.close()
         except Exception as e:
             print(f'Error closing deck: {e}')
-
-
 
     def shutdown(self, code=0):
         print('Shutting down...')

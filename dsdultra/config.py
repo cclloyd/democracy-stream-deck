@@ -18,6 +18,7 @@ DEFAULT_VALUES = {
     'obs_port': 4455,
     'obs_password': None,
     'record_key_combo': 'Alt+Z',
+    'show_console': False,
 }
 
 
@@ -31,6 +32,7 @@ class DSDConfig(MutableMapping):
     recording_app = None
     record_key_combo = None
     config_dir: Path
+    show_console = False
 
     def __init__(self, dsd):
         self.dsd = dsd
@@ -47,6 +49,7 @@ class DSDConfig(MutableMapping):
                 self.obs_password = self.config.get('obs_password', DEFAULT_VALUES['obs_password'])
                 self.recording_app = self.config.get('recording_app', DEFAULT_VALUES['recording_app'])
                 self.record_key_combo = self.config.get('record_key_combo', DEFAULT_VALUES['record_key_combo'])
+                self.show_console = self.config.get('show_console', DEFAULT_VALUES['show_console'])
         else:
             self.config = dict()
 

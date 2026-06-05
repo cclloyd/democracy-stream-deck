@@ -74,10 +74,22 @@ class DSDUIManager:
         action_config_dir.triggered.connect(lambda _checked=False: self.open_config_dir())
         menu.addAction(action_config_dir)
 
-        action_console = QAction('Show Console')
+        action_console = QAction('Open Console')
         action_console.triggered.connect(lambda checked=False: show_console(log_path=self.dsd.log_path))
         action_console.setEnabled(True if is_linux() else is_frozen())
         menu.addAction(action_console)
+
+        action_console_startup = QAction('Show Console On Startup')
+        action_console_startup.setCheckable(True)
+        action_console_startup.setChecked(self.dsd.config.show_console)
+        action_console_startup.setEnabled(is_linux() or is_frozen())
+
+        def set_show_console(checked: bool):
+            self.dsd.config.show_console = checked
+            self.dsd.config.save()
+
+        action_console_startup.toggled.connect(set_show_console)
+        menu.addAction(action_console_startup)
 
         action_screenshot = QAction('Take Screenshot')
         action_screenshot.triggered.connect(lambda _checked=False: self.dsd.state.screenshot())
