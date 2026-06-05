@@ -59,6 +59,7 @@ class DSDConfig(MutableMapping):
         else:
             self.config = dict()
         self.log_path = self.config_dir / 'logs' / f'dsdultra-{datetime.now().strftime('%Y-%m-%d_%H %M %S')}.log'
+        self.log_path.parent.mkdir(parents=True, exist_ok=True)
 
         self.refresh()
 

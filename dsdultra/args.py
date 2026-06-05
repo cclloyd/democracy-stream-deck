@@ -28,11 +28,6 @@ def parse_args():
         help='Path to the configuration folder.'
     )
     parser.add_argument(
-        '-k', '--keep-logs',
-        action='store_true',
-        help='Keep log file after closing.'
-    )
-    parser.add_argument(
         '--trace',
         action='store_true',
         help='Enable trace logging.'

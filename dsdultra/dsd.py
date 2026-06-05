@@ -33,21 +33,18 @@ class DSDUltra:
     apps: dict = dict()
 
     def __init__(self, deck, args: Namespace, started=None, config=None):
+        self.ASSET_DIR = Path(__file__).parent / 'assets'
+        self.args = args
         self.started = config.started if config else started
         self.config = config or DSDConfig(self)
         if config:
             self.config.dsd = self
         self.deck: StreamDeckDevice = deck
-        self.tray: threading.Thread | None = None
         self.stop_event = threading.Event()
-        self.args = args
-        self.log_path = self.config.config_dir / 'logs' / f'dsdultra-{started.strftime('%Y-%m-%d_%H %M %S')}.log'
-        self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self.icons = IconGenerator(self)
         self.obs = OBS(self)
         self.state = StateManager(self)
         self.stratagems = Stratagem.load_stratagems()
-        self.ASSET_DIR = Path(__file__).parent / 'assets'
         self.armory = SuperDestroyer(self)
         self.loadouts = Loadouts(self)
         self.ui = DSDUIManager(self)
@@ -99,12 +96,5 @@ class DSDUltra:
         except Exception:
             pass
 
-        if not self.args.keep_logs:
-            print(f'Cleaning up logs... {self.log_path}')
-            try:
-                close_log_file()
-                self.log_path.unlink()
-            except PermissionError:
-                traceback.print_exc()
         if self.ui.qt_app is not None:
             self.ui.qt_app.quit()
