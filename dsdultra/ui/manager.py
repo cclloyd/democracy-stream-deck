@@ -9,17 +9,17 @@ from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal, Qt, QUrl
 from PyQt6.QtGui import QIcon, QAction, QDesktopServices
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
+from dsdultra import ASSETS_DIR
+from dsdultra.console import show_console
+from dsdultra.ui.config import ConfigWindow
+from dsdultra.util import is_linux, is_frozen
+
 if TYPE_CHECKING:
     from dsdultra.dsd import DSDUltra
 
 
 class DSDUltraUiBridge(QObject):
     save_loadout_requested = pyqtSignal(object)
-
-from dsdultra import ASSETS_DIR
-from dsdultra.console import show_console
-from dsdultra.ui.config import ConfigWindow
-from dsdultra.util import is_linux, is_frozen
 
 
 class DSDUIManager:

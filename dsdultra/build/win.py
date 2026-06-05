@@ -8,18 +8,19 @@ def build_executable():
         'dsd',
         '--onefile',
         '--standalone',
-        '--include-package=PIL',
+        '--output-dir=build',
+        '--output-filename=dsd.exe',
+        '--assume-yes-for-downloads',
         '--include-distribution-metadata=pillow',
         '--include-data-dir=dsdultra/assets=dsdultra/assets',
-        '--assume-yes-for-downloads',
-        '--output-filename=dsd.exe',
+        '--include-data-file=dsdultra/assets/lib/hidapi.dll=hidapi.dll',
         '--enable-plugin=pyqt6',
+        '--include-package=PIL',
         '--include-package=StreamDeck',
         '--no-deployment-flag=self-execution',
-        '--windows-console-mode=hide',  # force/hide/disable/attach
         '--windows-icon-from-ico=dsdultra/assets/icons/DSDIcon.ico',
         '--nofollow-import-to=dsdultra.build',
-        '--output-dir=build',
+        '--windows-console-mode=hide',  # force/hide/disable/attach
         'dsdultra/',
     ]
     nuitka_main()

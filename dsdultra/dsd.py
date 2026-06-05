@@ -1,29 +1,18 @@
-import tempfile
 import threading
-import traceback
 from argparse import Namespace
 from pathlib import Path
 
-from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal
-from PyQt6.QtWidgets import QApplication, QSystemTrayIcon
 from StreamDeck.Devices.StreamDeck import StreamDeck as StreamDeckDevice
-
-from dsdultra.state import StateManager
-from dsdultra.ui.manager import DSDUIManager
-
-
-class DSDUltraUiBridge(QObject):
-    save_loadout_requested = pyqtSignal(object)
-
 
 from dsdultra.armory.loadouts import Loadouts
 from dsdultra.armory.stratagems import Stratagem
 from dsdultra.armory.superdestroyer import SuperDestroyer
 from dsdultra.config import DSDConfig
 from dsdultra.icons import IconGenerator
-from dsdultra.logging import close_log_file
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
+from dsdultra.state import StateManager
+from dsdultra.ui.manager import DSDUIManager
 
 
 class DSDUltra:
