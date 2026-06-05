@@ -5,7 +5,6 @@ from datetime import datetime
 from pathlib import Path
 
 import psutil
-from PyQt6.QtWidgets import QApplication, QMessageBox
 
 from dsdultra.args import parse_args
 from dsdultra.config import DSDConfig
@@ -46,6 +45,7 @@ def main():
             sys.exit(0)
 
         if check_elgato_running(config.elgato_path):
+            from PyQt6.QtWidgets import QApplication, QMessageBox
             message = 'Elgato StreamDeck is currently running. Please close it before launching this app.'
             print(message)
             if is_frozen():
