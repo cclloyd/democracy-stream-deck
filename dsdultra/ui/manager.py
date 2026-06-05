@@ -3,11 +3,10 @@ from __future__ import annotations
 import os
 import signal
 import sys
-import traceback
 from typing import TYPE_CHECKING
 
-from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal, Qt
-from PyQt6.QtGui import QIcon, QAction
+from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal, Qt, QUrl
+from PyQt6.QtGui import QIcon, QAction, QDesktopServices
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
 if TYPE_CHECKING:
@@ -40,6 +39,10 @@ class DSDUIManager:
         dialog = ConfigWindow(self.dsd)
         dialog.exec()
 
+    def open_config_dir(self):
+        self.dsd.config.config_dir.mkdir(parents=True, exist_ok=True)
+        QDesktopServices.openUrl(QUrl.fromLocalFile(str(self.dsd.config.config_dir)))
+
     def create_tray_icon(self):
         self.qt_app = QApplication.instance() or QApplication(sys.argv)
 
@@ -67,6 +70,9 @@ class DSDUIManager:
         action_config = QAction('Config')
         action_config.triggered.connect(self.show_config_window)
         menu.addAction(action_config)
+        action_config_dir = QAction('Open config folder')
+        action_config_dir.triggered.connect(lambda _checked=False: self.open_config_dir())
+        menu.addAction(action_config_dir)
 
         action_console = QAction('Show Console')
         action_console.triggered.connect(lambda checked=False: show_console(log_path=self.dsd.log_path))

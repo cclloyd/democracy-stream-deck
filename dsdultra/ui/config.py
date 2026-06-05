@@ -1,7 +1,8 @@
 import traceback
 from pathlib import Path
 
-from PyQt6.QtGui import QIntValidator, QKeySequence
+from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QIntValidator, QKeySequence, QDesktopServices
 from PyQt6.QtWidgets import (
     QDialog,
     QFormLayout,
@@ -92,7 +93,15 @@ class ConfigWindow(QDialog):
         buttons.accepted.connect(self.save)
         buttons.rejected.connect(self.reject)
 
-        layout.addRow(buttons)
+        self.open_config_dir_button = QPushButton('Open config dir')
+        self.open_config_dir_button.clicked.connect(self.dsd.ui.open_config_dir)
+
+        button_row = QHBoxLayout()
+        button_row.addWidget(self.open_config_dir_button)
+        button_row.addStretch()
+        button_row.addWidget(buttons)
+
+        layout.addRow(button_row)
 
     def update_recording_app_fields_visibility(self):
         show_obs_fields = self.recording_app_input.currentData() == 'obs'
