@@ -77,6 +77,31 @@ class Loadouts:
             traceback.print_exc()
             raise e
 
+    def delete_loadout(self, loadout_id):
+        try:
+            self.dsd.config.loadout_path.parent.mkdir(parents=True, exist_ok=True)
+
+            existing_configs = []
+            new_configs = []
+
+            if self.dsd.config.loadout_path.exists():
+                with open(self.dsd.config.loadout_path, 'r') as f:
+                    existing_configs = json.load(f)
+                new_configs = [c for c in existing_configs if c.get('id') != loadout_id]
+
+            with open(self.dsd.config.loadout_path, 'w') as f:
+                json.dump(new_configs, f, default=str, indent=2)
+
+            self.loadouts = [Loadout(self.dsd, **c) for c in new_configs]
+            app = self.dsd.state.apps.get('loadouts', None)
+            if app:
+                app.refresh()
+            return True
+        except Exception as e:
+            print(e)
+            traceback.print_exc()
+            raise e
+
     def open_save_dialog(self, page: PageQuickInfo):
         try:
             stratagems = []

@@ -129,7 +129,67 @@ class LoadoutSaveWindow(QDialog):
         )
         buttons.accepted.connect(self.save)
         buttons.rejected.connect(self.reject)
-        layout.addWidget(buttons)
+
+        delete_button = QPushButton('Delete')
+        delete_button.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        self.apply_delete_button_style(delete_button)
+        delete_button.clicked.connect(self.confirm_delete)
+
+        button_row = QHBoxLayout()
+        button_row.addWidget(delete_button)
+        button_row.addStretch()
+        button_row.addWidget(buttons)
+        layout.addLayout(button_row)
+
+    def apply_delete_button_style(self, button):
+        window_color = self.palette().color(self.backgroundRole())
+        is_dark_mode = window_color.lightness() < 128
+
+        if is_dark_mode:
+            background = '#8c1d18'
+            hover_background = '#a8241d'
+            pressed_background = '#6f1713'
+            border = '#b3261e'
+        else:
+            background = '#d93025'
+            hover_background = '#b3261e'
+            pressed_background = '#8c1d18'
+            border = '#8c1d18'
+
+        button.setStyleSheet(
+            'QPushButton {'
+            f'  background-color: {background};'
+            '  color: white;'
+            f'  border: 1px solid {border};'
+            '  border-radius: 4px;'
+            '  padding: 4px 12px;'
+            '}'
+            'QPushButton:hover {'
+            f'  background-color: {hover_background};'
+            '}'
+            'QPushButton:pressed {'
+            f'  background-color: {pressed_background};'
+            '}'
+        )
+
+    def confirm_delete(self):
+        response = QMessageBox.question(
+            self,
+            'Delete Loadout?',
+            'Are you sure you want to delete this loadout?',
+            QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No,
+            QMessageBox.StandardButton.No,
+        )
+
+        if response != QMessageBox.StandardButton.Yes:
+            return
+
+        self.dsd.loadouts.delete_loadout(self.id_input.text())
+        self.accept()
+        if self.dsd.state.active_page.appname == 'loadouts':
+            self.dsd.state.apps.get('loadouts').render(True)
+        else:
+            self.dsd.state.apps.get('dsd').render(True)
 
     def update_default_id(self):
         if self.id_input.text().strip():
