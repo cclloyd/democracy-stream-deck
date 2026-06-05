@@ -1,4 +1,5 @@
 from __future__ import annotations
+
 from typing import TYPE_CHECKING
 
 from .base import BasePage
@@ -7,8 +8,6 @@ from ..buttons.elgato import ButtonElgato
 from ..buttons.exit import ButtonExit
 from ..buttons.loadouts.loadouts import ButtonLoadouts
 from ..buttons.quick import ButtonQuickLoadout
-from ..buttons.screenshot import ButtonScreenshot
-from ..util import is_frozen
 
 if TYPE_CHECKING:
     from ..dsd import DSDUltra
