@@ -2,8 +2,12 @@ import ctypes
 import os
 import shutil
 import sys
-import webbrowser
 from pathlib import Path
+
+from PyQt6.QtCore import Qt, QUrl
+from PyQt6.QtGui import QDesktopServices
+from PyQt6.QtWidgets import QApplication, QMessageBox
+from PyQt6.QtWidgets import QDialog, QDialogButtonBox, QLabel, QVBoxLayout
 
 from dsdultra import ASSETS_DIR
 
@@ -43,77 +47,44 @@ class WindowsInstallerWizard:
             return False
 
     def prompt_library_install(self):
-        import tkinter as tk
 
-        def open_link(event=None):
-            webbrowser.open('https://github.com/libusb/hidapi/releases')
+        app = QApplication.instance() or QApplication(sys.argv)
 
-        # Custom dialog using tkinter
-        root = tk.Tk()
-        root.withdraw()  # Hide the main window
+        dialog = QDialog()
+        dialog.setWindowTitle('Missing hidapi.dll')
+        dialog.setModal(True)
+        dialog.setFixedSize(480, 240)
 
-        dialog = tk.Toplevel(root)
-        dialog.title('Missing hidapi.dll')
-        dialog.resizable(False, False)
-        dialog.grab_set()  # Make modal
-        dialog.geometry('+{}+{}'.format(root.winfo_screenwidth() // 2 - 240, root.winfo_screenheight() // 2 - 120))
+        layout = QVBoxLayout(dialog)
 
         msg = (
             'hidapi.dll is missing (No suitable LibUSB driver in any PATH directory).\n\n'
             'Would you like to install \'hidapi.dll\' to your System32 folder?\n'
         )
 
-        tk.Label(dialog, text=msg, justify='left', wraplength=400).pack(padx=20, pady=(15, 3))
+        message_label = QLabel(msg)
+        message_label.setWordWrap(True)
+        layout.addWidget(message_label)
 
-        # Add clickable link
-        link = tk.Label(
-            dialog,
-            text='View/download hidapi releases',
-            fg='blue',
-            cursor='hand2',
-            font=('Arial', 10, 'underline')
-        )
-        link.pack()
-        link.bind('<Button-1>', open_link)
+        link = QLabel('<a href="https://github.com/libusb/hidapi/releases">View/download hidapi releases</a>')
+        link.setTextFormat(Qt.TextFormat.RichText)
+        link.setTextInteractionFlags(Qt.TextInteractionFlag.TextBrowserInteraction)
+        link.setOpenExternalLinks(False)
+        link.linkActivated.connect(lambda url: QDesktopServices.openUrl(QUrl(url)))
+        layout.addWidget(link)
 
-        # Variable for dialog response
-        response = {'ans': None}
+        buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Yes | QDialogButtonBox.StandardButton.No)
+        buttons.accepted.connect(dialog.accept)
+        buttons.rejected.connect(dialog.reject)
+        layout.addWidget(buttons)
 
-        def on_yes():
-            response['ans'] = True
-            dialog.destroy()
-            root.destroy()
-
-        def on_no():
-            response['ans'] = False
-            dialog.destroy()
-            root.destroy()
-
-        # Yes/No buttons
-        button_frame = tk.Frame(dialog)
-        button_frame.pack(pady=15)
-        tk.Button(button_frame, text='Yes', width=10, command=on_yes).pack(side='left', padx=10)
-        tk.Button(button_frame, text='No', width=10, command=on_no).pack(side='right', padx=10)
-
-        # Center window
-        dialog.update_idletasks()
-        dialog.lift()
-        dialog.attributes('-topmost', True)
-        dialog.after(100, dialog.attributes, '-topmost', False)
-        dialog.protocol('WM_DELETE_WINDOW', on_no)
-
-        root.mainloop()
-
-        if not response['ans']:
+        if dialog.exec() != QDialog.DialogCode.Accepted:
             return False
 
         self.elevate_self_for_install()
         sys.exit(0)
 
     def silent_install(self):
-        from tkinter import messagebox
-        import tkinter as tk
-
         # Check for admin rights and elevate if required
         if not self.is_user_admin():
             print("Elevation required. Attempting to restart as Administrator...")
@@ -131,11 +102,12 @@ class WindowsInstallerWizard:
             shutil.copy(src, dest)
             print("hidapi.dll copied to System32 successfully.")
 
-            # Show a confirmation popup
-            root = tk.Tk()
-            root.withdraw()  # Hide the main window
-            messagebox.showinfo("Copy Successful", "hidapi.dll was copied to System32. Please restart the application.")
-            root.destroy()
+            app = QApplication.instance() or QApplication(sys.argv)
+            QMessageBox.information(
+                None,
+                "Copy Successful",
+                "hidapi.dll was copied to System32. Please restart the application.",
+            )
 
             sys.exit(0)
         except Exception as e:

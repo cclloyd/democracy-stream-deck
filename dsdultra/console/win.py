@@ -1,11 +1,8 @@
-import tempfile
-import traceback
-from datetime import datetime
-from pathlib import Path
 import subprocess
+import traceback
+from pathlib import Path
 
 from dsdultra.util import is_frozen, is_windows
-
 
 _console_proc: subprocess.Popen | None = None
 

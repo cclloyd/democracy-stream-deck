@@ -10,7 +10,6 @@ def build_executable():
         '--standalone',
         '--assume-yes-for-downloads',
         f'--output-filename=dsd',
-        '--enable-plugin=tk-inter',
         '--enable-plugin=pyqt6',
         '--include-package=StreamDeck',
         '--include-package=Xlib',

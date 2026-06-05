@@ -1,14 +1,6 @@
 from PIL import ImageDraw, ImageFont
 from StreamDeck.ImageHelpers import PILHelper
 
-# Add Tkinter imports for OS-native dialog
-try:
-    import tkinter as tk
-    from tkinter import simpledialog
-except Exception:
-    tk = None
-    simpledialog = None
-
 # DEPRECATED - other than the prompt for text
 class ButtonEngine:
     def __init__(self, dsd):
@@ -43,12 +35,15 @@ class ButtonEngine:
         if pressed and key == self.dsd.deck.key_count() - 2:
             text = self.prompt_for_text("Input Required", "Enter text to type:")
             if text:
-                _type_text(text)
+                # _type_text(text) TODO
+                pass
             return
 
         # Type the key index on key-down (except the Exit key)
         if pressed and key < self.dsd.deck.key_count() - 1:
-            _type_text(str(key))
+            # _type_text(str(key)) TODO
+            pass
+
 
         # If last button pressed, reset & close
         if pressed and key == self.dsd.deck.key_count() - 1:
@@ -67,27 +62,22 @@ class ButtonEngine:
         with self.dsd.deck:  # thread-safe
             self.dsd.deck.set_key_image(key, img)
 
-
-
     # New helper to show an OS-native input dialog
-    def prompt_for_text(self, title="Input", prompt="Enter text:"):
-        """
+    def prompt_for_text(self, title='Input', prompt='Enter text:'):
+        '''
         Shows a native OS popup to ask for a string.
         Returns the entered text, or None if canceled or unavailable.
-        """
-        if tk is None or simpledialog is None:
-            print("Warn: Tkinter not available; cannot show input dialog.")
-            return None
+        '''
         try:
-            root = tk.Tk()
-            root.withdraw()  # Hide the main window
-            # Bring dialog to front
-            root.attributes('-topmost', True)
-            root.update()
-            result = simpledialog.askstring(title, prompt, parent=root)
-            root.destroy()
-            return result
+            from PyQt6.QtWidgets import QApplication, QInputDialog
+            app = QApplication.instance() or QApplication([])
+            result, accepted = QInputDialog.getText(
+                None,
+                title,
+                prompt,
+            )
+            return result if accepted else None
         except Exception as e:
-            print(f"Warn: failed to show input dialog: {e}")
+            print(f'Warn: failed to show input dialog: {e}')
             return None
 

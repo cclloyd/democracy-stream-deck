@@ -13,7 +13,6 @@ def build_executable():
         '--include-data-dir=dsdultra/assets=dsdultra/assets',
         '--assume-yes-for-downloads',
         '--output-filename=dsd.exe',
-        '--enable-plugin=tk-inter',
         '--enable-plugin=pyqt6',
         '--include-package=StreamDeck',
         '--no-deployment-flag=self-execution',
