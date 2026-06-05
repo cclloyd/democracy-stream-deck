@@ -75,7 +75,7 @@ class DSDUIManager:
         menu.addAction(action_config_dir)
 
         action_console = QAction('Open Console')
-        action_console.triggered.connect(lambda checked=False: show_console(log_path=self.dsd.log_path))
+        action_console.triggered.connect(lambda checked=False: show_console(log_path=self.dsd.config.log_path))
         action_console.setEnabled(True if is_linux() else is_frozen())
         menu.addAction(action_console)
 
