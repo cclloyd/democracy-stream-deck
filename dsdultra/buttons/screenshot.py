@@ -1,13 +1,12 @@
 import threading
 import traceback
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.logging import log
 
 
 class ButtonScreenshot(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Unknown.png'
+    icon = 'icons/groups/Unknown.png'
     color = 'none'
     icon_size = 70
     border_size = 90

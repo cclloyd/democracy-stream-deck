@@ -1,10 +1,9 @@
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.logging import log
 
 
 class ButtonSwap(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Swap.png'
+    icon = 'icons/groups/Swap.png'
     icon_size = 50
     border_size = 90
     full = True
@@ -17,7 +16,7 @@ class ButtonSwap(ButtonBase):
 
 
 class ButtonRemove(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Close.png'
+    icon = 'icons/groups/Close.png'
     icon_size = 30
     border_size = 90
     full = True
@@ -29,7 +28,7 @@ class ButtonRemove(ButtonBase):
 
 
 class ButtonEdit(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Edit.png'
+    icon = 'icons/groups/Edit.png'
     icon_size = 35
     border_size = 90
     full = True

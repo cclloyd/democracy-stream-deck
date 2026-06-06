@@ -9,7 +9,6 @@ from PyQt6.QtCore import QTimer, QSocketNotifier, QObject, pyqtSignal, Qt, QUrl
 from PyQt6.QtGui import QIcon, QAction, QDesktopServices
 from PyQt6.QtWidgets import QApplication, QMenu, QSystemTrayIcon
 
-from dsdultra import ASSETS_DIR
 from dsdultra.console import show_console
 from dsdultra.ui.config import ConfigWindow
 from dsdultra.util import is_linux, is_frozen
@@ -52,7 +51,7 @@ class DSDUIManager:
             Qt.ConnectionType.QueuedConnection,
         )
 
-        icon_path = ASSETS_DIR / 'icons/DSDIcon.png'
+        icon_path = 'icons/DSDIcon.png'
         qicon = QIcon(str(icon_path))
         self.qt_app.setWindowIcon(qicon)
         self.qt_app.setQuitOnLastWindowClosed(False)

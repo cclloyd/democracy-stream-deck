@@ -1,10 +1,9 @@
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.logging import log
 
 
 class ButtonSave(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Save.png'
+    icon = 'icons/groups/Save.png'
     icon_size = 35
     border_size = 90
     full = True

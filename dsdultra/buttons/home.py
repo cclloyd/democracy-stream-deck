@@ -1,6 +1,5 @@
 import threading
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 
@@ -8,7 +7,7 @@ class ButtonHome(ButtonBase):
     def __init__(self, dsd, page=None):
         super().__init__(dsd, page=page)
 
-    icon = ASSETS_DIR / 'icons/borders/SE.png'
+    icon = 'icons/borders/SE.png'
     color = 'rainbow'
     icon_size = 50
     border_size = 90
@@ -24,7 +23,7 @@ class ButtonHomeConfirm(ButtonBase):
     def __init__(self, dsd, page=None):
         super().__init__(dsd, page=page)
 
-    icon = ASSETS_DIR / 'icons/borders/SE.png'
+    icon = 'icons/borders/SE.png'
     color = 'rainbow'
     icon_size = 50
     border_size = 90

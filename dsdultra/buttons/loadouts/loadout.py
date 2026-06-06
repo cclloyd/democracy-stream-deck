@@ -1,4 +1,3 @@
-from dsdultra import ASSETS_DIR
 from dsdultra.armory.stratagems import Stratagem
 from dsdultra.buttons.base import ButtonBase
 
@@ -23,7 +22,7 @@ class ButtonLoadout(ButtonBase):
 
 
 class ButtonRefreshLoadout(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Reload.png'
+    icon = 'icons/groups/Reload.png'
     icon_size = 35
     border_size = 90
     full = True

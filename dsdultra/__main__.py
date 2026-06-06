@@ -6,7 +6,7 @@ from pathlib import Path
 
 import psutil
 
-from dsdultra import VERSION
+from dsdultra.version import VERSION
 from dsdultra.args import parse_args
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console

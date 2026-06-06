@@ -1,6 +1,5 @@
 import threading
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 
@@ -10,7 +9,7 @@ class ButtonRecord(ButtonBase):
         if self.page.get_highlight('obs') == 'error':
             self.highlight_hue = 310
 
-    icon = ASSETS_DIR / 'icons/groups/OBS.png'
+    icon = 'icons/groups/OBS.png'
     color = 'none'
     icon_size = 70
     border_size = 90

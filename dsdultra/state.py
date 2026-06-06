@@ -7,7 +7,6 @@ from typing import TYPE_CHECKING, Any
 
 from PIL import Image, ImageDraw, ImageChops
 
-from dsdultra import ASSETS_DIR
 from dsdultra.logging import log
 from dsdultra.pages.base import BasePage
 
@@ -63,10 +62,10 @@ class StateManager:
             rows = self.dsd.deck.KEY_ROWS
             key_gap = round(min(key_width, key_height) * 0.18)
             corner_radius = round(min(key_width, key_height) * 0.15)
-            deck_icon_path = ASSETS_DIR / 'icons/stream_deck_light.png'
+            deck_icon_path = self.dsd.config.asset_dir / 'icons/stream_deck_light.png'
             deck_icon_height = round(key_height * 0.4)
             deck_icon_top = key_gap
-            glass_overlay_path = ASSETS_DIR / 'icons/groups/glass72.png'
+            glass_overlay_path = self.dsd.config.asset_dir / 'icons/groups/glass72.png'
 
             grid_width = cols * key_width + (cols + 1) * key_gap
             grid_height = rows * key_height + (rows + 1) * key_gap

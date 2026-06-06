@@ -1,7 +1,6 @@
 import subprocess
 import threading
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 
@@ -9,7 +8,7 @@ class ButtonElgato(ButtonBase):
     def __init__(self, dsd, page=None):
         super().__init__(dsd, page=page)
 
-    icon = ASSETS_DIR / 'icons/groups/elgato.png'
+    icon = 'icons/groups/elgato.png'
     color = 'none'
     icon_size = 65
     border_size = 90

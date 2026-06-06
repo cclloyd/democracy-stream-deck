@@ -41,6 +41,7 @@ class DSDConfig(MutableMapping):
     def __init__(self, dsd):
         self.dsd = dsd
         self.started = datetime.now()
+        self.asset_dir = Path(__file__).resolve().parent / 'assets'
         self.config_dir = Path(DEFAULT_VALUES['config_dir'])
         self.config_path = self.config_dir / 'dsd-config.json'
         self.config_dir.mkdir(parents=True, exist_ok=True)

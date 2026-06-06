@@ -1,4 +1,3 @@
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 
@@ -6,7 +5,7 @@ class ButtonPrev(ButtonBase):
     def __init__(self, dsd, page=None, config=None):
         super().__init__(dsd, page=page, config=config)
 
-    icon = ASSETS_DIR / 'icons/groups/Arrow.png'
+    icon = 'icons/groups/Arrow.png'
     icon_size = 35
     icon_rotate = 270
     color = 'yellow'
@@ -23,7 +22,7 @@ class ButtonNext(ButtonBase):
     def __init__(self, dsd, page=None, config=None):
         super().__init__(dsd, page=page, config=config)
 
-    icon = ASSETS_DIR / 'icons/groups/Arrow.png'
+    icon = 'icons/groups/Arrow.png'
     icon_size = 35
     icon_rotate = 90
     color = 'yellow'

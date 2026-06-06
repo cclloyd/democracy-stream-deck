@@ -19,7 +19,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
 )
 
-from dsdultra import VERSION
+from dsdultra.version import VERSION
 from dsdultra.util import is_windows
 
 if TYPE_CHECKING:

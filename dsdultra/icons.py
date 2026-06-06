@@ -10,56 +10,27 @@ from PIL import ImageEnhance
 from PIL import ImageFont
 from StreamDeck.ImageHelpers import PILHelper
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.buttons.loadouts.loadout import ButtonLoadout
 
 if TYPE_CHECKING:
     from dsdultra.dsd import DSDUltra
 
-BORDERS = {
-    'yellow': {
-        'half': ASSETS_DIR / 'icons/borders/Yellow Half.png',
-        'full': ASSETS_DIR / 'icons/borders/Yellow Full.png',
-    },
-    'blue': {
-        'half': ASSETS_DIR / 'icons/borders/Blue Half.png',
-        'full': ASSETS_DIR / 'icons/borders/Blue Full.png',
-    },
-    'green': {
-        'half': ASSETS_DIR / 'icons/borders/Green Half.png',
-        'full': ASSETS_DIR / 'icons/borders/Green Full.png',
-    },
-    'red': {
-        'half': ASSETS_DIR / 'icons/borders/Red Half.png',
-        'full': ASSETS_DIR / 'icons/borders/Red Full.png',
-    },
-    'rainbow': {
-        'half': ASSETS_DIR / 'icons/borders/Rainbow.png',
-        'full': ASSETS_DIR / 'icons/borders/Rainbow.png',
-    },
-    'none': {
-        'half': None,
-        'full': None,
-    }
-}
-
 
 class IconGenerator:
     dsd: 'DSDUltra' = None
     bg = None
-    font_path = ASSETS_DIR / 'fonts/Orbitron-v.ttf'
 
     def __init__(self, dsd):
         self.dsd = dsd
         self.size = dsd.deck.KEY_PIXEL_WIDTH
 
         if not self.bg:
-            bg_path = ASSETS_DIR / 'icons/Background.png'
-            selected_path = ASSETS_DIR / 'icons/borders/Selected2.png'
-            icon_mask_path = ASSETS_DIR / 'icons/groups/mask72-1.png'
-            gild_path = ASSETS_DIR / 'icons/groups/Gild Half.png'
-            gild_path_full = ASSETS_DIR / 'icons/groups/Gild Full.png'
+            bg_path = self.dsd.config.asset_dir / 'icons/Background.png'
+            selected_path = self.dsd.config.asset_dir / 'icons/borders/Selected2.png'
+            icon_mask_path = self.dsd.config.asset_dir / 'icons/groups/mask72-1.png'
+            gild_path = self.dsd.config.asset_dir / 'icons/groups/Gild Half.png'
+            gild_path_full = self.dsd.config.asset_dir / 'icons/groups/Gild Full.png'
             # Precompute a blank background at the correct key size
             self.bg = PILHelper.create_image(self.dsd.deck)
             self.bg_img = Image.open(bg_path).convert("RGBA")
@@ -67,6 +38,34 @@ class IconGenerator:
             self.icon_mask_img = Image.open(icon_mask_path).convert("L")
             self.gild_img = Image.open(gild_path).convert("RGBA")
             self.gild_img_full = Image.open(gild_path_full).convert("RGBA")
+
+        self.font_path = self.dsd.config.asset_dir / 'fonts/Orbitron-v.ttf'
+        self.BORDERS = {
+            'yellow': {
+                'half': self.dsd.config.asset_dir / 'icons/borders/Yellow Half.png',
+                'full': self.dsd.config.asset_dir / 'icons/borders/Yellow Full.png',
+            },
+            'blue': {
+                'half': self.dsd.config.asset_dir / 'icons/borders/Blue Half.png',
+                'full': self.dsd.config.asset_dir / 'icons/borders/Blue Full.png',
+            },
+            'green': {
+                'half': self.dsd.config.asset_dir / 'icons/borders/Green Half.png',
+                'full': self.dsd.config.asset_dir / 'icons/borders/Green Full.png',
+            },
+            'red': {
+                'half': self.dsd.config.asset_dir / 'icons/borders/Red Half.png',
+                'full': self.dsd.config.asset_dir / 'icons/borders/Red Full.png',
+            },
+            'rainbow': {
+                'half': self.dsd.config.asset_dir / 'icons/borders/Rainbow.png',
+                'full': self.dsd.config.asset_dir / 'icons/borders/Rainbow.png',
+            },
+            'none': {
+                'half': None,
+                'full': None,
+            }
+        }
 
     def set_image(self, key_index: int, img: tuple[bytes, Image.Image] | bytes):
         if key_index >= self.dsd.deck.key_count():
@@ -143,20 +142,20 @@ class IconGenerator:
 
             for icon_id in icon_ids:
                 stratagem = self.dsd.armory.all[icon_id]
-                icon_img = Image.open(stratagem.icon).convert("RGBA")
+                icon_img = Image.open(self.dsd.config.asset_dir / stratagem.icon).convert("RGBA")
                 icon_imgs.append(self.resize_for_iconbox(icon_img, button.icon_size))
                 icon_colors.append(stratagem.color)
 
-            border_path = BORDERS[button.config['color']]['full' if button.full else 'half']
+            border_path = self.BORDERS[button.config['color']]['full' if button.full else 'half']
             enabled = button.config.get('enabled', True)
             hint = button.config.get('hint', None) if button.page.app.select_active else None
         else:
-            icon_path = button.icon
-            border_path = BORDERS[button.color]['full' if button.full else 'half']
+            icon_path = self.dsd.config.asset_dir / button.icon
+            border_path = self.BORDERS[button.color]['full' if button.full else 'half']
 
             if icon_path is not None:
                 if not Path(icon_path).exists():
-                    icon_path = ASSETS_DIR / 'icons/groups/Unknown.png'
+                    icon_path = self.dsd.config.asset_dir / 'icons/groups/Unknown.png'
 
                 icon_img = Image.open(icon_path).convert("RGBA")
                 icon_imgs.append(self.resize_for_iconbox(icon_img, button.icon_size))

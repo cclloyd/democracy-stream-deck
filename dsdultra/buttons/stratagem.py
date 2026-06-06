@@ -1,6 +1,5 @@
 from time import sleep
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 from dsdultra.logging import log
 
@@ -14,7 +13,7 @@ except Exception:
 
 
 class ButtonStratagem(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Close.png'
+    icon = 'icons/groups/Close.png'
     icon_size = 60
     border_size = 90
     toggle_id = 'stratagems'

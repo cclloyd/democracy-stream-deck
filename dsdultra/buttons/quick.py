@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING
 from PIL import ImageDraw, Image
 from StreamDeck.ImageHelpers import PILHelper
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 if TYPE_CHECKING:
@@ -13,7 +12,7 @@ if TYPE_CHECKING:
 
 
 class ButtonQuickLoadout(ButtonBase):
-    icon = ASSETS_DIR / 'icons/borders/SE.png'
+    icon = 'icons/borders/SE.png'
     icon_size = 45
     border_size = 90
     full = True
@@ -79,7 +78,7 @@ class ButtonQuickInfo(ButtonBase):
 
 
 class ButtonQuickStart(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Hellpod1.png'
+    icon = 'icons/groups/Hellpod1.png'
     icon_size = 45
     toggle_id = 'stratagems'
 
@@ -92,7 +91,7 @@ class ButtonQuickStart(ButtonBase):
         draw = ImageDraw.Draw(key_img)
         draw.text((36, 14), 'START', fill='white', anchor='mm', font=self.dsd.icons.get_font(14))
 
-        icon_img = Image.open(self.icon).convert('RGBA')
+        icon_img = Image.open(self.dsd.config.asset_dir / self.icon).convert('RGBA')
         icon_img = self.dsd.icons.resize_for_iconbox(icon_img, self.icon_size)
         icon_pos = ((key_img.width - icon_img.width) // 2, int(key_img.height * 0.6) - icon_img.height // 2)
         key_img.paste(icon_img, icon_pos, icon_img)

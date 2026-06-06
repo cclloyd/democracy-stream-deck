@@ -1,11 +1,10 @@
 import threading
 
-from dsdultra import ASSETS_DIR
 from dsdultra.buttons.base import ButtonBase
 
 
 class ButtonExit(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Close.png'
+    icon = 'icons/groups/Close.png'
     icon_size = 35
     border_size = 90
     color = 'rainbow'
@@ -19,7 +18,7 @@ class ButtonExit(ButtonBase):
        self.shutdown()
 
 class ButtonExitConfirm(ButtonBase):
-    icon = ASSETS_DIR / 'icons/groups/Close.png'
+    icon = 'icons/groups/Close.png'
     icon_size = 35
     border_size = 90
     color = 'rainbow'
