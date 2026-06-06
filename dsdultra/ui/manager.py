@@ -67,7 +67,6 @@ class DSDUIManager:
 
         action_config = QAction('Config')
         action_config.triggered.connect(self.show_config_window)
-        menu.addAction(action_config)
         action_config_dir = QAction('Open config folder')
         action_config_dir.triggered.connect(lambda _checked=False: self.open_config_dir())
 
@@ -85,7 +84,6 @@ class DSDUIManager:
             self.dsd.config.save()
 
         action_console_startup.toggled.connect(set_show_console)
-        menu.addAction(action_console_startup)
 
         action_screenshot = QAction('Take Screenshot')
         action_screenshot.triggered.connect(lambda _checked=False: self.dsd.state.screenshot())
@@ -98,10 +96,12 @@ class DSDUIManager:
 
         menu.addAction(title)
         menu.addSeparator()
-        menu.addAction(action_config_dir)
-        menu.addAction(action_console)
         menu.addAction(action_screenshot)
         menu.addAction(action_update)
+        menu.addAction(action_config)
+        menu.addAction(action_config_dir)
+        menu.addAction(action_console)
+        menu.addAction(action_console_startup)
         menu.addAction(action_exit)
 
         self.tray_icon.setContextMenu(menu)
