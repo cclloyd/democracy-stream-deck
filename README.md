@@ -3,7 +3,10 @@
 Democracy StreamDeck is an application meant to run on any Elgato StreamDeck with a 5x3 layout. It is a companion app
 for Helldivers 2 to have loadout and quick drop support, allowing you to macro your stratagems to StreamDeck buttons.
 
-## Download latest release: [Windows](https://github.com/cclloyd/democracy-stream-deck/releases/latest/download/dsd.exe) / [Linux](https://github.com/cclloyd/democracy-stream-deck/releases/latest/download/dsd.AppImage)
+<p align="center" style="font-size: 24pt; font-weight: bold">
+Download latest release:
+<a href="https://github.com/cclloyd/democracy-stream-deck/releases/latest/download/dsd.exe">Windows</a> / <a href="https://github.com/cclloyd/democracy-stream-deck/releases/latest/download/dsd.AppImage">Linux</a>
+</p>
 
 # Features
 - Full access to entire Helldivers 2 arsenal
