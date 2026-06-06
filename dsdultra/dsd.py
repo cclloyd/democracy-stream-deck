@@ -9,6 +9,7 @@ from dsdultra.armory.stratagems import Stratagem
 from dsdultra.armory.superdestroyer import SuperDestroyer
 from dsdultra.config import DSDConfig
 from dsdultra.icons import IconGenerator
+from dsdultra.installer.app import DSDInstaller
 from dsdultra.obs import OBS
 from dsdultra.pages.home import PageHome
 from dsdultra.state import StateManager
@@ -37,6 +38,7 @@ class DSDUltra:
         self.armory = SuperDestroyer(self)
         self.loadouts = Loadouts(self)
         self.ui = DSDUIManager(self)
+        self.installer = DSDInstaller(self)
 
     def start(self):
         deck_thread = threading.Thread(target=self._deck_loop, name='StreamDeckThread', daemon=True)

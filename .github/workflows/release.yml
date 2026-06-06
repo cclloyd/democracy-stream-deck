@@ -27,6 +27,25 @@ jobs:
           python -m pip install nuitka pillow
           python -m pip list
 
+      - name: Bake version into source
+        shell: python
+        run: |
+          from pathlib import Path
+          import os
+          import re
+
+          path = Path("dsdultra/__init__.py")
+          version = os.environ["GITHUB_REF_NAME"].removeprefix("v")
+
+          text = path.read_text(encoding="utf-8")
+          text = re.sub(
+              r"^VERSION\s*=\s*['\"].*?['\"]",
+              f"VERSION = '{version}'",
+              text,
+              flags=re.MULTILINE,
+          )
+          path.write_text(text, encoding="utf-8")
+
       - name: Build Executable
         run: python -m dsdultra build
 
@@ -70,6 +89,10 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install nuitka pillow
+
+      - name: Bake version into source
+        run: |
+          sed -i "s/^VERSION = .*/VERSION = '${GITHUB_REF_NAME}'/" dsdultra/__init__.py
 
       - name: Build Binary
         run: python -m dsdultra build

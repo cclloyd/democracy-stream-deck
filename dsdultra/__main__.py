@@ -6,6 +6,7 @@ from pathlib import Path
 
 import psutil
 
+from dsdultra import VERSION
 from dsdultra.args import parse_args
 from dsdultra.config import DSDConfig
 from dsdultra.console import show_console
@@ -31,6 +32,9 @@ def main():
         wizard = InstallerWizard()
         config = DSDConfig(None)
 
+        if args.version or args.command == 'version':
+            print(VERSION)
+            sys.exit(0)
         if args.command == 'install':
             wizard.silent_install()
             sys.exit(0)

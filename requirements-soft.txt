@@ -6,3 +6,6 @@ nuitka
 obsws-python
 PyQt6
 psutil
+requests
+packaging
+platformdirs

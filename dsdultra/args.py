@@ -32,4 +32,9 @@ def parse_args():
         action='store_true',
         help='Enable trace logging.'
     )
+    parser.add_argument(
+        '--version',
+        action='store_true',
+        help='Print version and exit.'
+    )
     return parser.parse_args()

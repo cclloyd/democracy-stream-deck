@@ -64,20 +64,16 @@ class DSDUIManager:
         menu.setTitle('Democracy StreamDeck')
         title = QAction('Democracy StreamDeck')
         title.setEnabled(False)
-        menu.addAction(title)
-        menu.addSeparator()
 
         action_config = QAction('Config')
         action_config.triggered.connect(self.show_config_window)
         menu.addAction(action_config)
         action_config_dir = QAction('Open config folder')
         action_config_dir.triggered.connect(lambda _checked=False: self.open_config_dir())
-        menu.addAction(action_config_dir)
 
         action_console = QAction('Open Console')
         action_console.triggered.connect(lambda checked=False: show_console(log_path=self.dsd.config.log_path))
         action_console.setEnabled(True if is_linux() else is_frozen())
-        menu.addAction(action_console)
 
         action_console_startup = QAction('Show Console On Startup')
         action_console_startup.setCheckable(True)
@@ -93,10 +89,19 @@ class DSDUIManager:
 
         action_screenshot = QAction('Take Screenshot')
         action_screenshot.triggered.connect(lambda _checked=False: self.dsd.state.screenshot())
-        menu.addAction(action_screenshot)
+
+        action_update = QAction('Check for updates')
+        action_update.triggered.connect(lambda _checked=False: self.dsd.installer.check_for_updates())
 
         action_exit = QAction('Exit')
         action_exit.triggered.connect(self.dsd.request_shutdown)
+
+        menu.addAction(title)
+        menu.addSeparator()
+        menu.addAction(action_config_dir)
+        menu.addAction(action_console)
+        menu.addAction(action_screenshot)
+        menu.addAction(action_update)
         menu.addAction(action_exit)
 
         self.tray_icon.setContextMenu(menu)
