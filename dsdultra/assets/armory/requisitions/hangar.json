@@ -22,7 +22,7 @@
     "short_name": "Fast Recon Vehicle",
     "icon": "png/Hangar/Fast Recon Vehicle.png",
     "cooldown": 480,
-    "max_cooldown": 741,
+    "max_cooldown": 456,
     "summon_time": 10.5,
     "passengers": 4,
     "type": "vehicle",
@@ -197,5 +197,49 @@
       "down"
     ],
     "max_ap": 0
+  },
+  "vehicle_frv_fire": {
+    "id": "vehicle_frv_fire",
+    "name": "M-104 Incinerator FRV",
+    "short_name": "Incinerator FRV",
+    "icon": "png/Hangar/Incinerator FRV.png",
+    "cooldown": 480,
+    "max_cooldown": 456,
+    "summon_time": 10.5,
+    "passengers": 4,
+    "type": "vehicle",
+    "is_fire": true,
+    "is_explosive": true,
+    "code": [
+      "left",
+      "down",
+      "right",
+      "left",
+      "down",
+      "up",
+      "up"
+    ],
+    "max_ap": 4
+  },
+  "vehicle_frv_supply": {
+    "id": "vehicle_frv_supply",
+    "name": "M-103 Supply FRV",
+    "short_name": "Supply FRV",
+    "icon": "png/Hangar/Supply FRV.png",
+    "cooldown": 480,
+    "max_cooldown": 456,
+    "summon_time": 10.5,
+    "passengers": 4,
+    "type": "vehicle",
+    "code": [
+      "left",
+      "down",
+      "left",
+      "left",
+      "down",
+      "up",
+      "right"
+    ],
+    "max_ap": 3
   }
 }
